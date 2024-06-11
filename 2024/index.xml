@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>2024s on Example Site</title>
-        <link>http://localhost:1313/2024/</link>
+        <link>https://tlooh.github.io/2024/</link>
         <description>Recent content in 2024s on Example Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <copyright>Example Person</copyright>
-        <lastBuildDate>Mon, 10 Jun 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/2024/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Tlooh</copyright>
+        <lastBuildDate>Mon, 10 Jun 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/2024/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>
