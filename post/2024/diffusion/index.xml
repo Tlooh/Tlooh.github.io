@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tlooh Blog Site</title>
+        <link>http://localhost:1313/post/2024/diffusion/</link>
+        <description>Recent content on Tlooh Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Tlooh</copyright>
+        <lastBuildDate>Mon, 10 Jun 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/2024/diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>All_papers_on_diffusiion</title>
+        <link>http://localhost:1313/p/all_papers_on_diffusiion/</link>
+        <pubDate>Mon, 10 Jun 2024 01:12:44 +0800</pubDate>
+        
+        <guid>http://localhost:1313/p/all_papers_on_diffusiion/</guid>
+        <description>&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;arxivscraper&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Actually, I used to tracking related papers on &lt;a class=&#34;link&#34; href=&#34;https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Sehwag&amp;rsquo;s blog&lt;/a&gt;, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
