@@ -2,204 +2,204 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tlooh.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-06-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/"
+                href="http://localhost:1313/zh-cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="https://tlooh.github.io/ar/"
+                href="http://localhost:1313/ar/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/"
+                href="http://localhost:1313/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
     <lastmod>2024-06-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/page/</loc>
+    <loc>http://localhost:1313/page/</loc>
     <lastmod>2024-06-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/page/"
+                href="http://localhost:1313/zh-cn/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/page/"
+                href="http://localhost:1313/page/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/2024/diffusion/</loc>
+    <loc>http://localhost:1313/2024/diffusion/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/2024/</loc>
+    <loc>http://localhost:1313/2024/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/2024/diffusion/all_papers_on_diffusion/</loc>
+    <loc>http://localhost:1313/2024/diffusion/all_papers_on_diffusion/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/p/all_papers_on_diffusiion/</loc>
+    <loc>http://localhost:1313/p/all_papers_on_diffusiion/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/categories/arxiv/</loc>
+    <loc>http://localhost:1313/categories/arxiv/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/categories/"
+                href="http://localhost:1313/zh-cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="https://tlooh.github.io/ar/categories/"
+                href="http://localhost:1313/ar/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/categories/"
+                href="http://localhost:1313/categories/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/categories/diffusion/</loc>
+    <loc>http://localhost:1313/categories/diffusion/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/categories/papers/</loc>
+    <loc>http://localhost:1313/categories/papers/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/post/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/post/"
+                href="http://localhost:1313/zh-cn/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="https://tlooh.github.io/ar/post/"
+                href="http://localhost:1313/ar/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/post/"
+                href="http://localhost:1313/post/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/tags/css/</loc>
+    <loc>http://localhost:1313/tags/css/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/html/</loc>
+    <loc>http://localhost:1313/tags/html/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/markdown/</loc>
+    <loc>http://localhost:1313/tags/markdown/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/p/markdown-syntax-guide/</loc>
+    <loc>http://localhost:1313/p/markdown-syntax-guide/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/categories/syntax/</loc>
+    <loc>http://localhost:1313/categories/syntax/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/tags/"
+                href="http://localhost:1313/zh-cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="https://tlooh.github.io/ar/tags/"
+                href="http://localhost:1313/ar/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/tags/"
+                href="http://localhost:1313/tags/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/tags/themes/</loc>
+    <loc>http://localhost:1313/tags/themes/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/categories/themes/</loc>
+    <loc>http://localhost:1313/categories/themes/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/privacy/</loc>
+    <loc>http://localhost:1313/tags/privacy/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/p/rich-content/</loc>
+    <loc>http://localhost:1313/p/rich-content/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/shortcodes/</loc>
+    <loc>http://localhost:1313/tags/shortcodes/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/p/placeholder-text/</loc>
+    <loc>http://localhost:1313/p/placeholder-text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="https://tlooh.github.io/ar/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/"
+                href="http://localhost:1313/ar/p/%D9%85%D8%AB%D8%A7%D9%84-%D9%86%D8%B5/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/p/placeholder-text/"
+                href="http://localhost:1313/p/placeholder-text/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/tags/tag-with-whitespaces/</loc>
+    <loc>http://localhost:1313/tags/tag-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/categories/test/</loc>
+    <loc>http://localhost:1313/categories/test/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/categories/test/"
+                href="http://localhost:1313/zh-cn/categories/test/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/categories/test/"
+                href="http://localhost:1313/categories/test/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/categories/test-with-whitespaces/</loc>
+    <loc>http://localhost:1313/categories/test-with-whitespaces/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/text/</loc>
+    <loc>http://localhost:1313/tags/text/</loc>
     <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/p/math-typesetting/</loc>
+    <loc>http://localhost:1313/p/math-typesetting/</loc>
     <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/tags/emoji/</loc>
+    <loc>http://localhost:1313/tags/emoji/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/p/emoji-support/</loc>
+    <loc>http://localhost:1313/p/emoji-support/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://tlooh.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/%E5%85%B3%E4%BA%8E/"
+                href="http://localhost:1313/zh-cn/%E5%85%B3%E4%BA%8E/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tlooh.github.io/about/"
+                href="http://localhost:1313/about/"
                 />
   </url><url>
-    <loc>https://tlooh.github.io/links/</loc>
+    <loc>http://localhost:1313/links/</loc>
   </url><url>
-    <loc>https://tlooh.github.io/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>
