@@ -2,33 +2,870 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Diffusion on Tlooh Blog Site</title>
-        <link>http://localhost:1313/categories/diffusion/</link>
+        <link>https://tlooh.github.io/categories/diffusion/</link>
         <description>Recent content in Diffusion on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Mon, 10 Jun 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>All_papers_on_diffusiion</title>
-        <link>http://localhost:1313/2024/diffusion/all_papers_on_diffusion/</link>
+        <lastBuildDate>Mon, 10 Jun 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/categories/diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>All_papers_on_diffusion</title>
+        <link>https://tlooh.github.io/p/all_papers_on_diffusion/</link>
         <pubDate>Mon, 10 Jun 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/2024/diffusion/all_papers_on_diffusion/</guid>
-        <description>&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>https://tlooh.github.io/p/all_papers_on_diffusion/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/all_papers_on_diffusion/all_diffusion_papers_view.jpeg" alt="Featured image of post All_papers_on_diffusion" /&gt;&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;arxivscraper&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;Actually, I used to tracking related papers on &lt;a class=&#34;link&#34; href=&#34;https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Sehwag&amp;rsquo;s blog&lt;/a&gt;, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>All_papers_on_diffusion</title>
-        <link>http://localhost:1313/p/all_papers_on_diffusion/</link>
-        <pubDate>Mon, 10 Jun 2024 01:12:44 +0800</pubDate>
+        <title>Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</title>
+        <link>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
+        <pubDate>Mon, 06 May 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/all_papers_on_diffusion/</guid>
-        <description>&lt;img src="http://localhost:1313/p/all_papers_on_diffusion/all_diffusion_papers_view.jpeg" alt="Featured image of post All_papers_on_diffusion" /&gt;&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;arxivscraper&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Actually, I used to tracking related papers on &lt;a class=&#34;link&#34; href=&#34;https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Sehwag&amp;rsquo;s blog&lt;/a&gt;, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.&lt;/p&gt;
+        <guid>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" alt="Featured image of post Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models" /&gt;&lt;h1 id=&#34;cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models&#34;&gt;Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models
+&lt;/h1&gt;&lt;p&gt;本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 &lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;交叉注意输出经过几个推理步骤后会收敛到一个固定点&lt;/b&gt;&lt;/font&gt; 。收敛的时间点自然将整个推理过程分为两个阶段:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初始语义规划阶段: 在此阶段，模型依赖于交叉关注规划面向文本的视觉语义，以及随后的&lt;/li&gt;
+&lt;li&gt;保真度改进阶: 在此阶段，模型尝试从先前规划的语义生成图像。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;作者发现&lt;strong&gt;在保真度改进阶段忽略文本条件不仅降低了计算复杂度，而且保持了模型的性能&lt;/strong&gt;。这产生了一种简单且无需训练的方法，称为TGATE，用于高效生成，它在交叉注意力输出收敛时缓存它，并在剩余的推理步骤中保持固定。我们对MS-COCO验证集的实证研究证实了其有效性。&lt;/p&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001720.png&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;一些研究强调了交叉注意对空间控制的重要性(Prompt-to-Prompt, Atten-and-Excite, Boxdiff)，但很少(如果有的话)从去噪过程中的时间角度研究其作用。&lt;/p&gt;
+&lt;p&gt;在这里，我们提出了一个新的问题:“&lt;strong&gt;在文本到图像扩散模型的推理过程中，交叉注意力对每一步都是必要的吗?&lt;/strong&gt;”&lt;/p&gt;
+&lt;p&gt;为此，我们研究了在&lt;strong&gt;每个推理步骤中交叉关注对生成图像质量的影响&lt;/strong&gt;。我们的发现突出了两个反直觉的观点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在最初的几个步骤中，交叉注意输出收敛到一个固定点。（收敛时间点将扩散模型去噪过程分为两个阶段:）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初始阶段，模型依靠交叉注意规划面向文本的视觉语义, 我们将其表示为 &lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;语义规划阶段&lt;/b&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;li&gt;后续阶段，模型学习从先前的语义规划中生成图像，我们称之为&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;保真度提升阶段&lt;/b&gt;&lt;/font&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;交叉注意在保真度提高阶段是多余的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在语义规划阶段，交叉注意对产生有意义的语义起着至关重要的作用。然而，&lt;strong&gt;在后期阶段，交叉注意收敛，对生成过程的影响较小。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;事实上，在&lt;strong&gt;保真度提高阶段绕过交叉注意&lt;/strong&gt;可以在保持图像生成质量的同时潜在地减少计算成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因为&lt;strong&gt;交叉注意中的缩放点积是一个二次复杂度的运算&lt;/strong&gt;。随着现代模型中分辨率和令牌长度的不断增加，交叉注意不可避免地会导致昂贵的计算，成为移动设备等应用程序的重要延迟来源。&lt;/p&gt;
+&lt;p&gt;这一发现促使我们重新评估交叉注意的作用，并启发我们设计一种简单、有效、无需训练的方法，即暂时控制交叉注意(&lt;code&gt;temporally gating the cross-attention (TGATE)&lt;/code&gt;)，以提高效率并保持现成扩散模型的生成质量。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 需要注意的是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TGATE不会导致性能下降，**因为交叉注意的结果是聚合和冗余的。**事实上，观察到在基线上的初始化距离(FID)略有改善。&lt;/li&gt;
+&lt;li&gt;TGATE可以在每张图像上减少65T多次累积操作(Multiple-Accumulate Operations，MACs)，&lt;strong&gt;并在保真度提高阶段减小0.5B个参数，与基线模型(SDXL)相比，在没有训练成本的情况下，延迟减少了约50%。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;temporal-analysis-of-cross-attention&#34;&gt;Temporal Analysis of Cross-Attention
+&lt;/h2&gt;&lt;h3 id=&#34;cross-attention&#34;&gt;Cross-Attention.
+&lt;/h3&gt;&lt;p&gt;UNet 中的交叉注意数学定义如下：&lt;/p&gt;
+&lt;p&gt;$$\mathbf{C}_c^t=\text{Softmax}(\frac{Q_z^t\cdot K_c}{\sqrt{d}})\cdot V_c$$&lt;/p&gt;
+&lt;p&gt;其中，$Q_z^t$ 是 $z_t$ 的投影，$K_c$ 和 $V_c$ 是文本嵌入 $c$ 的投影，$d$ 是 $K_c$的特征维度。&lt;strong&gt;交叉注意的二次型的计算复杂度，是在处理高分辨率特征时的一个重要瓶颈。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;on-the-convergence-of-cross-attention-map&#34;&gt;On the Convergence of Cross-Attention Map
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;考虑一个问题🤔：&lt;strong&gt;考虑到每个时间步骤中噪声输入的变化，交叉注意生成的特征图是表现出时间稳定性还是随时间波动?&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;作者分析的做法步骤如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从MS-COCO数据集中随机收集了1000个标题，并使用CFG预训练的SD-2.1模型1生成图像。&lt;/li&gt;
+&lt;li&gt;在推理过程中，我们计算 $C^t$ 和 $C^{t+1}$ 之间的L2距离，&lt;strong&gt;其中 $C^t$ 表示时间步长t的交叉注意图&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;通过平均所有输入标题、条件和深度之间的L2距离来获得两步之间的交叉注意差。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;图2显示了跨不同推理步骤的交叉注意差异的变化。&lt;strong&gt;一个明显的趋势出现了，表明差异逐渐趋近于零。&lt;/strong&gt; 收敛性总是在5 ~ 10个推理步骤内出现。因此，交叉注意映射会收敛到一个固定点，不再为图像生成提供动态指导。这一发现从交叉注意的角度支持了CFG的有效性，表明尽管条件和初始噪声不同，无条件批次和有条件批次可以收敛到一个一致的结果。&lt;/p&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png&gt;
+&lt;blockquote&gt;
+&lt;p&gt;图中的每个数据点是模型中1000个标题和所有交叉注意图的平均值。阴影区域表示方差，而曲线表示连续步骤之间的差逐渐接近于零。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此我们发现：&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;这一现象说明了交叉注意在推理过程中的影响是不均匀的，并启发了下一节交叉注意的时间分析。&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;h3 id=&#34;the-role-of-cross-attention-in-inference&#34;&gt;The Role of Cross-Attention in Inference
+&lt;/h3&gt;&lt;h4 id=&#34;analytical-tool&#34;&gt;Analytical Tool.
+&lt;/h4&gt;&lt;p&gt;我们通过在特定阶段有效地“去除”交叉关注并观察由此产生的生成质量差异来衡量交叉关注的影响。在实践中，这种移除近似于用空文本的占位符替换原始文本嵌入，即“”。我们将标准去噪轨迹形式化为一个序列:
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001763.png&gt;&lt;/p&gt;
+&lt;p&gt;为了简化起见，省略了时间步骤索引 $t$ 和引导比例系数 $w$。 从序列 $\boldsymbol{S}$ 中生成的图像表示为 $x$, 我们然后修改标准序列，将条件文本嵌入 $x$ 替换为空文本嵌入 $\varnothing $，在指定的推理区间内，产生两个新的序列，$\boldsymbol{S}^F_m$ 和 $\boldsymbol{S}^L_m$ ，基于一个标量 $m$&lt;/p&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001776.png&gt;
+&lt;p&gt;这里，$m$ 是作为一个 &lt;code&gt;gate step&lt;/code&gt; 来分割这个两阶段。在序列 $\boldsymbol{S}^F_m$ 中，我们将无文本嵌入 $varnothing$ 替换原始文本嵌入，从 $m + 1$ 到第 $n$ 步。&lt;/p&gt;
+&lt;p&gt;相反的，在序列 $\boldsymbol{S}^L_m$ 中，我们将使用空文本嵌入 $varnothing$，从 $1$ 到第 $m$ 步，而 $m$ 到第 $n$ 步 则维持使用原始文本嵌入。&lt;/p&gt;
+&lt;p&gt;我们将遵循这两个去噪轨迹生成的图像分别表示为 $x^F_m$ 和 $x^L_m$。为了评估交叉关注的作用，我们对比了 $x$, $x^F_m$ 和 $x^L_m$ 之间的生成质量。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;如果 $x$ 和 $x^F_m$ 之间的生成质量存在显著差异，则表明该阶段交叉注意的重要性。相反，如果没有实质性的变化，则该阶段交叉注意可能不是必须的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;补充：我们使用SD-2.1作为基本模型，并使用DPM求解器(Lu et al.， 2022)进行噪声调度。所有实验的推理步长都设为25。文字提示“宇航员在太空骑马的高质量照片。用于可视化。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;results-and-discussion&#34;&gt;Results and Discussion.
+&lt;/h4&gt;&lt;p&gt;图3(a)中给出了预测噪声均值的轨迹，经验表明，经过25个推理步骤后，去噪过程收敛。因此，在这个区间内分析交叉注意的影响就足够了。如图3(b)所示，&lt;code&gt;gate step&lt;/code&gt; $m$ 设置为10，这将产生三个轨迹: $\boldsymbol{S}, \boldsymbol{S_m^F}, \boldsymbol{S_m^L}$&lt;/p&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001817.png&gt;
+&lt;p&gt;&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;结果表明10步后的交叉注意不影响最终结果。&lt;/b&gt;&lt;/font&gt; 但是如果在最初的步骤中忽略交叉注意会导致显著的差异。如图3(c)所示，这种消除导致MS-COCO验证集中的生成质量(FID)显著下降，甚至比不使用CFG生成图像的弱基线更差。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;个人感觉 $\boldsymbol{S_m^L}$ 效果不好也正常， 因为 $\boldsymbol{S_m^L}$ 也太极端了，一开始全部置为空。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;然后作者对 &lt;code&gt;gate step&lt;/code&gt; $m$ 分别取 ${3,5,10}$ 做了进一步的实验，&lt;strong&gt;当 $m$ 大于 5 时，忽略交叉注意的模型可以获得更好的 FID。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;为了进一步证明我们的发现的普遍性，我们在各种条件下进行了实验，包括一系列的总推断数、噪声调度器和基本模型。如表2、3和4所示，我们报告了$\boldsymbol{S}, \boldsymbol{S_m^F}, \boldsymbol{S_m^L}$在MS-COCO验证集上的FID。实验结果一致表明，$\boldsymbol{S_m^F}$ 的FIDs略优于基线S，并且远远优于    $\boldsymbol{S_m^L}$。这些研究强调了这些发现具有广泛适用性的潜力。&lt;/p&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001827.png&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001835.png&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001843.png&gt;
+&lt;h2 id=&#34;temporally-gating-cross-attentiontgate&#34;&gt;Temporally Gating Cross-Attention(TGATE)
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;前文可以发现最后的推理步骤中交叉注意计算是多余的。&lt;/strong&gt; 所以考虑在不重新训练模型的情况下删除/替换交叉注意是很重要的。受DeepCache的启发，作者提出了一种有效且无需训练的方法，称为TGATE。&lt;strong&gt;该方法缓存语义规划阶段的注意力结果，并在整个保真度改进阶段重用它们。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;caching-cross-attention-maps&#34;&gt;Caching Cross-Attention Maps.
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;gate step&lt;/code&gt; 为 $m$, 对于第 $m$ 步，对于第 $i$ 个交叉注意模块，可以通过基于CFG的推理得到 $C_{m,i}^c$ 和 $C_{m,i}^{\varnothing}$ 两个交叉注意映射。我们计算这两个映射的平均值作为锚点，并将其存储在先进先出特征缓存 $F$ 中。遍历所有交叉注意块后，$F$ 可以写成:&lt;/p&gt;
+&lt;p&gt;$$\mathbf{F}={\frac12(\mathbf{C}_\varnothing^{m,i}+\mathbf{C}_c^{m,i})|i\in[1,l]},$$&lt;/p&gt;
+&lt;p&gt;其中，$l$ 表示交叉注意模块的总数，在 SD-2.1中，$l = 16$.&lt;/p&gt;
+&lt;h3 id=&#34;re-using-cached-cross-attention-maps&#34;&gt;Re-using Cached Cross-Attention Maps.
+&lt;/h3&gt;&lt;p&gt;在保真度改进阶段的每一步中，当向前传递过程中遇到交叉注意操作时，将其从计算图中省略。相反，缓存的 $\boldsymbol{F}.pop(0)$ 被输入到后续的计算中。这种方法不会在每个时间步产生相同的预测，因为 UNet 中有残差连接允许模型跳过交叉注意。&lt;/p&gt;
+&lt;h2 id=&#34;experiments&#34;&gt;Experiments
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;四个基准模型&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Stable Diffusion-1.5 (SD-1.5)&lt;/li&gt;
+&lt;li&gt;SD-2.1&lt;/li&gt;
+&lt;li&gt;SDXL&lt;/li&gt;
+&lt;li&gt;PixArt-Alpha（这个是基于 Transformer）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;加速的基线模型&#34;&gt;加速的基线模型
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Latent Consistency Model&lt;/li&gt;
+&lt;li&gt;Adaptive Guidance&lt;/li&gt;
+&lt;li&gt;DeepCache&lt;/li&gt;
+&lt;li&gt;Multiple Noise Schedules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了进行令人信服的实证研究，我们将我们的方法与几种加速基线方法进行了比较:潜在一致性模型(Luo等人，2023)、自适应制导(Castillo等人，2023)、DeepCache (Ma等人，2023)和多个噪声调度程序(Karras等人，2022;Lu et al.， 2022;Song等人，2020)。注意，我们的方法与现有的加速去噪推理方法是正交的;因此，我们的方法可以简单集成，进一步加快这一过程。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;实验结果&lt;/strong&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001852.png&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001861.png&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001871.png&gt;
+&lt;h6 id=&#34;消融实验&#34;&gt;消融实验
+&lt;/h6&gt;&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001880.png&gt;
+&lt;img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001890.png&gt;</description>
+        </item>
+        <item>
+        <title>SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</title>
+        <link>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
+        <pubDate>Sun, 28 Apr 2024 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" alt="Featured image of post SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions" /&gt;&lt;h1 id=&#34;sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions&#34;&gt;SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sign: 2024-4-28 💡&lt;/strong&gt;
+在看这个文章之前，首先要对 consistency model ，score-based model要有一定了解，以及相应的知识蒸馏，怎样去做单步生成的等等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;扩散模型由于其迭代采样过程而导致显著的延迟。为了减轻这些限制，作者引入了一种双重方法，包括 &lt;font color=&#34;#0071e3&#34;&gt;模型小型化&lt;/font&gt; 和 &lt;font color=&#34;#0071e3&#34;&gt;减少采样步骤&lt;/font&gt; ，旨在显著降低模型延迟。还是利用知识蒸馏来简化U-Net和图像解码器架构，并引入了一种利用特征匹配和分数蒸馏的创新的单步DM训练技术。&lt;/p&gt;
+&lt;p&gt;作者提出了两种模型，&lt;strong&gt;SDXS-512&lt;/strong&gt;和&lt;strong&gt;SDXS-1024&lt;/strong&gt;，分别在单个GPU上实现了大约100 FPS(比SD v1.5快30倍)和30 FPS(比SDXL快60倍)的推理速度。此外，我们的训练方法在图像条件控制中提供了有前途的应用，促进了有效的图像到图像的翻译。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction
+&lt;/h2&gt;&lt;p&gt;这是一篇小米的工作，实时进行图像到图像的生成。因为是要更多考虑手机的部署，所以要潜在解决的就是模型的大规模和多步骤采样的问题。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先介绍一下什么是 &lt;code&gt;NFE&lt;/code&gt;，即 &lt;strong&gt;Number of Function Evaluations&lt;/strong&gt;，模型评估次数。&lt;/p&gt;
+&lt;p&gt;对于常见的文生图模型，成本可以近似地计算为总延迟，其中包括文本编码器、图像解码器和去噪模型的延迟，乘以函数评估次数(NFEs)。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里是直观的一个对比：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401816.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;本文主要考虑减小 VAE解码器 和 UNet 的规模，两者都是资源密集型组件。作者还是通过蒸馏的 Loss 和 GAN Loss 来轻量化。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🤔这应该是和 stability 的那个 Turbo，UFO-Gen 的原理差不多&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;另外，为了减少 NFEs, 作者提出了一个快速和稳定的训练方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先，我们建议通过将蒸馏损失函数替换为所提出的特征匹配损失函数，调整采样轨迹并将多步模型快速微调为一步模型。&lt;/li&gt;
+&lt;li&gt;然后，拓展了 Diff-Instruct 训练策略，利用特征匹配损失的梯度取代分数蒸馏在时间步长的后半部分提供的梯度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;💡 从预训练的扩散模型进行知识蒸馏（分数蒸馏）&lt;/b&gt;&lt;/font&gt; 都是 来自于 &lt;strong&gt;DreamFusion&lt;/strong&gt; 这篇工作，感兴趣可以看看。
+Diff-instruct: A universal approach for transferring knowledge from pre-trained diffusion models.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;2-preliiminaries&#34;&gt;2. Preliiminaries
+&lt;/h2&gt;&lt;h3 id=&#34;score-based-model&#34;&gt;Score-based Model
+&lt;/h3&gt;&lt;p&gt;所使用的损失函数的核心是分数匹配(SM)损失，其目的是使模型估计的分数与数据的真实分数之间的差异最小化:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401825.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;diff-instruct&#34;&gt;Diff-Instruct
+&lt;/h3&gt;&lt;p&gt;Diff-Instruct 通过 Integral Kullback-Leibler (IKL)散度，将分数蒸馏引入到图像的生成过程，扩散模型其实实在拟合 $p, q$两个分布之间的差异。这里我们可以定义优化目标为：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401834.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 $q_t$ 和 $p_t$ 代表 $t$ 时刻扩散过程的边缘概率密度，$q_0$ 和 $p_0$ 之间的 IKL 梯度可以表示为：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401843.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 $\boldsymbol{x}&lt;em&gt;0=g&lt;/em&gt;\theta(\boldsymbol{z})$ 表示随机采样的高斯噪声 $z$ 通过单步生成的 $x_0$. $\boldsymbol{s}&lt;em&gt;\phi$ 和 $s&lt;/em&gt;{p_t}$ 分别表示在线训练 Diffusion Model 和预训练 Diffusion Model的分数函数。&lt;/p&gt;
+&lt;p&gt;Diff-Instruct 直接使用这个梯度来更新模型，当两个分数函数的输出一致时，单步步生成器输出的边缘分布与预训练DM的边缘分布一致。&lt;/p&gt;
+&lt;h2 id=&#34;3-method&#34;&gt;3. Method
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401854.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;architecture-optimization&#34;&gt;Architecture Optimization
+&lt;/h3&gt;&lt;h4 id=&#34;vae-decoder-distillation&#34;&gt;VAE Decoder Distillation
+&lt;/h4&gt;&lt;p&gt;原始的 &lt;strong&gt;VAE是通过平衡三种损失来优化的:重建、Kullback-Leibler (KL)散度和GAN损失&lt;/strong&gt;。然而，在训练过程中平等地对待所有样本会引入冗余。利用预训练的扩散模型  $F$ 对隐编码 $z$ 进行采样，并利用预训练的VAE解码器对图像 $\tilde{\boldsymbol{x}}$ 进行重构，我们引入了VAE蒸馏(VD)损失来训练一个微小的图像解码器G:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401873.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;$D$ 是 GAN 的判别器，$\lambda_{GAN}$ 用来平衡两个损失项， $|G(\boldsymbol{z})&lt;em&gt;{\downarrow8\times}-\tilde{\boldsymbol{x}}&lt;/em&gt;{\downarrow8\times}|_1$ 通过 8x 下采样的图像计算的 L1 损失来保持图像的细节。&lt;/p&gt;
+&lt;h4 id=&#34;unet-distillation&#34;&gt;UNet Distillation
+&lt;/h4&gt;&lt;p&gt;受启发于 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2305.15798&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;BK-sdm&lt;/a&gt; 的知识蒸馏策略，即有选择性地从U-Net中去除残余和Transformer块，旨在训练一个更紧凑的模型，该模型仍然可以有效地再现原始模型的中间特征映射和输出。图2 (b)说明了提取微小U-Net的训练策略。知识蒸馏通过输出知识蒸馏(OKD)和特征知识蒸馏(FKD)损失实现:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401887.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;总体损失是两个损失函数的结合：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401896.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;controlnet&#34;&gt;ControlNet
+&lt;/h4&gt;&lt;p&gt;这里提一下 ControlNet。 ControlNet通过在现有的文本到图像框架中嵌入空间引导来增强扩散模型，从而实现图像到图像的任务，如素描到图像的翻译、绘画和超分辨率。它复制了U-Net的编码器架构和参数，增加了额外的卷积层来整合空间控制。尽管继承了U-Net的参数并使用零卷积来增强训练稳定性，&lt;strong&gt;ControlNet的训练过程仍然昂贵，并且受到数据集质量的显著影响。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;为了解决这些挑战，我们提出了一种蒸馏方法，将原始U-Net的控制网提炼成相应的微型U-Net的控制网。如图2 (b)所示，我们不是直接提取ControlNet的零卷积输出，而是将ControlNet与U-Net结合起来，然后提取U-Net的中间特征映射和输出，这使得蒸馏后的ControlNet和微小的U-Net能够更好地协同工作。考虑到ControlNet不影响U-Net编码器的特征映射，特征蒸馏只应用于U-Net的解码器&lt;/p&gt;
+&lt;h3 id=&#34;one-step-training&#34;&gt;One-Step Training
+&lt;/h3&gt;&lt;p&gt;虽然dm在图像生成方面表现出色，但即使使用先进的采样器，它们对多个采样步骤的依赖也会带来显著的推理延迟为了解决这个问题，之前的研究引入了知识蒸馏技术，&lt;strong&gt;如渐进式蒸馏和一致性蒸馏&lt;/strong&gt;，旨在减少采样步骤并加速推理。然而，这些方法通常只能通过4 ~ 8个采样步骤产生清晰的图像，这与GAN中的一步生成过程形成鲜明对比。&lt;/p&gt;
+&lt;p&gt;探索将GAN整合到DM训练体系中已经显示出增强图像质量的希望。然而，GAN也有自己的挑战，包括对超参数的敏感性和训练不稳定性。对于一步生成模型，有必要寻求一种更稳定的训练策略。&lt;/p&gt;
+&lt;h4 id=&#34;feature-matching-warmup&#34;&gt;Feature Matching Warmup
+&lt;/h4&gt;&lt;p&gt;通常做法是是训练一个单步模型，即：初始采样一个噪声 $\epsilon$，然后使用常微分方程求解器 $\psi$ 来进行采样最终得到生成图像 $\boldsymbol{\hat{x}}_{0}$。&lt;/p&gt;
+&lt;p&gt;然而，这种方法经常导致产生低质量的图像。潜在的问题是使用来自预训练DM的ODE采样器生成的噪声图像对的采样轨迹中的交叉，导致不适定问题。整流通过调整采样轨迹解决了这一挑战。它取代了训练目标，并提出了一个“回流”策略来完善配对从而最小化轨迹交叉。相反，我们注意到采样轨迹的交叉会导致一个噪声输入对应于多个真地图像，导致训练模型生成的图像是多个可行输出的加权和，权重为$w(y)$:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401908.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;对于最常用的均方误差(mean square error, MSE)损失，&lt;strong&gt;该模型在包含多个可行目标的情况下，倾向于输出多个可行解的平均值，以使整体误差最小化，从而导致生成的图像模糊。&lt;/strong&gt; 为了解决这个问题，我们探索了替代损失函数，改变加权方案，优先考虑更清晰的图像。在大多数情况下，我们可以使用L1损失、感知损失和LPIPS损失来改变权重的形式。我们建立在特征匹配方法的基础上，该方法涉及计算编码器模型生成的中间特征映射上的损失。具体来说，我们从dist损失中获得灵感，在这些特征映射上应用结构相似指数(SSIM)，以获得更精细的特征匹配损失:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401918.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中 $w_l$ 是 SSIM 损失的权重，通过编码器 $\boldsymbol{f_\theta}$ 编码的第 &lt;code&gt;l-th&lt;/code&gt; 中间特征上计算得到的 SSIM 损失，$\boldsymbol{x_\theta(\epsilon)}$ 是由微型的 U-Net $\boldsymbol{x_\theta}$ 生成的图像，$\boldsymbol{\psi(x_\phi(\epsilon))}$ 是由原始的 U-Net $\boldsymbol{x_\phi}$ 用ODE采样器 $\boldsymbol{\psi}$ 生成的图像。在实践中，我们发现使用预训练的CNN骨干网、ViT骨干网和DM U-Net编码器都能获得良好的效果，与MSE损失的对比如图6所示。此外，我们还利用现有的微调方法(如LCM)拉直模型的轨迹以缩小可行输出的范围，或者直接使用公开可用的少步模型。我们将单独使用 $L_{FM}$来训练一步模型作为热身，只依赖少量的训练步骤。&lt;/p&gt;
+&lt;h4 id=&#34;segmented-score-distillation&#34;&gt;Segmented Score Distillation.
+&lt;/h4&gt;&lt;p&gt;虽然特征匹配损失可以产生几乎清晰的图像，但不能达到真正的分布匹配，所以训练好的模型只能作为正式训练的初始化。为了解决这一差距，我们详细阐述了diffi - directive中使用的训练策略，该策略旨在通过匹配时间步长的边际分数函数，使模型的输出分布与预训练模型的输出分布更接近。然而，由于需要在 $t \to T$处加入高水平的噪声才能计算目标分数，因此此时估计的分数函数是不准确的。我们注意到扩散模型的采样轨迹从粗到细，这意味着 $t \to t$，分数函数提供低频信息的梯度，而 $t \to 0$，它提供高频信息的梯度。因此，将时间步长分为 $[0, \alpha T]$ 和 $(\alpha T, T]$两段，后者用 $L_{FM}$ 代替，因为它能提供足够的低频梯度。这一策略可以正式表示为:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401929.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;$\lambda_{FM}$ 用于平衡两段的梯度，$\alpha \in [0, 1]$。我们有意将 $\alpha$ 设置为接近1，$\lambda_{FM}$ 设置为较高值，以确保模型的输出分布平滑地与预训练分数函数预测的分布对齐。在概率密度达到显著重叠后，我们逐渐降低 $\alpha$ 和 $\lambda_{FM}$。图3直观地描述了我们的训练策略，其中离线DM表示预训练DM的U-Net，在线DM从离线DM初始化，并通过Eq.(1)对生成的图像进行微调。在实践中，在线DM和学生DM交替训练，如算法1所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401939.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;lora&#34;&gt;LoRA
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401950.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一旦训练了一步DM，就可以像其他DM一样对其进行微调，以调整生成图像的样式。我们将LoRA与提出的分段分数蒸馏(Segmented Score Distillation)结合起来，对一步DM进行微调，如图4所示。&lt;/p&gt;
+&lt;p&gt;具体来说，我们将预训练的LoRA插入到离线DM中，如果它也与教师DM兼容，它也被插入到离线DM中。值得注意的是，我们没有将LoRA插入到在线DM中，因为它对应于一步DM的输出分布。然后，我们使用与一步训练相同的训练过程，但跳过特征匹配预热，因为LoRA微调比完全微调稳定得多。此外，当Teacher DM不能包含预训练的LoRA时，我们使用简化的λF M。通过这种方式，可以将预训练的LoRA提取到SDXS的LoRA中。&lt;/p&gt;
+&lt;h4 id=&#34;controlnet-1&#34;&gt;ControlNet
+&lt;/h4&gt;&lt;p&gt;我们的方法也可以用于训练ControlNet，使微小的一步模型能够将图像条件合并到其图像生成过程中，如图5所示。与文本到图像生成的基本模型相比，这里训练的模型是蒸馏的ControlNet，伴随着前面提到的微小的U-Net, U-Net的参数在训练过程中是固定的。重要的是，我们需要从教师模型采样的图像中提取控制图像，而不是从数据集图像中提取，以确保噪声、目标图像和控制图像形成配对三元组。此外，原始的多步U-Net附带的预训练控制网与在线U-Net和离线U-Net集成，但不参与培训。与文本编码器类似，该函数仅限于作为预训练的特征提取器。这样，为了进一步降低L，训练后的ControlNet就是学习利用从目标图像中提取的控制图像。同时，分数蒸馏鼓励模型匹配边缘分布，增强生成图像的上下文相关性。值得注意的是，我们发现用新初始化的噪声替换U-Net的一部分噪声输入可以增强控制能力。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401962.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-experiments&#34;&gt;4. Experiments
+&lt;/h2&gt;&lt;p&gt;实现细节。我们的代码是基于diffusers库开发的。由于我们无法访问SD v2.1 base和SDXL的训练数据集，因此整个训练过程几乎是无数据的，&lt;strong&gt;仅依赖于可公开访问的数据集中的提示（Laion-5B）&lt;/strong&gt;。必要时，我们使用开源预训练模型与这些提示相结合来生成相应的图像。为了训练我们的模型，我们将训练小批大小配置为1024到2048。为了在可用硬件上容纳这个批处理大小，&lt;strong&gt;我们在必要时战略性地实现梯度累积&lt;/strong&gt;。值得注意的是，我们发现所提出的训练策略导致模型生成的图像纹理较少。因此，在训练之后，**我们利用GAN损失和极低秩的LoRA进行短时间的微调。**当需要GAN损失时，&lt;strong&gt;我们使用StyleGAN-T中的投影GAN损失&lt;/strong&gt;，基本设置与ADD一致。对于SDXS-1024的训练，我们使用SDXL的精简版Vega作为在线DM和离线DM的初始化，以减少训练开销。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401971.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401981.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401992.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401002.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;5-conclusion&#34;&gt;5. Conclusion
+&lt;/h2&gt;&lt;p&gt;本文探讨了基于大规模扩散的文本到图像生成模型的升华，使其能够在gpu上进行实时推理。首先，我们使用知识蒸馏来压缩U-Net架构和图像解码器。随后，我们引入了一种新的训练策略，利用特征匹配和分数蒸馏将采样过程减少到一步。这种方法允许在单个GPU上实时生成1024×1024图像，保持与原始模型相当的质量。此外，我们提出的训练方法也可以适应涉及图像条件生成的任务，避免了预训练的ControlNet的直接适应。我们相信，在边缘设备上部署高效的图像条件生成代表了未来研究的一个有希望的途径，并计划探索其他应用，如喷漆和超分辨率。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</title>
+        <link>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
+        <pubDate>Thu, 25 Apr 2024 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png" alt="Featured image of post CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching" /&gt;&lt;h1 id=&#34;comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching&#34;&gt;CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;图文一致性的原因还是因为文本的 token 的激活注意值不高，导致文本的 token 无法激活图像的区域，从而导致图文不一致。作者将这种现象归因于扩散模型的训练方式对条件的利用不足，所以提出了 CoMat，是一种 &lt;strong&gt;端到端的扩散模型微调策略。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;首页&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h2&gt;&lt;h4 id=&#34;缺陷&#34;&gt;缺陷
+&lt;/h4&gt;&lt;p&gt;其实上图所展现出来的还是很基础的&lt;strong&gt;目标丢失问题&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;补充一下：&lt;/b&gt;&lt;/font&gt;
+这个问题归因于视觉概念的的激活值不够大而被其他物体的注意力淹没，导致了视觉概念的丢失。之前也有一些相关工作，像：Atten-and-Excite，Structur Diffusion 等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里也有一个关于问题的分析：&lt;/p&gt;
+&lt;p&gt;作者将 token 对应的交叉注意图进行了分析，这里采用的做法是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将预训练UNet对带有文本标题的噪声图像进行降噪。然后记录每个文本token的激活值，并在空间维度上取平均值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以看到带有 &lt;code&gt;Comat&lt;/code&gt; 的，里面的所有激活值都有了提高&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=&#34;orange&#34;&gt;&lt;b&gt; 多说一句🤔&lt;/b&gt;&lt;/font&gt;
+看到这里和之前的工作并没有什么不同，像 Atten-and-Excit 是将主题视觉概念的 token 去最大化响应值，这里貌似最后的结果也是一样的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;method&#34;&gt;Method
+&lt;/h2&gt;&lt;p&gt;作者一共包括三个模块：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Concept Matching&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Attribute Concentration&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fidelity Preservation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;concept-matching&#34;&gt;Concept Matching
+&lt;/h3&gt;&lt;p&gt;这里引入了图像字幕模型，即 &lt;code&gt;Caption Model&lt;/code&gt; ，该模型可以根据给定的文本提示准确识别生成图像中不存在的概念。&lt;/p&gt;
+&lt;p&gt;在 Caption Model 的监督下，扩散模型被迫重新访问文本标记以搜索被忽略的条件信息，并为先前被忽略的文本概念分配重要性，以获得更好的文本-图像对齐。具体来说，做法是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;给定文本提示 $\mathcal{P}$, 以及相应的 词tokens ${w_1, w_2, \dots, w_{L}}$;&lt;/li&gt;
+&lt;li&gt;对于一张在经过 $\mathbf{T}$ 步去噪厚的图像，这个冻结的 &lt;code&gt;Caption Model&lt;/code&gt; $C$ 会以对数似然的形式对图文一致性进行打分，训练目标就是最小化这个分数，标记为 $\mathcal{L}_{\text{cap}}$:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$$\begin{aligned}\mathcal{L}&lt;em&gt;{\text{cap}}&amp;amp;=-\log(p&lt;/em&gt;{\mathcal{C}}(\mathcal{P}|\mathcal{I}(\mathcal{P};\epsilon_{\theta})))=-\sum_{i=1}^{L}\log(p_{\mathcal{C}}(w_{i}|\mathcal{I},w_{1:i-1})).\end{aligned}$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个优化方式是通过 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2305.16381&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DPOK&lt;/a&gt; 这个方法做的;
+作者说这个概念匹配模块可以缓解物体存在、复杂关系等多种错位问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;attribute-concentration&#34;&gt;Attribute Concentration
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如上图所示，基于SDXL模型，单词“红”和“蓝”的注意力大多在&lt;strong&gt;背景中被激活，其对应对象的对齐很少。&lt;/strong&gt; 我们的概念匹配模块可以在一定程度上缓解这一问题。然而，由于标题模型对对象属性不敏感，性能提升有限。这里，为了从更细粒度的视图将实体与其属性对齐，我们引入了属性集中，将实体的文本描述的注意力集中在图像中的区域上。&lt;/p&gt;
+&lt;p&gt;这里看下具体做法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 spacy 解析库，提取文本提示中所有的名词和其修饰语，定义为实体 ${e_1, \dots, e_N}$，而每个实体又可以定义为元组 即 $e_i = (n_i,a_i)$&lt;/li&gt;
+&lt;li&gt;然后手动过滤抽象的名词（例如：场景、氛围、语言），难以识别区域的名词（例如：阳光、噪音等），描述背景的（例如：早餐、浴室、派对等）&lt;/li&gt;
+&lt;li&gt;然后使用 Grounded-SAM 模型来风格出相应的区域 Mask，${M^1, \dots, M^N}$，这里只给名词拿来分割，原因是因为扩散模型会导致错误的属性绑定，那样就会导致不准确&lt;/li&gt;
+&lt;li&gt;然后就是集中同一区域内每个实体 $e_i$的名词 $n_i$ 和 $a_i$的注意力，用一个  $Mask^i$  来表示，总的来说包括两个优化目标：
+&lt;ul&gt;
+&lt;li&gt;token-level attention loss&lt;/li&gt;
+&lt;li&gt;pixel-level attention loss&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;token-level attention loss 就是强制激活 $n_i \cup a_i $的区域&lt;/p&gt;
+&lt;p&gt;$$\begin{aligned}\mathcal{L}&lt;em&gt;{\text{token}}&amp;amp;=\frac{1}{N}\sum&lt;/em&gt;{i=1}^N\sum_{k\in n_i\cup a_i}\left(1-\frac{\sum_{u,v}A_{u,v}^k\odot M^i}{\sum_{u,v}A_{u,v}^k}\right)\end{aligned}$$&lt;/p&gt;
+&lt;p&gt;pixel-leval attention loss 是通过二元交叉熵损失进一步迫使区域中的每个像素只关注对象令牌：
+$$\begin{aligned}\mathcal{L}&lt;em&gt;\text{pixel}=-\frac{1}{N|A|}\sum&lt;/em&gt;{i=1}^N\sum_{u,v}\left[M_{u,v}^i\log(\sum_{k\in n_i\cup a_i}A_{u,v}^k)+(1-M_{u,v}^i)\log(1-\sum_{k\in n_i\cup a_i}A_{u,v}^k)\right],\end{aligned}$$&lt;/p&gt;
+&lt;p&gt;其中|A|是注意力图上的像素数。而提示符中的某些对象可能由于不对齐而无法出现在生成的图像中。在这种情况下，像素级的注意力丧失仍然有效。当掩码完全为零时，它表示没有任何像素应该参与当前图像中缺失的对象标记。此外，考虑到计算成本，在在线模型的图像生成过程中，我们只在随机选择的r个时间步上计算上述两个损失。&lt;/p&gt;
+&lt;h4 id=&#34;fidelity-preservation&#34;&gt;Fidelity Preservation
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;由于目前的微调过程纯粹是由图像字幕模型和属性与实体之间关系的先验知识主导的，扩散模型可能会很快过拟合奖励，失去原有的能力，产生劣化的图像，如图6所示。为了解决这个 reward hacking 问题，&lt;strong&gt;作者引入了一种新的对抗损失，通过使用鉴别器来区分由预训练和微调扩散模型生成的图像。&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个好像还挺新奇的🤔（可以阅读 UFOGen）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于判别器 $D_\phi$，用Stable Diffusion模型中预训练的UNet初始化，该模型与在线训练模型共享相似的知识，有望更好地保持其能力。在我们的实践中，这也使得对抗损失可以直接在潜在空间而不是图像空间中计算。此外，重要的是要注意，我们的微调模型不利用真实世界的图像，而是利用原始模型的输出。这种选择的动机是我们的目标是保持原始的生成分布，并确保更稳定的训练过程。&lt;/p&gt;
+&lt;p&gt;最后，在给定单个文本提示的情况下，我们分别使用原始扩散模型和在线训练模型来生成图像 latent $\hat{z}_0$ 和 $\hat{z}_0&amp;rsquo;$。对抗性损失计算如下:&lt;/p&gt;
+&lt;p&gt;$$\begin{aligned}\mathcal{L}&lt;em&gt;{adv}=\log\left(D&lt;/em&gt;\phi\left(\hat{z}&lt;em&gt;0\right)\right)+\log\left(1-D&lt;/em&gt;\phi\left(\hat{z}_0&amp;rsquo;\right)\right).\end{aligned}$$&lt;/p&gt;
+&lt;h4 id=&#34;24-联合训练&#34;&gt;2.4 联合训练
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Caption Model&lt;/code&gt; 是用 BLIP 在 COCO 数据集上 finetune 的&lt;/p&gt;
+&lt;p&gt;训练集包括 T2I-ComBench, HRS-Bench 以及 在 ABC-6K上随机采用的 5000 个 prompt，一共 2W 个图像&lt;/p&gt;
+&lt;p&gt;训练是在 Unet 里面插入 Lora 模块（包括原始 diffusion 和 判别器），其余全部冻住。 在 8 块 A100 80G 上训练 2000iters，50 步去噪，其中只有 5 步有梯度反馈。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实验效果还是不错的，重点还是看看这篇工作解决方式的方法。解决的问题还是一样的激活值不够，但是作者借用了很多模块包括 BLIP 、 SAM 等，但是 Atten-and-Excite 只用了一个最大化 Loss，估计还是效果和方法的一个 trade-off 。这篇工作感觉还是做的很复杂。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</title>
+        <link>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
+        <pubDate>Fri, 22 Dec 2023 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010102266.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;abstract&#34;&gt;Abstract
+&lt;/h2&gt;&lt;p&gt;扩散模型的关键组件之一：&lt;strong&gt;UNet&lt;/strong&gt; 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。&lt;/p&gt;
+&lt;p&gt;原因是因为作者发现：&lt;strong&gt;编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。&lt;/strong&gt;
+这一发现启发作者&lt;strong&gt;在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。&lt;/p&gt;
+&lt;p&gt;在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h2&gt;&lt;p&gt;我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。&lt;/p&gt;
+&lt;p&gt;UNet 结构包括 3 个部分：1）encoder $\mathcal{E}$      2）a bottleneck $\mathcal{B}$     3）decoder $\mathcal{D}$&lt;/p&gt;
+&lt;p&gt;经过 encoder 编码出来后的特征 are skipped to 到 decoder 中；
+之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2211.12572&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PnP&lt;/a&gt; 用于文本引导的 Image-to-Image 翻译任务&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2306.03881&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DIFT&lt;/a&gt; 发现了一种主要存在于解码特征的主要突发现象；&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2302.05543&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ControlNet&lt;/a&gt; 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2302.08453&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;T2I-Adapter&lt;/a&gt; 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;来自不同层的特征在推理时间内是否有不同的贡献。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;如果有，那么如何重用这些特征。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;基于上述问题，本文提出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;font color=&#34;#0071e3&#34;&gt;encoder propagation &lt;/font&gt;: 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。&lt;/li&gt;
+&lt;li&gt;虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 &lt;font color=&#34;#0071e3&#34;&gt;先验噪声注入策略&lt;/font&gt; 来保留生成图像中的纹理细节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image.png&#34; width = &#34;70%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px; &#34;&gt;&lt;b&gt;对比&lt;/b&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/center&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;methods&#34;&gt;Methods
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;前面说过 UNet 包括 3 个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;encoder $\mathcal{E}$    &lt;/li&gt;
+&lt;li&gt;a bottleneck $\mathcal{B}$    &lt;/li&gt;
+&lt;li&gt;decoder $\mathcal{D}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-1.png&#34; width = &#34;%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+从编码器提取出来的特征会通过跳跃连接传递到解码器中。
+&lt;/blockquote&gt;
+&lt;p&gt;为了更好的进行表述，我们将 UNet 划分为几个块：$\mathcal{E} = {\mathcal{E}(\cdot)_s}$ , $\mathcal{B} = {\mathcal{B}(\cdot)_8}$ , $\mathcal{D} = {\mathcal{D}(\cdot)_s}$
+其中，$s \in {8, 16, 32, 64}$。而 $\mathcal{E}(\cdot)_s$ 和 $\mathcal{D}(\cdot)_s$ 分别表示编码器和解码器中具有输入分辨率 $s$ 的  &lt;code&gt;block layer&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;analyzing-the-unet-in-diffusion-model&#34;&gt;Analyzing the UNet in Diffusion Model
+&lt;/h2&gt;&lt;h3 id=&#34;特征在时间步长上的演化&#34;&gt;特征在时间步长上的演化
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&amp;gt;先说结论吧&amp;lt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;编码器特征在相邻的时间步长上表现出细微的变化，而解码器特征在不同的时间步长上表现出实质性的变化。&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-2.png&#34; width = &#34;90%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;Analyzing the UNet in Diffusion Model. (Fig.2)&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(a)通过MSE测量相邻时间步长的特征演化。(b)提取UNet各层在每个时间步长的分层特征输出，沿通道维数对其进行平均，得到二维分层特征，并计算其 f-范数。(c) UNet编码器的分层特征显示出较低的标准偏差，而解码器的分层特征显示出较高的标准偏差。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-4.png&#34; width = &#34;90%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;Visualising the hierarchical features. (Fig.3)&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们将PCA应用于 &lt;a class=&#34;link&#34; href=&#34;https://arxiv.org/abs/2211.12572&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PnP&lt;/a&gt; 之后的分层特征，并使用前三个主要成分作为RGB图像进行可视化。编码器特征变化缓慢，在许多时间步长上具有相似性 &lt;strong&gt;(左图)&lt;/strong&gt;，而解码器特征在不同时间步长上表现出 &lt;strong&gt;实质性变化(右图)&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;gt;接着说说具体做法&amp;lt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在扩散过程种，我们会进行迭代采样，因此也就会产生相应的 &lt;code&gt;latent code&lt;/code&gt; $\boldsymbol{z}_{\boldsymbol{t}}$ , 包括相应的层级特征：${\mathcal{E}(z_t,c,t)_s}$ ， ${\mathcal{D}(z_t,c,t)_s}(s\in{8, 16, 32, 64})$&lt;/p&gt;
+&lt;p&gt;想要将层次特征变化量化出来，我们可以有:&lt;/p&gt;
+&lt;p&gt;$$\Delta_{\mathcal{E}(\cdot)_s}=\frac1{d\times s^2}|\mathcal{E}(z_t,c,t)&lt;em&gt;s,\mathcal{E}(z&lt;/em&gt;{t-1},c,t-1)_s|_2^2$$&lt;/p&gt;
+&lt;p&gt;其中，$d$ 表示编码器特征 $\mathcal{E}(z_t,c,t)&lt;em&gt;s$ 通道数。$\Delta&lt;/em&gt;{\mathcal{B}(\cdot)&lt;em&gt;s}$ 和 $\Delta&lt;/em&gt;{\mathcal{D}(\cdot)_s}$ 同理。&lt;/p&gt;
+&lt;h3 id=&#34;特征在跨层上的演化&#34;&gt;特征在跨层上的演化
+&lt;/h3&gt;&lt;p&gt;同样的，编码器变化的强度是轻微的，而解码器的变化是剧烈的。&lt;/p&gt;
+&lt;p&gt;具体来说，我们计算了所有时间步长的层级特征 ${\mathcal{E}(z_t,c,t)_s}$ 的 &lt;code&gt;Frobenius范数&lt;/code&gt; ，表示为&lt;/p&gt;
+&lt;p&gt;$$\mathcal{F}_{\mathcal{E}(\cdot)&lt;em&gt;s}={\mathcal{F}&lt;/em&gt;{\mathcal{E}(z_T,c,T)&lt;em&gt;s},&amp;hellip;,\mathcal{F}&lt;/em&gt;{\mathcal{E}(z_1,c,1)_s}}.$$&lt;/p&gt;
+&lt;p&gt;计算$\mathcal{F}_{\mathcal{B}(\cdot)&lt;em&gt;8}$ 和 $\mathcal{F}&lt;/em&gt;{\mathcal{D}(\cdot)_s}$ 同理。&lt;/p&gt;
+&lt;h3 id=&#34;能否在某些时间步骤忽略编码器&#34;&gt;能否在某些时间步骤忽略编码器？
+&lt;/h3&gt;&lt;p&gt;从前面的分析可以知道，编码在大多数时间步骤上变化是不大的，所以就考虑是否可以通过重用编码器特征来加速扩散采样。&lt;/p&gt;
+&lt;p&gt;具体来说，我们删除了时间步长为 $t−1 (t−1 &amp;lt; t)$ 的编码器，相应的解码器(包括跳过连接)将前一个时间步长为 $t$ 的编码器 $\mathcal{E}$ 的层级输出作为其输入，而不是像标准SD采样那样从当前时间步长为t−1的输出作为输入。（这一点看下面的图很好理解）&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-5.png&#34; width = &#34;90%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&amp;gt;这里有几个现象&amp;lt;&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-7.png&#34; width = &#34;90%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;Fig4&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;(a) 和 （b）比较，如果忽略了编码器，那么可以生成与标准 SD 模型非常相似的图像；&lt;/li&gt;
+&lt;li&gt;(a) 和 （d）比较，我们把同样的方法复用到解码器上，发现生成的图像经常无法覆盖文本提示中的某些特定对象。
+比如文本提示：“一个留着胡子、戴着眼镜、戴着无边帽的男人”，这是因为语义主要包含在解码器而不是编码器的特征中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;编码器传播方案&#34;&gt;编码器传播方案
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;对于采样过程 $t = {T,\dots,1}$, 将那些部署编码器传播的时间步定义为 &lt;code&gt;non-key&lt;/code&gt; 时间步，表示为：$t^{non\text{-}key} = \left{t_0^{non\text{-}key},&amp;hellip;,t_{N-1}^{non\text{-}key}\right}$ ；&lt;/li&gt;
+&lt;li&gt;除了非关键步，那就是关键步了,就表示为：$t^{key} = \left{t_0^{key},t_1^{key},&amp;hellip;,t_{T-N-1}^{key}\right}$。这些步上是不采用编码器传播方案的；&lt;/li&gt;
+&lt;li&gt;初始时间步$(t_0^{key}=T)$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，diffusion 的推理时间步表示为 $\left{t^{key},t^{non\text{-}key}\right}$, 同时 $t^{key}\cup t^{non\text{-}key}={T,&amp;hellip;,1}$ 以及 $t^{key}\cap t^{non\text{-}key}=\acute{\varnothing}.$&lt;/p&gt;
+&lt;h3 id=&#34;non-uniform-encoder-propagation&#34;&gt;non-/uniform encoder propagation
+&lt;/h3&gt;&lt;p&gt;如图Fig.2a所示，在整个推理过程中，&lt;strong&gt;初始推理阶段的编码器特征变化比后期阶段更大。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;因此，我们在初始推理阶段选择了更多的 &lt;code&gt;key time-steps&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;在之后的阶段选择更少的 &lt;code&gt;key time-steps&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;经过实验，定义为 &lt;code&gt;key time-steps&lt;/code&gt; 为：$t^{key} = \left{50,49,48,47,45,,40,35,25,15\right}$ (SD with DDIM Solver)&lt;/li&gt;
+&lt;li&gt;对于 DeepFloyd-IF：&lt;code&gt;key time-steps&lt;/code&gt; 为：$t^{key}={100,99,98,\ldots$,$92,:91,:90,:85,:80,:\ldots,:25,:20,:15,:14,:13,:\ldots,:2,:1}$, ${ 50, 49, \ldots , 2, 1} $ and ${ 75, 73, 70, 66, 61, 55, 48, 40, 31, $ $21,10}$ 3阶段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;其余的时间步骤被归类为 &lt;code&gt;non-key time-steps&lt;/code&gt;。我们将此策略定义为&lt;strong&gt;非均匀编码器传播(non-uniform encoder propagation, 见图4e)&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如图4c所示，固定步长的时间步长选择，称为&lt;strong&gt;均匀编码器传播&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;表3报告了消融研究的结果，考虑了关键和非关键时间步长的各种组合。这些结果表明，关键时间步长集合在生成图像方面具有更好的性能。&lt;/p&gt;
+&lt;h3 id=&#34;parallel-non-uniform-encoder-propagation&#34;&gt;Parallel non-uniform encoder propagation
+&lt;/h3&gt;&lt;p&gt;我们知道编码器传播的时候，也就是在那些 &lt;code&gt;time-step&lt;/code&gt; $t \in t^{non-key}$ ，解码器的输入不依赖于当前时间 $t$ 的编码器输出，而是依赖于前一个最近的 &lt;code&gt;key time step&lt;/code&gt; $t-1$ 的编码器输出。&lt;/p&gt;
+&lt;p&gt;&lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;这也就意味着，我们其实可以进行并行操作，如图4f 所示。&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;我们从 $t−2$到$t−k+1$时间步 并行执行解码。该技术可以同时进行多个时间步长的译码向前，进一步提高了推理效率。我们把这些 &lt;code&gt;non-key time-steps&lt;/code&gt;称为 &lt;code&gt;parallel-batch non-key time-steps.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如下图所示，推理时间可以减少 41%。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-8.png&#34; width = &#34;70%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;h3 id=&#34;prior-noise-injection先验噪声注入&#34;&gt;Prior noise injection(先验噪声注入)
+&lt;/h3&gt;&lt;p&gt;前面说过虽然编码器传播可以提高推理阶段的效率，但观察到它会导致生成结果中纹理信息的轻微丢失（图 6 所示）。因此作者提出了一种先验噪声注入策略。&lt;/p&gt;
+&lt;p&gt;说白了就是它将初始潜码 $\boldsymbol{z_t}$ 合并到后续时间步(即$\boldsymbol{z_T}$)的生成过程中，&lt;/p&gt;
+&lt;p&gt;$$\boldsymbol{z_t}=\boldsymbol{z_t}+\alpha\cdot\boldsymbol{z_T},\mathrm{~if~}t&amp;lt;\tau.$$&lt;/p&gt;
+&lt;p&gt;其中 $\alpha = 0.003$ 是控制$\boldsymbol{z_T}$影响的尺度参数。我们从 $\tau = 25$的步骤开始使用这个注入机制。这种策略的结合成功地改善了纹理信息。重要的是，它需要的额外计算资源几乎可以忽略不计。&lt;/p&gt;
+&lt;p&gt;我们观察到，纹理信息的丢失发生在频域的所有频率上(见图6(右红蓝曲线))。这种方法确保了SD和zT注入在频域生成的结果非常相似(见图6(右，红色和绿色曲线))，生成的图像保持所需的保真度(见图6(左，下))。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;experiments&#34;&gt;Experiments
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;有关视频任务的这里就不细说了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&#34;dataset&#34;&gt;Dataset
+&lt;/h6&gt;&lt;p&gt;MS-COCO2017 中随机选取 10K prompts，然后生成相应的 10K 个图像。&lt;/p&gt;
+&lt;h6 id=&#34;metric&#34;&gt;Metric
+&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;FID、 CLIP Score；&lt;/li&gt;
+&lt;li&gt;计算负载的平均值量：GFLOPs/image&lt;/li&gt;
+&lt;li&gt;采样时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;文本生成图像&#34;&gt;文本生成图像
+&lt;/h6&gt;&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-9.png&#34; width = &#34;70%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;Figure 7. Generated images at different time-steps, with the prompt “A man with a beard wearing sunglasses and a beanie”.&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-10.png&#34; width = &#34;70%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;Quantitative evaluation in both SD model and DeepFloydIF diffuison model on MS-COCO 2017 10K subset.&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;blockquote&gt;
+&lt;p&gt;也可以泛化到其他任务上，像定制化的生成（Dreambooth、Custom Diffusion），或者是参考图像生成（ControlNet）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-11.png&#34; width = &#34;90%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;Quantitative evaluation on text-to-video, personalized generation and reference-guided generation tasks.&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;h6 id=&#34;消融实验&#34;&gt;消融实验
+&lt;/h6&gt;&lt;p&gt;&lt;strong&gt;不同策略的消融&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-12.png&#34; width = &#34;70%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;可视化结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;assets/Faster Diffusion/image-13.png&#34; width = &#34;70%&#34; height=&#34;&#34; /&gt;&lt;br&gt;&lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;&#34;&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;&lt;/center&gt;</description>
+        </item>
+        <item>
+        <title>AdaDiff: Adaptive Step Selection for Fast Diffusion</title>
+        <link>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
+        <pubDate>Thu, 21 Dec 2023 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" alt="Featured image of post AdaDiff: Adaptive Step Selection for Fast Diffusion" /&gt;&lt;h2 id=&#34;adadiff-adaptive-step-selection-for-fast-diffusion&#34;&gt;AdaDiff: Adaptive Step Selection for Fast Diffusion
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;这本质是一篇加速生成的文章，优化角度在于为不同复杂程度的提示选取不同的时间步去进行去噪。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;abstract&#34;&gt;Abstract
+&lt;/h1&gt;&lt;p&gt;扩散模型的生成过程涉及到几十个步骤的去噪以产生逼真的图像/视频，这在计算上是昂贵的。本文认为去噪步骤 &lt;strong&gt;&lt;font color=&#34;#00b0f0&#34;&gt;应该根据输入样本的复杂程度来进行特定的采样&lt;/font&gt;&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;因此提出了 &lt;strong&gt;AdaDiff&lt;/strong&gt; ，一个轻量级的框架来学习 &lt;code&gt;instance-specific&lt;/code&gt;  的步骤策略。还是和之前方法一样，使用策略梯度方法来最大化一个奖励函数。（平衡推理时间和生成质量）&lt;/p&gt;
+&lt;p&gt;作者在 3 个图像生成基准测试和 2 两个视频生成基准测试进行了实验，结果表明：可以实现和固定 50 个去噪步骤的模型实现相当的结果，但是本文提出的方法减少了 $33% - 40%$ 的推理时间&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010058261.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;A conceptual overview of our approach.&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;目前考虑到生成质量和推理速度之间的权衡，大多数去噪步骤都是设置为 50。
+而作者认为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文本提示的丰富性(即对象的数量以及它们彼此之间的关系)差异很大。&lt;/li&gt;
+&lt;li&gt;对于某些简单且粗粒度的提示(仅涉及一个或几个对象)，使用少步骤足以达到好的生成质量，而增加步骤只会有边际改善而不会有必然的生成改善。&lt;/li&gt;
+&lt;li&gt;对于包含许多对象、详细描述和对象之间复杂交互的复杂文本提示，需要更多的步骤来实现期望的结果。
+&lt;font color=&#34;#d83931&#34;&gt;&lt;b&gt;因此，本文的目标是为扩散模式建立一个动态框架；&lt;/b&gt;&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;简而言之，AdaDiff 为不同丰富程度的提示分配了不同数量的生成步骤，旨在最大限度地减少推理时间，同时保持高图像质量。带有红色边框的图像是由AdaDiff生成的。&lt;/p&gt;
+&lt;p&gt;对于每个提示符的的动态生成策略：
+1）决定所需要的生成步骤数目；
+2）使用相对更少的步骤来确保高质量的生成；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这样的问题是：&lt;font color=&#34;#d83931&#34;&gt;&lt;b&gt;学习动态步骤选择是一项非常难的任务，因为它涉及不可微分的决策过程。&lt;/b&gt;&lt;/font&gt;&lt;/strong&gt;
+为此，AdaDiff训练一个轻量级的步长选择网络来生成步长使用策略。随后，基于此导出的策略，对预训练的扩散模型进行动态采样过程，以实现高效生成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;步骤选择网络使用策略梯度方法进行优化，以最大化奖励函数。&lt;/li&gt;
+&lt;li&gt;这个奖励函数的主要目标是鼓励生成高质量的视觉内容，同时最小化计算资源。&lt;/li&gt;
+&lt;li&gt;同样值得指出的是，以文本输入为条件的步长选择&lt;strong&gt;网络是轻量级的，计算开销可以忽略不计。&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;methods&#34;&gt;Methods
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;这里主要关注的是 3.2 节：Adaptive step selection for image generation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;adaptive-step-selection-for-image-generation&#34;&gt;Adaptive step selection for image generation
+&lt;/h4&gt;&lt;p&gt;文中使用离散时间的 DDIM sample 来加速采样，设定 $N = 5, S = {10, 20, 30, 40, 50}$ ；&lt;/p&gt;
+&lt;p&gt;形式上;&lt;/p&gt;
+&lt;p&gt;1）给定文本提示 $\mathbf{p}$  ，经过 文本编码器 $\boldsymbol{\tau}$ 提取特征 $\mathbf{c}=\boldsymbol{\tau}(\mathbf{p})$
+2）步长选择网络 $f_{s}$，参数化为 $w$，通过 &lt;code&gt;self-attention&lt;/code&gt; 来学习文本提示 $\mathbf{c}$ 信息量；
+3）然后通过一个 MLP 投射为 $s\in \mathcal{\mathbb{R}}^{N}$&lt;/p&gt;
+&lt;p&gt;$$
+\mathbf{s}=f_s(\mathbf{c};\mathbf{w})
+$$&lt;/p&gt;
+&lt;p&gt;其中，$\mathbf{s}$ 中的每一项表示选择该步骤的&lt;strong&gt;概率得分&lt;/strong&gt;。然后定义了一个N维类别分布的步长选择策略 $\pi^f\left(\mathbf{u}\mid\mathbf{p}\right)$。&lt;/p&gt;
+&lt;p&gt;其中，$\mathbf{u}$ 是一个长度为 N 的 one-hot 向量，而 $\mathbf{u}_j = 1$ 表示 $\mathcal{S}$ 中选择下标为 $j$ 的时间步骤 $\mathbf{t}$ 的概率。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;步长选择网络设计为由三个自关注层和一个多层感知器组成的轻量级结构。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在训练阶段，从相应的策略中抽样生成 $\mathbf{u}$，在测试阶段，采用贪心方法。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;An overview of the proposed pipeline AdaDiff&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;reward-function&#34;&gt;Reward function
+&lt;/h4&gt;&lt;p&gt;两部分：1）Image quality Reward ， 2）step reward (balance quality 和 inference time)&lt;/p&gt;
+&lt;h6 id=&#34;image-quality-reward&#34;&gt;Image quality Reward
+&lt;/h6&gt;&lt;p&gt;这一部分是使用了一个图像质量评估模型 $f_q$，表示为 &lt;strong&gt;IQS&lt;/strong&gt;。
+模型从两个维度评估图像质量：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;font color=&#34;#d83931&#34;&gt;image-text alignment&lt;/font&gt;&lt;/strong&gt;：图文对齐来衡量生成图像和文本提示之间的一致性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;font color=&#34;#d83931&#34;&gt;perceptual fidelity&lt;/font&gt;&lt;/strong&gt;：生成的图像应该忠实于物体的形状和特征，而不是杂乱无章地生成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，IQS score 的分数反映着图像的质量。&lt;strong&gt;image quality reward fomulate as：&lt;/strong&gt; $\mathcal{Q}(\mathbf{u})=f_q(\mathbf{x})$&lt;/p&gt;
+&lt;h6 id=&#34;step-reward&#34;&gt;Step reward
+&lt;/h6&gt;&lt;p&gt;$$\mathcal{O}(\mathbf{u})=1-\frac{\mathbf{t}}{S_{max}}$$&lt;/p&gt;
+&lt;p&gt;表示为相对于 $\mathcal{S}$ 中的最大时间步节省的规范化步骤。（相当于省下了多少时间）&lt;/p&gt;
+&lt;p&gt;整体的奖励函数如下所示：&lt;/p&gt;
+&lt;p&gt;$$
+\left.R(\mathbf{u})=\left{\begin{array}{ll}\mathcal{O}(\mathbf{u})+\lambda\mathcal{Q}(\mathbf{u})&amp;amp;\text{for high quality image}\-\gamma&amp;amp;\text{else}\end{array}\right.\right.
+$$&lt;/p&gt;
+&lt;p&gt;其中，$\lambda$ 和 $\gamma$ 是超参数。$\lambda$ 用于控制图像质量，$\gamma$ 是当生成的图像质量较低时对奖励函数施加的惩罚。&lt;/p&gt;
+&lt;h6 id=&#34;那么如何判断图像质量是低还是高呢&#34;&gt;那么如何判断图像质量是低还是高呢？
+&lt;/h6&gt;&lt;p&gt;这里并不是设定一个阈值，来判断好坏。
+而是给定一个 prompt，然后为 steps 集合 $\mathcal{S} ={10,20,30,40,50}$ 中的每一步生成一张图像；
+然后看图像分数是否在这五张图像中排名前k，我们认为图像质量得分高(我们经验地将k设置为3)。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我的理解，就是看前面较小的时间 t 生成的图像是否能够排到前三，如果可以就是具有优化空间；&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;那么优化目标就是最大化期望奖励：
+$$\max_\mathbf{w}{\mathcal{L}}=\mathbb{E}_{\mathbf{u}\sim\pi_f}R(\mathbf{u})$$&lt;/p&gt;
+&lt;p&gt;使用策略梯度算法来学习 步长选择网络 $f_s$ 的参数 $w$。期望的梯度推导如下：&lt;/p&gt;
+&lt;p&gt;$$\nabla_\mathbf{w}{\mathcal{L}}=\mathbb{E}\left[R(\mathbf{u})\nabla_\mathbf{w}\log\pi^f(\mathbf{u}\mid\mathbf{p})\right]$$&lt;/p&gt;
+&lt;p&gt;使用小批量样本,用蒙特卡罗采样进一步近似，得到：&lt;/p&gt;
+&lt;p&gt;$$\nabla_{\mathbf{w}}\mathcal{L}\approx\frac{1}{B}\sum_{i=1}^{B}\left[R\left(\mathbf{u}&lt;em&gt;{i}\right)\nabla&lt;/em&gt;{\mathbf{w}}\log\pi^{f}\left(\mathbf{u}&lt;em&gt;{i}\mid\mathbf{p}&lt;/em&gt;{i}\right)\right]$$&lt;/p&gt;
+&lt;p&gt;其中，$B$ 是批量大小，$\mathbf{u}_i$ 是从策略 $\pi^f$ 中采样的步长选择向量，$\mathbf{p}_i$ 是对应的文本提示。&lt;/p&gt;
+&lt;h4 id=&#34;training-and-inference&#34;&gt;Training and inference
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;在上述训练过程之后，选择网络学习在推理时间和生成质量之间取得平衡的步长使用策略。&lt;/li&gt;
+&lt;li&gt;在推理阶段，对于不同的提示，使用s中的最大概率分数来确定生成步骤的数量，从而实现动态推理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于视频的生成，和上述的过程类似，只是在奖励函数上有所不同，这里不再赘述。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;experiments&#34;&gt;Experiments
+&lt;/h1&gt;&lt;p&gt;为了评估我们方法的有效性和通用性，我们在三个图像数据集上进行了广泛的实验:MS COCO 2017 ， Laion-COCO， DiffusionDB；
+以及两个视频数据集:MSR-VTT[51]和InternVid[44]。&lt;/p&gt;
+&lt;p&gt;在MS COCO 2017中，我们的训练集由118287个文本描述组成，并且使用验证集中的所有25014个文本对进行测试。对于Laion-COCO，我们随机选择200K个文本描述用于训练，20K个文本图像对用于测试。DiffusionDB的训练集和测试集的划分遵循与Laico-COCO相同的范式。&lt;/p&gt;
+&lt;h4 id=&#34;metric&#34;&gt;Metric
+&lt;/h4&gt;&lt;p&gt;FID 、 IS、 CLIP Score，NIQE， IQS&lt;/p&gt;
+&lt;h4 id=&#34;results&#34;&gt;Results
+&lt;/h4&gt;&lt;div align=center&gt;
+&lt;img src=&#34;https://img.toyag.site/imgs/20231221134547.png&#34; width = &#34;50%&#34; height = &#34;&#34; /&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里的 random 指的是：对不同提示使用随机步骤选择策略，我们报告5次运行使用的平均步骤。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们知道之前的扩散轨迹都是通过 ODE求解器来求解的，作者使用稳定扩散中的DPM-Solver[21]采样器来评估其在图像生成中的性能，如下表所示。与50步生成相比，AdaDiff平均为每个提示分配24.09步，进一步节省50.8% 的生成时间，同时保持相当的图像质量。
+与随机策略相比，学习后的自适应策略不仅使推理时间提高了19.6%，而且在五个指标上提高了图像质量。这些结果表明，AdaDiff可以作为即插即用组件与其他加速方法相结合，用于动态生成。&lt;/p&gt;
+&lt;div align=center&gt;
+&lt;img src=&#34;https://img.toyag.site/imgs/20231221135228.png&#34; width = &#34;50%&#34; height = &#34;&#34; /&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实验来看，图像质量其实就是 0.0几  个点，这个说是相当。但是时间上的提升还是很明显的。
+但是从这个角度来看，文本提示的丰富性难道只通过目标数量或者拥挤程度来衡量吗？从这个地方来加速，感觉有点不太合理。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div align=center&gt;
+&lt;img src=&#34;https://img.toyag.site/imgs/20231221135901.png&#34; width = &#34;40%&#34; height = &#34;&#34; /&gt;
+&lt;img src=&#34;https://img.toyag.site/imgs/20231221135947.png&#34; width = &#34;40%&#34; height = &#34;&#34; /&gt;
+&lt;/div&gt;
 </description>
         </item>
         

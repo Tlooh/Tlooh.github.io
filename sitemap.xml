@@ -2,23 +2,21 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <sitemap>
-    <loc>http://localhost:1313/en/sitemap.xml</loc>
+    <loc>https://tlooh.github.io/en/sitemap.xml</loc>
     
       <lastmod>2024-06-10T00:00:00+00:00</lastmod>
     
   </sitemap>
   
   <sitemap>
-    <loc>http://localhost:1313/zh-cn/sitemap.xml</loc>
+    <loc>https://tlooh.github.io/zh-cn/sitemap.xml</loc>
     
       <lastmod>2020-09-09T00:00:00+00:00</lastmod>
     
   </sitemap>
   
   <sitemap>
-    <loc>http://localhost:1313/ar/sitemap.xml</loc>
-    
-      <lastmod>2019-03-09T00:00:00+00:00</lastmod>
+    <loc>https://tlooh.github.io/ar/sitemap.xml</loc>
     
   </sitemap>
   

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="asfafagasgfafas">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models 这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。 Abstract 扩散模型的关键组件之一：UNet 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。 原因是因为作者发现：编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。 这一发现启发作者在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。 基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。 在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。 Introduction 我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。 UNet 结构包括 3 个部分：1）encoder $\\mathcal{E}$ 2）a bottleneck $\\mathcal{B}$ 3）decoder $\\mathcal{D}$ 经过 encoder 编码出来后的特征 are skipped to 到 decoder 中； 之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如 PnP 用于文本引导的 Image-to-Image 翻译任务 DIFT 发现了一种主要存在于解码特征的主要突发现象； ControlNet 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。 T2I-Adapter 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。 本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是： 来自不同层的特征在推理时间内是否有不同的贡献。 如果有，那么如何重用这些特征。 基于上述问题，本文提出： encoder propagation : 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。 虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 先验噪声注入策略 来保留生成图像中的纹理细节 可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/p/'>
 
-<link rel="stylesheet" href="/scss/style.min.aba620e49d0b38fd9024a0d9f4c6848199e42f6672a702ef2bde1209879a392b.css"><meta property='og:title' content="">
-<meta property='og:description' content="asfafagasgfafas">
+<link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="">
+<meta property='og:description' content="Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models 这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。 Abstract 扩散模型的关键组件之一：UNet 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。 原因是因为作者发现：编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。 这一发现启发作者在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。 基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。 在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。 Introduction 我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。 UNet 结构包括 3 个部分：1）encoder $\\mathcal{E}$ 2）a bottleneck $\\mathcal{B}$ 3）decoder $\\mathcal{D}$ 经过 encoder 编码出来后的特征 are skipped to 到 decoder 中； 之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如 PnP 用于文本引导的 Image-to-Image 翻译任务 DIFT 发现了一种主要存在于解码特征的主要突发现象； ControlNet 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。 T2I-Adapter 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。 本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是： 来自不同层的特征在推理时间内是否有不同的贡献。 如果有，那么如何重用这些特征。 基于上述问题，本文提出： encoder propagation : 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。 虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 先验噪声注入策略 来保留生成图像中的纹理细节 可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）">
 <meta property='og:url' content='http://localhost:1313/p/'>
-<meta property='og:site_name' content='Example Site'>
+<meta property='og:site_name' content='Tlooh Blog Site'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="asfafagasgfafas">
+<meta name="twitter:description" content="Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models 这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。 Abstract 扩散模型的关键组件之一：UNet 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。 原因是因为作者发现：编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。 这一发现启发作者在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。 基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。 在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。 Introduction 我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。 UNet 结构包括 3 个部分：1）encoder $\\mathcal{E}$ 2）a bottleneck $\\mathcal{B}$ 3）decoder $\\mathcal{D}$ 经过 encoder 编码出来后的特征 are skipped to 到 decoder 中； 之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如 PnP 用于文本引导的 Image-to-Image 翻译任务 DIFT 发现了一种主要存在于解码特征的主要突发现象； ControlNet 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。 T2I-Adapter 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。 本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是： 来自不同层的特征在推理时间内是否有不同的贡献。 如果有，那么如何重用这些特征。 基于上述问题，本文提出： encoder propagation : 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。 虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 先验噪声注入策略 来保留生成图像中的纹理细节 可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）">
   
 
 
@@ -42,236 +42,78 @@
         }
     })();
 </script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
+<div class="container main-container flex on-phone--column extended">
 
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/sky_hu15396b5b59fa1a95cbe676eebe9da1df_180459_300x0_resize_q75_box.jpg" width="300"
-                            height="252" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-                    <span class="emoji">🍥</span>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">Example Site</a></h1>
-            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+
+
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
         </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://github.com/CaiJimmy/hugo-theme-stack'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://twitter.com'
-                        target="_blank"
-                        title="Twitter"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/about/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>About</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/links/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>Links</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="http://localhost:1313/" selected>English</option>
-                                
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
-                                
-                                    <option value="http://localhost:1313/ar/" >عربي</option>
-                                
-                            </select>
-                        </li>
-                    
-                
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>Dark Mode</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
     
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</a></li>
+  </ol>
+
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#analyzing-the-unet-in-diffusion-model">Analyzing the UNet in Diffusion Model</a>
+          <ol>
+            <li></li>
+            <li><a href="#编码器传播方案">编码器传播方案</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#experiments">Experiments</a>
+      <ol>
+        <li>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -306,7 +148,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -321,8 +163,169 @@
     <section class="article-content">
     
     
-    <p>asfafagasgfafas</p>
-
+    <h2 id="faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
+</h2><blockquote>
+<p>这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010102266.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+></p>
+<h1 id="abstract">Abstract
+</h1><p>扩散模型的关键组件之一：<strong>UNet</strong> 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。</p>
+<p>原因是因为作者发现：<strong>编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。</strong>
+这一发现启发作者<strong>在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。</strong></p>
+<p>基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。</p>
+<p>在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。</p>
+<hr>
+<h1 id="introduction">Introduction
+</h1><p>我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。</p>
+<p>UNet 结构包括 3 个部分：1）encoder $\mathcal{E}$      2）a bottleneck $\mathcal{B}$     3）decoder $\mathcal{D}$</p>
+<p>经过 encoder 编码出来后的特征 are skipped to 到 decoder 中；
+之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如</p>
+<ul>
+<li><a class="link" href="https://arxiv.org/abs/2211.12572"  target="_blank" rel="noopener"
+    >PnP</a> 用于文本引导的 Image-to-Image 翻译任务</li>
+<li><a class="link" href="https://arxiv.org/abs/2306.03881"  target="_blank" rel="noopener"
+    >DIFT</a> 发现了一种主要存在于解码特征的主要突发现象；</li>
+<li><a class="link" href="https://arxiv.org/abs/2302.05543"  target="_blank" rel="noopener"
+    >ControlNet</a> 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。</li>
+<li><a class="link" href="https://arxiv.org/abs/2302.08453"  target="_blank" rel="noopener"
+    >T2I-Adapter</a> 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。</li>
+</ul>
+<p>本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是：</p>
+<ul>
+<li><strong>来自不同层的特征在推理时间内是否有不同的贡献。</strong></li>
+<li><strong>如果有，那么如何重用这些特征。</strong></li>
+</ul>
+<p>基于上述问题，本文提出：</p>
+<ul>
+<li><font color="#0071e3">encoder propagation </font>: 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。</li>
+<li>虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 <font color="#0071e3">先验噪声注入策略</font> 来保留生成图像中的纹理细节</li>
+</ul>
+<blockquote>
+<p>可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）</p>
+<center><img src="assets/Faster Diffusion/image.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px; "><b>对比</b></div>
+</blockquote>
+</center>
+<hr>
+<h1 id="methods">Methods
+</h1><blockquote>
+<p>前面说过 UNet 包括 3 个部分：</p>
+<ul>
+<li>encoder $\mathcal{E}$    </li>
+<li>a bottleneck $\mathcal{B}$    </li>
+<li>decoder $\mathcal{D}$</li>
+</ul>
+<center><img src="assets/Faster Diffusion/image-1.png" width = "%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
+从编码器提取出来的特征会通过跳跃连接传递到解码器中。
+</blockquote>
+<p>为了更好的进行表述，我们将 UNet 划分为几个块：$\mathcal{E} = {\mathcal{E}(\cdot)_s}$ , $\mathcal{B} = {\mathcal{B}(\cdot)_8}$ , $\mathcal{D} = {\mathcal{D}(\cdot)_s}$
+其中，$s \in {8, 16, 32, 64}$。而 $\mathcal{E}(\cdot)_s$ 和 $\mathcal{D}(\cdot)_s$ 分别表示编码器和解码器中具有输入分辨率 $s$ 的  <code>block layer</code>。</p>
+<h3 id="analyzing-the-unet-in-diffusion-model">Analyzing the UNet in Diffusion Model
+</h3><h5 id="特征在时间步长上的演化">特征在时间步长上的演化
+</h5><p><strong>&gt;先说结论吧&lt;</strong></p>
+<p><font color="#fc5531"><b>编码器特征在相邻的时间步长上表现出细微的变化，而解码器特征在不同的时间步长上表现出实质性的变化。</b></font></p>
+<center><img src="assets/Faster Diffusion/image-2.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Analyzing the UNet in Diffusion Model. (Fig.2)</b></div></center>
+<blockquote>
+<p>(a)通过MSE测量相邻时间步长的特征演化。(b)提取UNet各层在每个时间步长的分层特征输出，沿通道维数对其进行平均，得到二维分层特征，并计算其 f-范数。(c) UNet编码器的分层特征显示出较低的标准偏差，而解码器的分层特征显示出较高的标准偏差。</p>
+</blockquote>
+<center><img src="assets/Faster Diffusion/image-4.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Visualising the hierarchical features. (Fig.3)</b></div></center>
+<blockquote>
+<p>我们将PCA应用于 <a class="link" href="https://arxiv.org/abs/2211.12572"  target="_blank" rel="noopener"
+    >PnP</a> 之后的分层特征，并使用前三个主要成分作为RGB图像进行可视化。编码器特征变化缓慢，在许多时间步长上具有相似性 <strong>(左图)</strong>，而解码器特征在不同时间步长上表现出 <strong>实质性变化(右图)</strong>。</p>
+</blockquote>
+<p><strong>&gt;接着说说具体做法&lt;</strong></p>
+<p>在扩散过程种，我们会进行迭代采样，因此也就会产生相应的 <code>latent code</code> $\boldsymbol{z}_{\boldsymbol{t}}$ , 包括相应的层级特征：${\mathcal{E}(z_t,c,t)_s}$ ， ${\mathcal{D}(z_t,c,t)_s}(s\in{8, 16, 32, 64})$</p>
+<p>想要将层次特征变化量化出来，我们可以有:</p>
+<p>$$\Delta_{\mathcal{E}(\cdot)_s}=\frac1{d\times s^2}|\mathcal{E}(z_t,c,t)<em>s,\mathcal{E}(z</em>{t-1},c,t-1)_s|_2^2$$</p>
+<p>其中，$d$ 表示编码器特征 $\mathcal{E}(z_t,c,t)<em>s$ 通道数。$\Delta</em>{\mathcal{B}(\cdot)<em>s}$ 和 $\Delta</em>{\mathcal{D}(\cdot)_s}$ 同理。</p>
+<h5 id="特征在跨层上的演化">特征在跨层上的演化
+</h5><p>同样的，编码器变化的强度是轻微的，而解码器的变化是剧烈的。</p>
+<p>具体来说，我们计算了所有时间步长的层级特征 ${\mathcal{E}(z_t,c,t)_s}$ 的 <code>Frobenius范数</code> ，表示为</p>
+<p>$$\mathcal{F}_{\mathcal{E}(\cdot)<em>s}={\mathcal{F}</em>{\mathcal{E}(z_T,c,T)<em>s},&hellip;,\mathcal{F}</em>{\mathcal{E}(z_1,c,1)_s}}.$$</p>
+<p>计算$\mathcal{F}_{\mathcal{B}(\cdot)<em>8}$ 和 $\mathcal{F}</em>{\mathcal{D}(\cdot)_s}$ 同理。</p>
+<h5 id="能否在某些时间步骤忽略编码器">能否在某些时间步骤忽略编码器？
+</h5><p>从前面的分析可以知道，编码在大多数时间步骤上变化是不大的，所以就考虑是否可以通过重用编码器特征来加速扩散采样。</p>
+<p>具体来说，我们删除了时间步长为 $t−1 (t−1 &lt; t)$ 的编码器，相应的解码器(包括跳过连接)将前一个时间步长为 $t$ 的编码器 $\mathcal{E}$ 的层级输出作为其输入，而不是像标准SD采样那样从当前时间步长为t−1的输出作为输入。（这一点看下面的图很好理解）</p>
+<center><img src="assets/Faster Diffusion/image-5.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
+<blockquote>
+<p><strong>&gt;这里有几个现象&lt;</strong></p>
+<center><img src="assets/Faster Diffusion/image-7.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Fig4</b></div></center>
+<ul>
+<li>(a) 和 （b）比较，如果忽略了编码器，那么可以生成与标准 SD 模型非常相似的图像；</li>
+<li>(a) 和 （d）比较，我们把同样的方法复用到解码器上，发现生成的图像经常无法覆盖文本提示中的某些特定对象。
+比如文本提示：“一个留着胡子、戴着眼镜、戴着无边帽的男人”，这是因为语义主要包含在解码器而不是编码器的特征中。</li>
+</ul>
+</blockquote>
+<hr>
+<h4 id="编码器传播方案">编码器传播方案
+</h4><ul>
+<li>对于采样过程 $t = {T,\dots,1}$, 将那些部署编码器传播的时间步定义为 <code>non-key</code> 时间步，表示为：$t^{non\text{-}key} = \left{t_0^{non\text{-}key},&hellip;,t_{N-1}^{non\text{-}key}\right}$ ；</li>
+<li>除了非关键步，那就是关键步了,就表示为：$t^{key} = \left{t_0^{key},t_1^{key},&hellip;,t_{T-N-1}^{key}\right}$。这些步上是不采用编码器传播方案的；</li>
+<li>初始时间步$(t_0^{key}=T)$。</li>
+</ul>
+<p>因此，diffusion 的推理时间步表示为 $\left{t^{key},t^{non\text{-}key}\right}$, 同时 $t^{key}\cup t^{non\text{-}key}={T,&hellip;,1}$ 以及 $t^{key}\cap t^{non\text{-}key}=\acute{\varnothing}.$</p>
+<h5 id="non-uniform-encoder-propagation">non-/uniform encoder propagation
+</h5><p>如图Fig.2a所示，在整个推理过程中，<strong>初始推理阶段的编码器特征变化比后期阶段更大。</strong></p>
+<ul>
+<li>因此，我们在初始推理阶段选择了更多的 <code>key time-steps</code>;</li>
+<li>在之后的阶段选择更少的 <code>key time-steps</code></li>
+</ul>
+<blockquote>
+<ul>
+<li>经过实验，定义为 <code>key time-steps</code> 为：$t^{key} = \left{50,49,48,47,45,,40,35,25,15\right}$ (SD with DDIM Solver)</li>
+<li>对于 DeepFloyd-IF：<code>key time-steps</code> 为：$t^{key}={100,99,98,\ldots$,$92,:91,:90,:85,:80,:\ldots,:25,:20,:15,:14,:13,:\ldots,:2,:1}$, ${ 50, 49, \ldots , 2, 1} $ and ${ 75, 73, 70, 66, 61, 55, 48, 40, 31, $ $21,10}$ 3阶段</li>
+</ul>
+</blockquote>
+<p>其余的时间步骤被归类为 <code>non-key time-steps</code>。我们将此策略定义为<strong>非均匀编码器传播(non-uniform encoder propagation, 见图4e)</strong>。</p>
+<p>如图4c所示，固定步长的时间步长选择，称为<strong>均匀编码器传播</strong>。</p>
+<p>表3报告了消融研究的结果，考虑了关键和非关键时间步长的各种组合。这些结果表明，关键时间步长集合在生成图像方面具有更好的性能。</p>
+<h5 id="parallel-non-uniform-encoder-propagation">Parallel non-uniform encoder propagation
+</h5><p>我们知道编码器传播的时候，也就是在那些 <code>time-step</code> $t \in t^{non-key}$ ，解码器的输入不依赖于当前时间 $t$ 的编码器输出，而是依赖于前一个最近的 <code>key time step</code> $t-1$ 的编码器输出。</p>
+<p><font color="#fc5531"><b>这也就意味着，我们其实可以进行并行操作，如图4f 所示。</b></font></p>
+<p>我们从 $t−2$到$t−k+1$时间步 并行执行解码。该技术可以同时进行多个时间步长的译码向前，进一步提高了推理效率。我们把这些 <code>non-key time-steps</code>称为 <code>parallel-batch non-key time-steps.</code></p>
+<p>如下图所示，推理时间可以减少 41%。</p>
+<center><img src="assets/Faster Diffusion/image-8.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
+<h5 id="prior-noise-injection先验噪声注入">Prior noise injection(先验噪声注入)
+</h5><p>前面说过虽然编码器传播可以提高推理阶段的效率，但观察到它会导致生成结果中纹理信息的轻微丢失（图 6 所示）。因此作者提出了一种先验噪声注入策略。</p>
+<p>说白了就是它将初始潜码 $\boldsymbol{z_t}$ 合并到后续时间步(即$\boldsymbol{z_T}$)的生成过程中，</p>
+<p>$$\boldsymbol{z_t}=\boldsymbol{z_t}+\alpha\cdot\boldsymbol{z_T},\mathrm{~if~}t&lt;\tau.$$</p>
+<p>其中 $\alpha = 0.003$ 是控制$\boldsymbol{z_T}$影响的尺度参数。我们从 $\tau = 25$的步骤开始使用这个注入机制。这种策略的结合成功地改善了纹理信息。重要的是，它需要的额外计算资源几乎可以忽略不计。</p>
+<p>我们观察到，纹理信息的丢失发生在频域的所有频率上(见图6(右红蓝曲线))。这种方法确保了SD和zT注入在频域生成的结果非常相似(见图6(右，红色和绿色曲线))，生成的图像保持所需的保真度(见图6(左，下))。</p>
+<hr>
+<h2 id="experiments">Experiments
+</h2><blockquote>
+<p>有关视频任务的这里就不细说了</p>
+</blockquote>
+<h6 id="dataset">Dataset
+</h6><p>MS-COCO2017 中随机选取 10K prompts，然后生成相应的 10K 个图像。</p>
+<h6 id="metric">Metric
+</h6><ul>
+<li>FID、 CLIP Score；</li>
+<li>计算负载的平均值量：GFLOPs/image</li>
+<li>采样时间</li>
+</ul>
+<h6 id="文本生成图像">文本生成图像
+</h6><center><img src="assets/Faster Diffusion/image-9.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Figure 7. Generated images at different time-steps, with the prompt “A man with a beard wearing sunglasses and a beanie”.</b></div></center>
+<center><img src="assets/Faster Diffusion/image-10.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Quantitative evaluation in both SD model and DeepFloydIF diffuison model on MS-COCO 2017 10K subset.</b></div></center>
+<blockquote>
+<p>也可以泛化到其他任务上，像定制化的生成（Dreambooth、Custom Diffusion），或者是参考图像生成（ControlNet）</p>
+</blockquote>
+<center><img src="assets/Faster Diffusion/image-11.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Quantitative evaluation on text-to-video, personalized generation and reference-guided generation tasks.</b></div></center>
+<h6 id="消融实验">消融实验
+</h6><p><strong>不同策略的消融</strong></p>
+<center><img src="assets/Faster Diffusion/image-12.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
+<ul>
+<li>可视化结果</li>
+</ul>
+<center><img src="assets/Faster Diffusion/image-13.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
 </section>
 
 
@@ -344,6 +347,30 @@
     </footer>
 
 
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
     
 </article>
 
@@ -404,7 +431,7 @@
         
             2020 - 
         
-        2024 Example Person
+        2024 Tlooh
     </section>
     
     <section class="powerby">

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models 本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 交叉注意输出经过几个推理步骤后会收敛到一个固定点 。收敛的时间点自然将整个推理过程分为两个阶段: 初始语义规划阶段: 在此阶段，模型依赖于交叉关注规划面向文本的视觉语义，以及随后的 保真度改进阶: 在此阶段，模型尝试从先前规划的语义生成图像。 作者发现在保真度改进阶段忽略文本条件不仅降低了计算复杂度，而且保持了模型的性能。这产生了一种简单且无需训练的方法，称为TGATE，用于高效生成，它在交叉注意力输出收敛时缓存它，并在剩余的推理步骤中保持固定。我们对MS-COCO验证集的实证研究证实了其有效性。 Introduction 一些研究强调了交叉注意对空间控制的重要性(Prompt-to-Prompt, Atten-and-Excite, Boxdiff)，但很少(如果有的话)从去噪过程中的时间角度研究其作用。 在这里，我们提出了一个新的问题:“在文本到图像扩散模型的推理过程中，交叉注意力对每一步都是必要的吗?” 为此，我们研究了在每个推理步骤中交叉关注对生成图像质量的影响。我们的发现突出了两个反直觉的观点: 在最初的几个步骤中，交叉注意输出收敛到一个固定点。（收敛时间点将扩散模型去噪过程分为两个阶段:） 初始阶段，模型依靠交叉注意规划面向文本的视觉语义, 我们将其表示为 语义规划阶段 后续阶段，模型学习从先前的语义规划中生成图像，我们称之为保真度提升阶段。 交叉注意在保真度提高阶段是多余的。 在语义规划阶段，交叉注意对产生有意义的语义起着至关重要的作用。然而，在后期阶段，交叉注意收敛，对生成过程的影响较小。 事实上，在保真度提高阶段绕过交叉注意可以在保持图像生成质量的同时潜在地减少计算成本。 因为交叉注意中的缩放点积是一个二次复杂度的运算。随着现代模型中分辨率和令牌长度的不断增加，交叉注意不可避免地会导致昂贵的计算，成为移动设备等应用程序的重要延迟来源。 这一发现促使我们重新评估交叉注意的作用，并启发我们设计一种简单、有效、无需训练的方法，即暂时控制交叉注意(temporally gating the cross-attention (TGATE))，以提高效率并保持现成扩散模型的生成质量。 💡 需要注意的是： TGATE不会导致性能下降，**因为交叉注意的结果是聚合和冗余的。**事实上，观察到在基线上的初始化距离(FID)略有改善。 TGATE可以在每张图像上减少65T多次累积操作(Multiple-Accumulate Operations，MACs)，并在保真度提高阶段减小0.5B个参数，与基线模型(SDXL)相比，在没有训练成本的情况下，延迟减少了约50%。 Temporal Analysis of Cross-Attention Cross-Attention. UNet 中的交叉注意数学定义如下： $$\\mathbf{C}_c^t=\\text{Softmax}(\\frac{Q_z^t\\cdot K_c}{\\sqrt{d}})\\cdot V_c$$ 其中，$Q_z^t$ 是 $z_t$ 的投影，$K_c$ 和 $V_c$ 是文本嵌入 $c$ 的投影，$d$ 是 $K_c$的特征维度。交叉注意的二次型的计算复杂度，是在处理高分辨率特征时的一个重要瓶颈。 On the Convergence of Cross-Attention Map 考虑一个问题🤔：考虑到每个时间步骤中噪声输入的变化，交叉注意生成的特征图是表现出时间稳定性还是随时间波动? 作者分析的做法步骤如下：">
+<title>Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</title>
+
+<link rel='canonical' href='https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/'>
+
+<link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models">
+<meta property='og:description' content="Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models 本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 交叉注意输出经过几个推理步骤后会收敛到一个固定点 。收敛的时间点自然将整个推理过程分为两个阶段: 初始语义规划阶段: 在此阶段，模型依赖于交叉关注规划面向文本的视觉语义，以及随后的 保真度改进阶: 在此阶段，模型尝试从先前规划的语义生成图像。 作者发现在保真度改进阶段忽略文本条件不仅降低了计算复杂度，而且保持了模型的性能。这产生了一种简单且无需训练的方法，称为TGATE，用于高效生成，它在交叉注意力输出收敛时缓存它，并在剩余的推理步骤中保持固定。我们对MS-COCO验证集的实证研究证实了其有效性。 Introduction 一些研究强调了交叉注意对空间控制的重要性(Prompt-to-Prompt, Atten-and-Excite, Boxdiff)，但很少(如果有的话)从去噪过程中的时间角度研究其作用。 在这里，我们提出了一个新的问题:“在文本到图像扩散模型的推理过程中，交叉注意力对每一步都是必要的吗?” 为此，我们研究了在每个推理步骤中交叉关注对生成图像质量的影响。我们的发现突出了两个反直觉的观点: 在最初的几个步骤中，交叉注意输出收敛到一个固定点。（收敛时间点将扩散模型去噪过程分为两个阶段:） 初始阶段，模型依靠交叉注意规划面向文本的视觉语义, 我们将其表示为 语义规划阶段 后续阶段，模型学习从先前的语义规划中生成图像，我们称之为保真度提升阶段。 交叉注意在保真度提高阶段是多余的。 在语义规划阶段，交叉注意对产生有意义的语义起着至关重要的作用。然而，在后期阶段，交叉注意收敛，对生成过程的影响较小。 事实上，在保真度提高阶段绕过交叉注意可以在保持图像生成质量的同时潜在地减少计算成本。 因为交叉注意中的缩放点积是一个二次复杂度的运算。随着现代模型中分辨率和令牌长度的不断增加，交叉注意不可避免地会导致昂贵的计算，成为移动设备等应用程序的重要延迟来源。 这一发现促使我们重新评估交叉注意的作用，并启发我们设计一种简单、有效、无需训练的方法，即暂时控制交叉注意(temporally gating the cross-attention (TGATE))，以提高效率并保持现成扩散模型的生成质量。 💡 需要注意的是： TGATE不会导致性能下降，**因为交叉注意的结果是聚合和冗余的。**事实上，观察到在基线上的初始化距离(FID)略有改善。 TGATE可以在每张图像上减少65T多次累积操作(Multiple-Accumulate Operations，MACs)，并在保真度提高阶段减小0.5B个参数，与基线模型(SDXL)相比，在没有训练成本的情况下，延迟减少了约50%。 Temporal Analysis of Cross-Attention Cross-Attention. UNet 中的交叉注意数学定义如下： $$\\mathbf{C}_c^t=\\text{Softmax}(\\frac{Q_z^t\\cdot K_c}{\\sqrt{d}})\\cdot V_c$$ 其中，$Q_z^t$ 是 $z_t$ 的投影，$K_c$ 和 $V_c$ 是文本嵌入 $c$ 的投影，$d$ 是 $K_c$的特征维度。交叉注意的二次型的计算复杂度，是在处理高分辨率特征时的一个重要瓶颈。 On the Convergence of Cross-Attention Map 考虑一个问题🤔：考虑到每个时间步骤中噪声输入的变化，交叉注意生成的特征图是表现出时间稳定性还是随时间波动? 作者分析的做法步骤如下：">
+<meta property='og:url' content='https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/'>
+<meta property='og:site_name' content='Tlooh Blog Site'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Diffusion 加速' /><meta property='article:published_time' content='2024-05-06T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-05-06T01:12:44&#43;08:00'/><meta property='og:image' content='https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png' />
+<meta name="twitter:title" content="Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models">
+<meta name="twitter:description" content="Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models 本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 交叉注意输出经过几个推理步骤后会收敛到一个固定点 。收敛的时间点自然将整个推理过程分为两个阶段: 初始语义规划阶段: 在此阶段，模型依赖于交叉关注规划面向文本的视觉语义，以及随后的 保真度改进阶: 在此阶段，模型尝试从先前规划的语义生成图像。 作者发现在保真度改进阶段忽略文本条件不仅降低了计算复杂度，而且保持了模型的性能。这产生了一种简单且无需训练的方法，称为TGATE，用于高效生成，它在交叉注意力输出收敛时缓存它，并在剩余的推理步骤中保持固定。我们对MS-COCO验证集的实证研究证实了其有效性。 Introduction 一些研究强调了交叉注意对空间控制的重要性(Prompt-to-Prompt, Atten-and-Excite, Boxdiff)，但很少(如果有的话)从去噪过程中的时间角度研究其作用。 在这里，我们提出了一个新的问题:“在文本到图像扩散模型的推理过程中，交叉注意力对每一步都是必要的吗?” 为此，我们研究了在每个推理步骤中交叉关注对生成图像质量的影响。我们的发现突出了两个反直觉的观点: 在最初的几个步骤中，交叉注意输出收敛到一个固定点。（收敛时间点将扩散模型去噪过程分为两个阶段:） 初始阶段，模型依靠交叉注意规划面向文本的视觉语义, 我们将其表示为 语义规划阶段 后续阶段，模型学习从先前的语义规划中生成图像，我们称之为保真度提升阶段。 交叉注意在保真度提高阶段是多余的。 在语义规划阶段，交叉注意对产生有意义的语义起着至关重要的作用。然而，在后期阶段，交叉注意收敛，对生成过程的影响较小。 事实上，在保真度提高阶段绕过交叉注意可以在保持图像生成质量的同时潜在地减少计算成本。 因为交叉注意中的缩放点积是一个二次复杂度的运算。随着现代模型中分辨率和令牌长度的不断增加，交叉注意不可避免地会导致昂贵的计算，成为移动设备等应用程序的重要延迟来源。 这一发现促使我们重新评估交叉注意的作用，并启发我们设计一种简单、有效、无需训练的方法，即暂时控制交叉注意(temporally gating the cross-attention (TGATE))，以提高效率并保持现成扩散模型的生成质量。 💡 需要注意的是： TGATE不会导致性能下降，**因为交叉注意的结果是聚合和冗余的。**事实上，观察到在基线上的初始化距离(FID)略有改善。 TGATE可以在每张图像上减少65T多次累积操作(Multiple-Accumulate Operations，MACs)，并在保真度提高阶段减小0.5B个参数，与基线模型(SDXL)相比，在没有训练成本的情况下，延迟减少了约50%。 Temporal Analysis of Cross-Attention Cross-Attention. UNet 中的交叉注意数学定义如下： $$\\mathbf{C}_c^t=\\text{Softmax}(\\frac{Q_z^t\\cdot K_c}{\\sqrt{d}})\\cdot V_c$$ 其中，$Q_z^t$ 是 $z_t$ 的投影，$K_c$ 和 $V_c$ 是文本嵌入 $c$ 的投影，$d$ 是 $K_c$的特征维度。交叉注意的二次型的计算复杂度，是在处理高分辨率特征时的一个重要瓶颈。 On the Convergence of Cross-Attention Map 考虑一个问题🤔：考虑到每个时间步骤中噪声输入的变化，交叉注意生成的特征图是表现出时间稳定性还是随时间波动? 作者分析的做法步骤如下："><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended">
+
+
+
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#temporal-analysis-of-cross-attention">Temporal Analysis of Cross-Attention</a>
+      <ol>
+        <li><a href="#cross-attention">Cross-Attention.</a></li>
+        <li><a href="#on-the-convergence-of-cross-attention-map">On the Convergence of Cross-Attention Map</a></li>
+        <li><a href="#the-role-of-cross-attention-in-inference">The Role of Cross-Attention in Inference</a>
+          <ol>
+            <li><a href="#analytical-tool">Analytical Tool.</a></li>
+            <li><a href="#results-and-discussion">Results and Discussion.</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#temporally-gating-cross-attentiontgate">Temporally Gating Cross-Attention(TGATE)</a>
+      <ol>
+        <li><a href="#caching-cross-attention-maps">Caching Cross-Attention Maps.</a></li>
+        <li><a href="#re-using-cached-cross-attention-maps">Re-using Cached Cross-Attention Maps.</a></li>
+      </ol>
+    </li>
+    <li><a href="#experiments">Experiments</a></li>
+    <li><a href="#加速的基线模型">加速的基线模型</a>
+      <ol>
+        <li>
+          <ol>
+            <li></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" loading="lazy" alt="Featured image of post Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/diffusion/" >
+                Diffusion
+            </a>
+        
+            <a href="/categories/papers/" >
+                Papers
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/">Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 06, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models">Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models
+</h1><p>本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 <font color="#fc5531"><b>交叉注意输出经过几个推理步骤后会收敛到一个固定点</b></font> 。收敛的时间点自然将整个推理过程分为两个阶段:</p>
+<ul>
+<li>初始语义规划阶段: 在此阶段，模型依赖于交叉关注规划面向文本的视觉语义，以及随后的</li>
+<li>保真度改进阶: 在此阶段，模型尝试从先前规划的语义生成图像。</li>
+</ul>
+<p>作者发现<strong>在保真度改进阶段忽略文本条件不仅降低了计算复杂度，而且保持了模型的性能</strong>。这产生了一种简单且无需训练的方法，称为TGATE，用于高效生成，它在交叉注意力输出收敛时缓存它，并在剩余的推理步骤中保持固定。我们对MS-COCO验证集的实证研究证实了其有效性。</p>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001720.png>
+<h2 id="introduction">Introduction
+</h2><p>一些研究强调了交叉注意对空间控制的重要性(Prompt-to-Prompt, Atten-and-Excite, Boxdiff)，但很少(如果有的话)从去噪过程中的时间角度研究其作用。</p>
+<p>在这里，我们提出了一个新的问题:“<strong>在文本到图像扩散模型的推理过程中，交叉注意力对每一步都是必要的吗?</strong>”</p>
+<p>为此，我们研究了在<strong>每个推理步骤中交叉关注对生成图像质量的影响</strong>。我们的发现突出了两个反直觉的观点:</p>
+<ul>
+<li>
+<p>在最初的几个步骤中，交叉注意输出收敛到一个固定点。（收敛时间点将扩散模型去噪过程分为两个阶段:）</p>
+<ul>
+<li>初始阶段，模型依靠交叉注意规划面向文本的视觉语义, 我们将其表示为 <font color="#fc5531"><b>语义规划阶段</b></font></li>
+<li>后续阶段，模型学习从先前的语义规划中生成图像，我们称之为<font color="#fc5531"><b>保真度提升阶段</b></font>。</li>
+</ul>
+</li>
+<li>
+<p>交叉注意在保真度提高阶段是多余的。</p>
+<ul>
+<li>在语义规划阶段，交叉注意对产生有意义的语义起着至关重要的作用。然而，<strong>在后期阶段，交叉注意收敛，对生成过程的影响较小。</strong></li>
+<li>事实上，在<strong>保真度提高阶段绕过交叉注意</strong>可以在保持图像生成质量的同时潜在地减少计算成本。</li>
+</ul>
+</li>
+</ul>
+<p>因为<strong>交叉注意中的缩放点积是一个二次复杂度的运算</strong>。随着现代模型中分辨率和令牌长度的不断增加，交叉注意不可避免地会导致昂贵的计算，成为移动设备等应用程序的重要延迟来源。</p>
+<p>这一发现促使我们重新评估交叉注意的作用，并启发我们设计一种简单、有效、无需训练的方法，即暂时控制交叉注意(<code>temporally gating the cross-attention (TGATE)</code>)，以提高效率并保持现成扩散模型的生成质量。</p>
+<blockquote>
+<p>💡 需要注意的是：</p>
+<ul>
+<li>TGATE不会导致性能下降，**因为交叉注意的结果是聚合和冗余的。**事实上，观察到在基线上的初始化距离(FID)略有改善。</li>
+<li>TGATE可以在每张图像上减少65T多次累积操作(Multiple-Accumulate Operations，MACs)，<strong>并在保真度提高阶段减小0.5B个参数，与基线模型(SDXL)相比，在没有训练成本的情况下，延迟减少了约50%。</strong></li>
+</ul>
+</blockquote>
+<h2 id="temporal-analysis-of-cross-attention">Temporal Analysis of Cross-Attention
+</h2><h3 id="cross-attention">Cross-Attention.
+</h3><p>UNet 中的交叉注意数学定义如下：</p>
+<p>$$\mathbf{C}_c^t=\text{Softmax}(\frac{Q_z^t\cdot K_c}{\sqrt{d}})\cdot V_c$$</p>
+<p>其中，$Q_z^t$ 是 $z_t$ 的投影，$K_c$ 和 $V_c$ 是文本嵌入 $c$ 的投影，$d$ 是 $K_c$的特征维度。<strong>交叉注意的二次型的计算复杂度，是在处理高分辨率特征时的一个重要瓶颈。</strong></p>
+<h3 id="on-the-convergence-of-cross-attention-map">On the Convergence of Cross-Attention Map
+</h3><blockquote>
+<p>考虑一个问题🤔：<strong>考虑到每个时间步骤中噪声输入的变化，交叉注意生成的特征图是表现出时间稳定性还是随时间波动?</strong></p>
+</blockquote>
+<p>作者分析的做法步骤如下：</p>
+<ul>
+<li>从MS-COCO数据集中随机收集了1000个标题，并使用CFG预训练的SD-2.1模型1生成图像。</li>
+<li>在推理过程中，我们计算 $C^t$ 和 $C^{t+1}$ 之间的L2距离，<strong>其中 $C^t$ 表示时间步长t的交叉注意图</strong>。</li>
+<li>通过平均所有输入标题、条件和深度之间的L2距离来获得两步之间的交叉注意差。</li>
+</ul>
+<p>图2显示了跨不同推理步骤的交叉注意差异的变化。<strong>一个明显的趋势出现了，表明差异逐渐趋近于零。</strong> 收敛性总是在5 ~ 10个推理步骤内出现。因此，交叉注意映射会收敛到一个固定点，不再为图像生成提供动态指导。这一发现从交叉注意的角度支持了CFG的有效性，表明尽管条件和初始噪声不同，无条件批次和有条件批次可以收敛到一个一致的结果。</p>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png>
+<blockquote>
+<p>图中的每个数据点是模型中1000个标题和所有交叉注意图的平均值。阴影区域表示方差，而曲线表示连续步骤之间的差逐渐接近于零。</p>
+</blockquote>
+<p>因此我们发现：<font color="#fc5531"><b>这一现象说明了交叉注意在推理过程中的影响是不均匀的，并启发了下一节交叉注意的时间分析。</b></font></p>
+<h3 id="the-role-of-cross-attention-in-inference">The Role of Cross-Attention in Inference
+</h3><h4 id="analytical-tool">Analytical Tool.
+</h4><p>我们通过在特定阶段有效地“去除”交叉关注并观察由此产生的生成质量差异来衡量交叉关注的影响。在实践中，这种移除近似于用空文本的占位符替换原始文本嵌入，即“”。我们将标准去噪轨迹形式化为一个序列:
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001763.png></p>
+<p>为了简化起见，省略了时间步骤索引 $t$ 和引导比例系数 $w$。 从序列 $\boldsymbol{S}$ 中生成的图像表示为 $x$, 我们然后修改标准序列，将条件文本嵌入 $x$ 替换为空文本嵌入 $\varnothing $，在指定的推理区间内，产生两个新的序列，$\boldsymbol{S}^F_m$ 和 $\boldsymbol{S}^L_m$ ，基于一个标量 $m$</p>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001776.png>
+<p>这里，$m$ 是作为一个 <code>gate step</code> 来分割这个两阶段。在序列 $\boldsymbol{S}^F_m$ 中，我们将无文本嵌入 $varnothing$ 替换原始文本嵌入，从 $m + 1$ 到第 $n$ 步。</p>
+<p>相反的，在序列 $\boldsymbol{S}^L_m$ 中，我们将使用空文本嵌入 $varnothing$，从 $1$ 到第 $m$ 步，而 $m$ 到第 $n$ 步 则维持使用原始文本嵌入。</p>
+<p>我们将遵循这两个去噪轨迹生成的图像分别表示为 $x^F_m$ 和 $x^L_m$。为了评估交叉关注的作用，我们对比了 $x$, $x^F_m$ 和 $x^L_m$ 之间的生成质量。</p>
+<blockquote>
+<p><strong>如果 $x$ 和 $x^F_m$ 之间的生成质量存在显著差异，则表明该阶段交叉注意的重要性。相反，如果没有实质性的变化，则该阶段交叉注意可能不是必须的。</strong></p>
+<p>补充：我们使用SD-2.1作为基本模型，并使用DPM求解器(Lu et al.， 2022)进行噪声调度。所有实验的推理步长都设为25。文字提示“宇航员在太空骑马的高质量照片。用于可视化。</p>
+</blockquote>
+<h4 id="results-and-discussion">Results and Discussion.
+</h4><p>图3(a)中给出了预测噪声均值的轨迹，经验表明，经过25个推理步骤后，去噪过程收敛。因此，在这个区间内分析交叉注意的影响就足够了。如图3(b)所示，<code>gate step</code> $m$ 设置为10，这将产生三个轨迹: $\boldsymbol{S}, \boldsymbol{S_m^F}, \boldsymbol{S_m^L}$</p>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001817.png>
+<p><font color="#fc5531"><b>结果表明10步后的交叉注意不影响最终结果。</b></font> 但是如果在最初的步骤中忽略交叉注意会导致显著的差异。如图3(c)所示，这种消除导致MS-COCO验证集中的生成质量(FID)显著下降，甚至比不使用CFG生成图像的弱基线更差。</p>
+<blockquote>
+<p>个人感觉 $\boldsymbol{S_m^L}$ 效果不好也正常， 因为 $\boldsymbol{S_m^L}$ 也太极端了，一开始全部置为空。</p>
+</blockquote>
+<p>然后作者对 <code>gate step</code> $m$ 分别取 ${3,5,10}$ 做了进一步的实验，<strong>当 $m$ 大于 5 时，忽略交叉注意的模型可以获得更好的 FID。</strong></p>
+<p>为了进一步证明我们的发现的普遍性，我们在各种条件下进行了实验，包括一系列的总推断数、噪声调度器和基本模型。如表2、3和4所示，我们报告了$\boldsymbol{S}, \boldsymbol{S_m^F}, \boldsymbol{S_m^L}$在MS-COCO验证集上的FID。实验结果一致表明，$\boldsymbol{S_m^F}$ 的FIDs略优于基线S，并且远远优于    $\boldsymbol{S_m^L}$。这些研究强调了这些发现具有广泛适用性的潜力。</p>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001827.png>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001835.png>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001843.png>
+<h2 id="temporally-gating-cross-attentiontgate">Temporally Gating Cross-Attention(TGATE)
+</h2><p><strong>前文可以发现最后的推理步骤中交叉注意计算是多余的。</strong> 所以考虑在不重新训练模型的情况下删除/替换交叉注意是很重要的。受DeepCache的启发，作者提出了一种有效且无需训练的方法，称为TGATE。<strong>该方法缓存语义规划阶段的注意力结果，并在整个保真度改进阶段重用它们。</strong></p>
+<h3 id="caching-cross-attention-maps">Caching Cross-Attention Maps.
+</h3><p><code>gate step</code> 为 $m$, 对于第 $m$ 步，对于第 $i$ 个交叉注意模块，可以通过基于CFG的推理得到 $C_{m,i}^c$ 和 $C_{m,i}^{\varnothing}$ 两个交叉注意映射。我们计算这两个映射的平均值作为锚点，并将其存储在先进先出特征缓存 $F$ 中。遍历所有交叉注意块后，$F$ 可以写成:</p>
+<p>$$\mathbf{F}={\frac12(\mathbf{C}_\varnothing^{m,i}+\mathbf{C}_c^{m,i})|i\in[1,l]},$$</p>
+<p>其中，$l$ 表示交叉注意模块的总数，在 SD-2.1中，$l = 16$.</p>
+<h3 id="re-using-cached-cross-attention-maps">Re-using Cached Cross-Attention Maps.
+</h3><p>在保真度改进阶段的每一步中，当向前传递过程中遇到交叉注意操作时，将其从计算图中省略。相反，缓存的 $\boldsymbol{F}.pop(0)$ 被输入到后续的计算中。这种方法不会在每个时间步产生相同的预测，因为 UNet 中有残差连接允许模型跳过交叉注意。</p>
+<h2 id="experiments">Experiments
+</h2><p><strong>四个基准模型</strong></p>
+<ul>
+<li>Stable Diffusion-1.5 (SD-1.5)</li>
+<li>SD-2.1</li>
+<li>SDXL</li>
+<li>PixArt-Alpha（这个是基于 Transformer）</li>
+</ul>
+<h2 id="加速的基线模型">加速的基线模型
+</h2><ul>
+<li>Latent Consistency Model</li>
+<li>Adaptive Guidance</li>
+<li>DeepCache</li>
+<li>Multiple Noise Schedules</li>
+</ul>
+<p>为了进行令人信服的实证研究，我们将我们的方法与几种加速基线方法进行了比较:潜在一致性模型(Luo等人，2023)、自适应制导(Castillo等人，2023)、DeepCache (Ma等人，2023)和多个噪声调度程序(Karras等人，2022;Lu et al.， 2022;Song等人，2020)。注意，我们的方法与现有的加速去噪推理方法是正交的;因此，我们的方法可以简单集成，进一步加快这一过程。</p>
+<blockquote>
+<p><strong>实验结果</strong>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001852.png></p>
+</blockquote>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001861.png>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001871.png>
+<h6 id="消融实验">消融实验
+</h6><img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001880.png>
+<img src=https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001890.png>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/diffusion-%E5%8A%A0%E9%80%9F/">Diffusion 加速</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/">
+        
+        
+            <div class="article-image">
+                <img src="/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.39bc41021047cf57f10a328634f07859_hube457628ccb7476358da95c276ecf5b4_788663_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models"
+                        
+                        data-hash="md5-ObxBAhBHz1fxCjKGNPB4WQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/adadiff-adaptive-step-selection-for-fast-diffusion/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AdaDiff: Adaptive Step Selection for Fast Diffusion</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/all_papers_on_diffusion/">
+        
+        
+            <div class="article-image">
+                <img src="/p/all_papers_on_diffusion/_hu97d061de95afac90ca03bfd8d919a16b_239242_538f2624a81473eb1fd40013472e5733.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post All_papers_on_diffusion"
+                        
+                        data-hash="md5-ho7mJyGJc4P2VN3XPYZazA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">All_papers_on_diffusion</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Tlooh
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
