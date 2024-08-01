@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>生成优化 on Tlooh Blog Site</title>
-        <link>https://tlooh.github.io/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</link>
+        <link>http://localhost:1313/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</link>
         <description>Recent content in 生成优化 on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Thu, 25 Apr 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 25 Apr 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</title>
-        <link>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
+        <link>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
         <pubDate>Thu, 25 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
+        <guid>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png" alt="Featured image of post CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching" /&gt;&lt;h1 id=&#34;comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching&#34;&gt;CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;图文一致性的原因还是因为文本的 token 的激活注意值不高，导致文本的 token 无法激活图像的区域，从而导致图文不一致。作者将这种现象归因于扩散模型的训练方式对条件的利用不足，所以提出了 CoMat，是一种 &lt;strong&gt;端到端的扩散模型微调策略。&lt;/strong&gt;&lt;/p&gt;
