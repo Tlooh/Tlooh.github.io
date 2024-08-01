@@ -2,26 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tlooh.github.io/zh-cn/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tlooh.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="https://tlooh.github.io/ar/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://tlooh.github.io/zh-cn/"
-                />
-  </url><url>
     <loc>https://tlooh.github.io/zh-cn/categories/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -39,10 +21,10 @@
                 />
   </url><url>
     <loc>https://tlooh.github.io/zh-cn/p/test-chinese/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
   </url><url>
     <loc>https://tlooh.github.io/zh-cn/post/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -55,7 +37,7 @@
                 />
   </url><url>
     <loc>https://tlooh.github.io/zh-cn/categories/test/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -68,9 +50,28 @@
                 />
   </url><url>
     <loc>https://tlooh.github.io/zh-cn/categories/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
+  </url><url>
+    <loc>https://tlooh.github.io/zh-cn/</loc>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tlooh.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ar"
+                href="https://tlooh.github.io/ar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://tlooh.github.io/zh-cn/"
+                />
   </url><url>
     <loc>https://tlooh.github.io/zh-cn/page/</loc>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -100,6 +101,7 @@
                 />
   </url><url>
     <loc>https://tlooh.github.io/zh-cn/%E5%85%B3%E4%BA%8E/</loc>
+    <lastmod>2024-06-09T21:41:23+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
