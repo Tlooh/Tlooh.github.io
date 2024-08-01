@@ -2,33 +2,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on Tlooh Blog Site</title>
-        <link>https://tlooh.github.io/tags/</link>
+        <link>http://localhost:1313/tags/</link>
         <description>Recent content in Tags on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Fri, 19 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 19 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>ID一致性</title>
-        <link>https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</link>
+        <link>http://localhost:1313/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</link>
         <pubDate>Fri, 19 Jul 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</guid>
+        <guid>http://localhost:1313/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</guid>
         <description></description>
         </item>
         <item>
         <title>Diffusion 加速</title>
-        <link>https://tlooh.github.io/tags/diffusion-%E5%8A%A0%E9%80%9F/</link>
+        <link>http://localhost:1313/tags/diffusion-%E5%8A%A0%E9%80%9F/</link>
         <pubDate>Mon, 06 May 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/tags/diffusion-%E5%8A%A0%E9%80%9F/</guid>
+        <guid>http://localhost:1313/tags/diffusion-%E5%8A%A0%E9%80%9F/</guid>
         <description></description>
         </item>
         <item>
         <title>生成优化</title>
-        <link>https://tlooh.github.io/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</link>
+        <link>http://localhost:1313/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</link>
         <pubDate>Thu, 25 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</guid>
+        <guid>http://localhost:1313/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</guid>
         <description></description>
         </item>
         
