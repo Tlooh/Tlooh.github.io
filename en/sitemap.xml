@@ -2,155 +2,155 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/"
+                href="https://tlooh.github.io/zh-cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="http://localhost:1313/ar/"
+                href="https://tlooh.github.io/ar/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/"
+                href="https://tlooh.github.io/"
                 />
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/categories/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/categories/"
+                href="https://tlooh.github.io/zh-cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="http://localhost:1313/ar/categories/"
+                href="https://tlooh.github.io/ar/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/"
+                href="https://tlooh.github.io/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/categories/diffusion/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/categories/diffusion/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/papers/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/categories/papers/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/post/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/post/"
+                href="https://tlooh.github.io/zh-cn/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/post/"
+                href="https://tlooh.github.io/post/"
                 />
   </url><url>
-    <loc>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-07-19T01:12:44+08:00</lastmod>
+    <loc>https://tlooh.github.io/tags/</loc>
+    <lastmod>2024-07-30T01:12:44+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/tags/"
+                href="https://tlooh.github.io/zh-cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ar"
-                href="http://localhost:1313/ar/tags/"
+                href="https://tlooh.github.io/ar/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/"
+                href="https://tlooh.github.io/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://tlooh.github.io/archives/</loc>
     <lastmod>2024-06-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/page/</loc>
+    <loc>https://tlooh.github.io/page/</loc>
     <lastmod>2024-06-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/page/"
+                href="https://tlooh.github.io/zh-cn/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/page/"
+                href="https://tlooh.github.io/page/"
                 />
   </url><url>
-    <loc>http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/</loc>
+    <loc>https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/arxiv/</loc>
+    <loc>https://tlooh.github.io/categories/arxiv/</loc>
     <lastmod>2024-06-10T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</loc>
+    <loc>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</loc>
     <lastmod>2024-05-06T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/diffusion-%E5%8A%A0%E9%80%9F/</loc>
+    <loc>https://tlooh.github.io/tags/diffusion-%E5%8A%A0%E9%80%9F/</loc>
     <lastmod>2024-05-06T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</loc>
+    <loc>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</loc>
     <lastmod>2024-04-28T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</loc>
+    <loc>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</loc>
     <lastmod>2024-04-25T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</loc>
+    <loc>https://tlooh.github.io/tags/%E7%94%9F%E6%88%90%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2024-04-25T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</loc>
+    <loc>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</loc>
     <lastmod>2023-12-22T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</loc>
+    <loc>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</loc>
     <lastmod>2023-12-21T01:12:44+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://tlooh.github.io/about/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/%E5%85%B3%E4%BA%8E/"
+                href="https://tlooh.github.io/zh-cn/%E5%85%B3%E4%BA%8E/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/about/"
+                href="https://tlooh.github.io/about/"
                 />
   </url><url>
-    <loc>http://localhost:1313/links/</loc>
+    <loc>https://tlooh.github.io/links/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://tlooh.github.io/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/test/</loc>
+    <loc>https://tlooh.github.io/categories/test/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/categories/test/"
+                href="https://tlooh.github.io/zh-cn/categories/test/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/test/"
+                href="https://tlooh.github.io/categories/test/"
                 />
   </url>
 </urlset>
