@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching 图文一致性的原因还是因为文本的 token 的激活注意值不高，导致文本的 token 无法激活图像的区域，从而导致图文不一致。作者将这种现象归因于扩散模型的训练方式对条件的利用不足，所以提出了 CoMat，是一种 端到端的扩散模型微调策略。 Introduction 缺陷 其实上图所展现出来的还是很基础的目标丢失问题 补充一下： 这个问题归因于视觉概念的的激活值不够大而被其他物体的注意力淹没，导致了视觉概念的丢失。之前也有一些相关工作，像：Atten-and-Excite，Structur Diffusion 等 这里也有一个关于问题的分析： 作者将 token 对应的交叉注意图进行了分析，这里采用的做法是： 将预训练UNet对带有文本标题的噪声图像进行降噪。然后记录每个文本token的激活值，并在空间维度上取平均值 可以看到带有 Comat 的，里面的所有激活值都有了提高 多说一句🤔 看到这里和之前的工作并没有什么不同，像 Atten-and-Excit 是将主题视觉概念的 token 去最大化响应值，这里貌似最后的结果也是一样的 Method 作者一共包括三个模块： Concept Matching Attribute Concentration Fidelity Preservation Concept Matching 这里引入了图像字幕模型，即 Caption Model ，该模型可以根据给定的文本提示准确识别生成图像中不存在的概念。 在 Caption Model 的监督下，扩散模型被迫重新访问文本标记以搜索被忽略的条件信息，并为先前被忽略的文本概念分配重要性，以获得更好的文本-图像对齐。具体来说，做法是： 给定文本提示 $\\mathcal{P}$, 以及相应的 词tokens ${w_1, w_2, \\dots, w_{L}}$; 对于一张在经过 $\\mathbf{T}$ 步去噪厚的图像，这个冻结的 Caption Model $C$ 会以对数似然的形式对图文一致性进行打分，训练目标就是最小化这个分数，标记为 $\\mathcal{L}_{\\text{cap}}$: $$\\begin{aligned}\\mathcal{L}{\\text{cap}}&amp;=-\\log(p{\\mathcal{C}}(\\mathcal{P}|\\mathcal{I}(\\mathcal{P};\\epsilon_{\\theta})))=-\\sum_{i=1}^{L}\\log(p_{\\mathcal{C}}(w_{i}|\\mathcal{I},w_{1:i-1})).">
 <title>CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</title>
 
-<link rel='canonical' href='http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/'>
+<link rel='canonical' href='https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/'>
 
 <link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching">
 <meta property='og:description' content="CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching 图文一致性的原因还是因为文本的 token 的激活注意值不高，导致文本的 token 无法激活图像的区域，从而导致图文不一致。作者将这种现象归因于扩散模型的训练方式对条件的利用不足，所以提出了 CoMat，是一种 端到端的扩散模型微调策略。 Introduction 缺陷 其实上图所展现出来的还是很基础的目标丢失问题 补充一下： 这个问题归因于视觉概念的的激活值不够大而被其他物体的注意力淹没，导致了视觉概念的丢失。之前也有一些相关工作，像：Atten-and-Excite，Structur Diffusion 等 这里也有一个关于问题的分析： 作者将 token 对应的交叉注意图进行了分析，这里采用的做法是： 将预训练UNet对带有文本标题的噪声图像进行降噪。然后记录每个文本token的激活值，并在空间维度上取平均值 可以看到带有 Comat 的，里面的所有激活值都有了提高 多说一句🤔 看到这里和之前的工作并没有什么不同，像 Atten-and-Excit 是将主题视觉概念的 token 去最大化响应值，这里貌似最后的结果也是一样的 Method 作者一共包括三个模块： Concept Matching Attribute Concentration Fidelity Preservation Concept Matching 这里引入了图像字幕模型，即 Caption Model ，该模型可以根据给定的文本提示准确识别生成图像中不存在的概念。 在 Caption Model 的监督下，扩散模型被迫重新访问文本标记以搜索被忽略的条件信息，并为先前被忽略的文本概念分配重要性，以获得更好的文本-图像对齐。具体来说，做法是： 给定文本提示 $\\mathcal{P}$, 以及相应的 词tokens ${w_1, w_2, \\dots, w_{L}}$; 对于一张在经过 $\\mathbf{T}$ 步去噪厚的图像，这个冻结的 Caption Model $C$ 会以对数似然的形式对图文一致性进行打分，训练目标就是最小化这个分数，标记为 $\\mathcal{L}_{\\text{cap}}$: $$\\begin{aligned}\\mathcal{L}{\\text{cap}}&amp;=-\\log(p{\\mathcal{C}}(\\mathcal{P}|\\mathcal{I}(\\mathcal{P};\\epsilon_{\\theta})))=-\\sum_{i=1}^{L}\\log(p_{\\mathcal{C}}(w_{i}|\\mathcal{I},w_{1:i-1})).">
-<meta property='og:url' content='http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/'>
+<meta property='og:url' content='https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/'>
 <meta property='og:site_name' content='Tlooh Blog Site'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='生成优化' /><meta property='article:published_time' content='2024-04-25T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-04-25T01:12:44&#43;08:00'/><meta property='og:image' content='https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png' />
 <meta name="twitter:title" content="CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching">
@@ -398,6 +398,25 @@ $$\begin{aligned}\mathcal{L}<em>\text{pixel}=-\frac{1}{N|A|}\sum</em>{i=1}^N\sum
             
                 
 <article class="has-image">
+    <a href="/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">StoryDiffusion：让 Diffusion 用来生成故事插画和视频</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
     <a href="/p/all-papers-about-diffusion-models-on-arxiv/">
         
         
@@ -477,25 +496,6 @@ $$\begin{aligned}\mathcal{L}<em>\text{pixel}=-\frac{1}{N|A|}\sum</em>{i=1}^N\sum
 
         <div class="article-details">
             <h2 class="article-title">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/adadiff-adaptive-step-selection-for-fast-diffusion/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">AdaDiff: Adaptive Step Selection for Fast Diffusion</h2>
         </div>
     </a>
 </article>

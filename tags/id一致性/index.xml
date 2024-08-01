@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ID一致性 on Tlooh Blog Site</title>
+        <link>https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</link>
+        <description>Recent content in ID一致性 on Tlooh Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Tlooh</copyright>
+        <lastBuildDate>Fri, 19 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>StoryDiffusion：让 Diffusion 用来生成故事插画和视频</title>
+        <link>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
+        <pubDate>Fri, 19 Jul 2024 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
+&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&#34;motivation&#34;&gt;Motivation
+&lt;/h2&gt;&lt;p&gt;目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;像IP-Adapter这种，由于图像强语义的引导，导致文本的控制信号较弱；&lt;/li&gt;
+&lt;li&gt;而类似 InstantID 和 PhotoMaker 这种，关注身份可控性，但无法保证服装和场景的一致性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;methods&#34;&gt;Methods
+&lt;/h2&gt;&lt;p&gt;主要分为两个阶段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;First Stage&lt;/code&gt;: 模型使用 &lt;code&gt;Consistent Self-Attention&lt;/code&gt; 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Second Stage&lt;/code&gt;: 模型利用这些主题一致的图像来生成一致的过渡视频；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
+	width=&#34;1750&#34;
+	height=&#34;916&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;191&#34;
+		data-flex-basis=&#34;458px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;training-free-consistent-images-generation&#34;&gt;Training-free consistent images generation
+&lt;/h3&gt;&lt;p&gt;由上图可以看到，第一阶段会把一段故事分成一个个的prompt，然后在一个batch里面去生成。这一部分的问题就是如何保证batch里面人物主体的一致性。&lt;/p&gt;
+&lt;p&gt;简单来说，这里做的一个操作就是提出了 &lt;strong&gt;CAB模块&lt;/strong&gt; ，然后将其插入到原始的自注意模块中，并重用原始自注意权重来达到无需训练和可插拔。&lt;/p&gt;
+&lt;p&gt;具体来说，给定一组图像特征 $\mathcal{I}\in\mathbb{R}^{B\times N\times}$ ,其中$B, N, C$ 分别代表 batch size, number of tokens in each image, and channel num , 另外我们定义函数 $\begin{array}{c}\text{Attention}(X_k,X_q,X_v)\end{array}$ to 计算自注意。 $X_k,X_q,X_v$ 分别代表q,k,v, 原始自注意在$\mathcal{I}$中的每个图像特征$I_i$内独立进行。特征 $I_i$ 会被投射到 $Q_i,K_i,\tilde{V_i}$ 然后经过自注意函数：
+$$O_i=\text{Attention}\left(Q_i,K_i,V_i\right).$$&lt;/p&gt;
+&lt;p&gt;为了在Batch size中的图像之间建立交互以保持主题一致性，我们会从Batch中的其他图像特征中采样了一些 tokens:&lt;/p&gt;
+&lt;p&gt;$$S_i=\text{RandSample}\left(I_1,I_2,..,I_{i-1},I_{i+1},&amp;hellip;,I_{B-1},I_B\right),$$&lt;/p&gt;
+&lt;p&gt;采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下：&lt;/p&gt;
+&lt;p&gt;$$O_i=\text{Attention}\left(Q_i,K_{Pi},V_{Pi}\right).$$&lt;/p&gt;
+&lt;p&gt;给定配对的标记，我们的方法跨一批图像执行自关注，促进不同图像特征之间的交互。这种类型的交互促进了模型在生成过程中趋同于人物、面孔和服装。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
+	width=&#34;1748&#34;
+	height=&#34;964&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;181&#34;
+		data-flex-basis=&#34;435px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;semantic-motion-predictor-for-video-generation&#34;&gt;Semantic motion predictor for video generation
+&lt;/h2&gt;&lt;p&gt;通过在每对相邻图像之间插入帧，可以将生成的字符一致图像序列进一步细化为视频。这可以看作是一个&lt;strong&gt;以已知的开始帧和结束帧为条件的视频生成任务。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;提出了一个 Semantic Motion Predictor, 用以将图像编码到语意空间来捕获空间信息。具体来说，我们设计了一个函数$E$来建立RGB图像到语意空间的映射，而不是直接使用线性层进行投射。（说了这么多，就使用CLIP image encoder来作为 E）
+&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
+	width=&#34;378&#34;
+	height=&#34;80&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;472&#34;
+		data-flex-basis=&#34;1134px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后，训练了一个 &lt;code&gt;transformer-based structure predictor&lt;/code&gt; 来预测每个中间帧，预测器首先进行线性插值，将两个帧 ( K_s ) 和 ( K_e ) 扩展成序列 ( K_1, K_2, \ldots, K_L )，其中 ( L ) 是所需的视频长度。然后，将序列 ( K_1, K_2, \ldots, K_L ) 输入到一系列transformer块 ( B ) 中，以预测过渡帧：&lt;/p&gt;
+&lt;p&gt;[
+P_1, P_2, \ldots, P_l = B(K_1, K_2, \ldots, K_L)。
+]&lt;/p&gt;
+&lt;p&gt;接下来，将这些图像语义嵌入 ( P_1, P_2, \ldots, P_L ) 作为控制信号，并将视频扩散模型作为解码器，以利用视频扩散模型的生成能力。我们还插入了额外的线性层，将这些嵌入投影到键和值，涉及到U-Net的交叉注意力。形式上，在扩散过程中，对于每个视频帧特征 ( V_i )，我们将文本嵌入 ( T ) 和预测的图像语义嵌入 ( P_i ) 连接起来。交叉注意力计算如下：&lt;/p&gt;
+&lt;p&gt;[
+V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))。
+]&lt;/p&gt;
+&lt;p&gt;类似于以前的视频生成方法，我们通过计算预测过渡视频 ( O = (O_1, O_2, \ldots, O_L) ) 和真实帧 ( G = (G_1, G_2, \ldots, G_L) ) 之间的均方误差损失（MSE Loss）来优化我们的模型：&lt;/p&gt;
+&lt;p&gt;[
+\text{Loss} = \text{MSE}(G, O)。
+]&lt;/p&gt;
+&lt;p&gt;通过将图像编码到图像语义空间以整合空间位置关系，我们的语义运动预测器可以更好地建模运动信息，从而生成具有大运动的平滑过渡视频。结果和比较可以在图1和图5中观察到，显示了显著的改进。&lt;/p&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;图像生成之间的对比&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
+	width=&#34;1270&#34;
+	height=&#34;882&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;345px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
+	width=&#34;1278&#34;
+	height=&#34;818&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;374px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定量比较&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
+	width=&#34;1308&#34;
+	height=&#34;534&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;244&#34;
+		data-flex-basis=&#34;587px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Video就不看了……&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
