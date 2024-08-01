@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="StoryDiffusion：让 Diffusion 用来生成故事插画和视频 Motivation 目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。 像IP-Adapter这种，由于图像强语义的引导，导致文本的控制信号较弱； 而类似 InstantID 和 PhotoMaker 这种，关注身份可控性，但无法保证服装和场景的一致性。 Methods 主要分为两个阶段： First Stage: 模型使用 Consistent Self-Attention 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入； Second Stage: 模型利用这些主题一致的图像来生成一致的过渡视频； Training-free consistent images generation 由上图可以看到，第一阶段会把一段故事分成一个个的prompt，然后在一个batch里面去生成。这一部分的问题就是如何保证batch里面人物主体的一致性。 简单来说，这里做的一个操作就是提出了 CAB模块 ，然后将其插入到原始的自注意模块中，并重用原始自注意权重来达到无需训练和可插拔。 具体来说，给定一组图像特征 $\\mathcal{I}\\in\\mathbb{R}^{B\\times N\\times}$ ,其中$B, N, C$ 分别代表 batch size, number of tokens in each image, and channel num , 另外我们定义函数 $\\begin{array}{c}\\text{Attention}(X_k,X_q,X_v)\\end{array}$ to 计算自注意。 $X_k,X_q,X_v$ 分别代表q,k,v, 原始自注意在$\\mathcal{I}$中的每个图像特征$I_i$内独立进行。特征 $I_i$ 会被投射到 $Q_i,K_i,\\tilde{V_i}$ 然后经过自注意函数： $$O_i=\\text{Attention}\\left(Q_i,K_i,V_i\\right).$$ 为了在Batch size中的图像之间建立交互以保持主题一致性，我们会从Batch中的其他图像特征中采样了一些 tokens: $$S_i=\\text{RandSample}\\left(I_1,I_2,..,I_{i-1},I_{i+1},&hellip;,I_{B-1},I_B\\right),$$ 采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下： $$O_i=\\text{Attention}\\left(Q_i,K_{Pi},V_{Pi}\\right).$$">
 <title>StoryDiffusion：让 Diffusion 用来生成故事插画和视频</title>
 
-<link rel='canonical' href='http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/'>
+<link rel='canonical' href='https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/'>
 
 <link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="StoryDiffusion：让 Diffusion 用来生成故事插画和视频">
 <meta property='og:description' content="StoryDiffusion：让 Diffusion 用来生成故事插画和视频 Motivation 目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。 像IP-Adapter这种，由于图像强语义的引导，导致文本的控制信号较弱； 而类似 InstantID 和 PhotoMaker 这种，关注身份可控性，但无法保证服装和场景的一致性。 Methods 主要分为两个阶段： First Stage: 模型使用 Consistent Self-Attention 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入； Second Stage: 模型利用这些主题一致的图像来生成一致的过渡视频； Training-free consistent images generation 由上图可以看到，第一阶段会把一段故事分成一个个的prompt，然后在一个batch里面去生成。这一部分的问题就是如何保证batch里面人物主体的一致性。 简单来说，这里做的一个操作就是提出了 CAB模块 ，然后将其插入到原始的自注意模块中，并重用原始自注意权重来达到无需训练和可插拔。 具体来说，给定一组图像特征 $\\mathcal{I}\\in\\mathbb{R}^{B\\times N\\times}$ ,其中$B, N, C$ 分别代表 batch size, number of tokens in each image, and channel num , 另外我们定义函数 $\\begin{array}{c}\\text{Attention}(X_k,X_q,X_v)\\end{array}$ to 计算自注意。 $X_k,X_q,X_v$ 分别代表q,k,v, 原始自注意在$\\mathcal{I}$中的每个图像特征$I_i$内独立进行。特征 $I_i$ 会被投射到 $Q_i,K_i,\\tilde{V_i}$ 然后经过自注意函数： $$O_i=\\text{Attention}\\left(Q_i,K_i,V_i\\right).$$ 为了在Batch size中的图像之间建立交互以保持主题一致性，我们会从Batch中的其他图像特征中采样了一些 tokens: $$S_i=\\text{RandSample}\\left(I_1,I_2,..,I_{i-1},I_{i+1},&hellip;,I_{B-1},I_B\\right),$$ 采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下： $$O_i=\\text{Attention}\\left(Q_i,K_{Pi},V_{Pi}\\right).$$">
-<meta property='og:url' content='http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/'>
+<meta property='og:url' content='https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/'>
 <meta property='og:site_name' content='Tlooh Blog Site'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='ID一致性' /><meta property='article:published_time' content='2024-07-19T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-07-30T01:12:44&#43;08:00'/><meta property='og:image' content='http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='ID一致性' /><meta property='article:published_time' content='2024-07-19T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-07-30T01:12:44&#43;08:00'/><meta property='og:image' content='https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png' />
 <meta name="twitter:title" content="StoryDiffusion：让 Diffusion 用来生成故事插画和视频">
 <meta name="twitter:description" content="StoryDiffusion：让 Diffusion 用来生成故事插画和视频 Motivation 目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。 像IP-Adapter这种，由于图像强语义的引导，导致文本的控制信号较弱； 而类似 InstantID 和 PhotoMaker 这种，关注身份可控性，但无法保证服装和场景的一致性。 Methods 主要分为两个阶段： First Stage: 模型使用 Consistent Self-Attention 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入； Second Stage: 模型利用这些主题一致的图像来生成一致的过渡视频； Training-free consistent images generation 由上图可以看到，第一阶段会把一段故事分成一个个的prompt，然后在一个batch里面去生成。这一部分的问题就是如何保证batch里面人物主体的一致性。 简单来说，这里做的一个操作就是提出了 CAB模块 ，然后将其插入到原始的自注意模块中，并重用原始自注意权重来达到无需训练和可插拔。 具体来说，给定一组图像特征 $\\mathcal{I}\\in\\mathbb{R}^{B\\times N\\times}$ ,其中$B, N, C$ 分别代表 batch size, number of tokens in each image, and channel num , 另外我们定义函数 $\\begin{array}{c}\\text{Attention}(X_k,X_q,X_v)\\end{array}$ to 计算自注意。 $X_k,X_q,X_v$ 分别代表q,k,v, 原始自注意在$\\mathcal{I}$中的每个图像特征$I_i$内独立进行。特征 $I_i$ 会被投射到 $Q_i,K_i,\\tilde{V_i}$ 然后经过自注意函数： $$O_i=\\text{Attention}\\left(Q_i,K_i,V_i\\right).$$ 为了在Batch size中的图像之间建立交互以保持主题一致性，我们会从Batch中的其他图像特征中采样了一些 tokens: $$S_i=\\text{RandSample}\\left(I_1,I_2,..,I_{i-1},I_{i+1},&hellip;,I_{B-1},I_B\\right),$$ 采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下： $$O_i=\\text{Attention}\\left(Q_i,K_{Pi},V_{Pi}\\right).$$"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png' />
+    <meta name="twitter:image" content='https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png' />
   
 
 
@@ -353,7 +353,7 @@ V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))�
 
 
         <span>
-            Last updated on Jul 30, 2024 01:12 CST
+            Last updated on Jul 30, 2024 01:12 &#43;0800
         </span>
     </section></footer>
 
@@ -393,30 +393,6 @@ V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))�
     <h2 class="section-title">Related content</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/all-papers-about-diffusion-models-on-arxiv/">
-        
-        
-            <div class="article-image">
-                <img src="/p/all-papers-about-diffusion-models-on-arxiv/_hu97d061de95afac90ca03bfd8d919a16b_239242_538f2624a81473eb1fd40013472e5733.jpeg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post All papers about diffusion models on arxiv"
-                        
-                        data-hash="md5-ho7mJyGJc4P2VN3XPYZazA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">All papers about diffusion models on arxiv</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="has-image">
@@ -494,6 +470,25 @@ V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))�
 
         <div class="article-details">
             <h2 class="article-title">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/adadiff-adaptive-step-selection-for-fast-diffusion/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AdaDiff: Adaptive Step Selection for Fast Diffusion</h2>
         </div>
     </a>
 </article>
