@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。 其实官方 Github 上已经有了一个很好的例子，但这里还是需要进行略微的调整； OpenAI-python：Github 地址 1. 安装 openai-python 库 1 2 # install from PyPI pip install openai 2. 使用例子 下面是官方给出的一个简单的使用例子，但是我们这里需要设置环境变量；当然你也可以直接传入也行； 如果你的 api_key 是特定渠道的，比如公司的，那么可能还需要提供 base_api_url； 注意⚠️：这里 python 文件的命名不能命名为 openai.py，否则会报错循环引用（导入那一行）； 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 import os from openai import OpenAI os.environ[&#34;OPENAI_API_KEY&#34;] = &#34;sk---xxxxxx---xxxxxx&#34; # 添加环境变量 # api_key = &#34;sk---xxxxxx---xxxxxx&#34; # 或者直接传入 # api_base_url = &#34;https://xxx.">
 <title>Python 调用 OpenAI API 使用指南</title>
 
-<link rel='canonical' href='http://localhost:1313/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+<link rel='canonical' href='https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
 
 <link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="Python 调用 OpenAI API 使用指南">
 <meta property='og:description' content="由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。 其实官方 Github 上已经有了一个很好的例子，但这里还是需要进行略微的调整； OpenAI-python：Github 地址 1. 安装 openai-python 库 1 2 # install from PyPI pip install openai 2. 使用例子 下面是官方给出的一个简单的使用例子，但是我们这里需要设置环境变量；当然你也可以直接传入也行； 如果你的 api_key 是特定渠道的，比如公司的，那么可能还需要提供 base_api_url； 注意⚠️：这里 python 文件的命名不能命名为 openai.py，否则会报错循环引用（导入那一行）； 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 import os from openai import OpenAI os.environ[&#34;OPENAI_API_KEY&#34;] = &#34;sk---xxxxxx---xxxxxx&#34; # 添加环境变量 # api_key = &#34;sk---xxxxxx---xxxxxx&#34; # 或者直接传入 # api_base_url = &#34;https://xxx.">
-<meta property='og:url' content='http://localhost:1313/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+<meta property='og:url' content='https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
 <meta property='og:site_name' content='Tlooh Blog Site'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='工具' /><meta property='article:tag' content='API' /><meta property='article:published_time' content='2024-07-31T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-08-04T16:29:44&#43;08:00'/><meta property='og:image' content='http://localhost:1313/image.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='工具' /><meta property='article:tag' content='API' /><meta property='article:published_time' content='2024-07-31T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-08-04T16:35:18&#43;08:00'/><meta property='og:image' content='https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image.png' />
 <meta name="twitter:title" content="Python 调用 OpenAI API 使用指南">
 <meta name="twitter:description" content="由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。 其实官方 Github 上已经有了一个很好的例子，但这里还是需要进行略微的调整； OpenAI-python：Github 地址 1. 安装 openai-python 库 1 2 # install from PyPI pip install openai 2. 使用例子 下面是官方给出的一个简单的使用例子，但是我们这里需要设置环境变量；当然你也可以直接传入也行； 如果你的 api_key 是特定渠道的，比如公司的，那么可能还需要提供 base_api_url； 注意⚠️：这里 python 文件的命名不能命名为 openai.py，否则会报错循环引用（导入那一行）； 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 import os from openai import OpenAI os.environ[&#34;OPENAI_API_KEY&#34;] = &#34;sk---xxxxxx---xxxxxx&#34; # 添加环境变量 # api_key = &#34;sk---xxxxxx---xxxxxx&#34; # 或者直接传入 # api_base_url = &#34;https://xxx."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/image.png' />
+    <meta name="twitter:image" content='https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image.png' />
   
 
 
@@ -109,8 +109,12 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-                
-                    <img src="/image.png" loading="lazy" alt="Featured image of post Python 调用 OpenAI API 使用指南" />
+                <img src="/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image_huad9a03783e336ff00c624793e3d35b60_422694_800x0_resize_box_3.png"
+                        srcset="/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image_huad9a03783e336ff00c624793e3d35b60_422694_800x0_resize_box_3.png 800w, /p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image_huad9a03783e336ff00c624793e3d35b60_422694_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="390" 
+                        loading="lazy"
+                        alt="Featured image of post Python 调用 OpenAI API 使用指南" />
                 
             </a>
         </div>
@@ -410,7 +414,7 @@
 
 
         <span>
-            Last updated on Aug 04, 2024 16:29 CST
+            Last updated on Aug 04, 2024 16:35 &#43;0800
         </span>
     </section></footer>
 

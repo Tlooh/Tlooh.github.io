@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>API on Tlooh Blog Site</title>
-        <link>http://localhost:1313/tags/api/</link>
+        <link>https://tlooh.github.io/tags/api/</link>
         <description>Recent content in API on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Wed, 31 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/api/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 31 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/api/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Python 调用 OpenAI API 使用指南</title>
-        <link>http://localhost:1313/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+        <link>https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
         <pubDate>Wed, 31 Jul 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
-        <description>&lt;img src="http://localhost:1313/image.png" alt="Featured image of post Python 调用 OpenAI API 使用指南" /&gt;&lt;p&gt;由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。&lt;/p&gt;
+        <guid>https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image.png" alt="Featured image of post Python 调用 OpenAI API 使用指南" /&gt;&lt;p&gt;由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。&lt;/p&gt;
 &lt;p&gt;其实官方 Github 上已经有了一个很好的例子，但这里还是需要进行略微的调整；&lt;/p&gt;
 &lt;p&gt;OpenAI-python：&lt;a class=&#34;link&#34; href=&#34;https://github.com/openai/openai-python&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Github 地址&lt;/a&gt;&lt;/p&gt;
