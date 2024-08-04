@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="In this post, I want to list all papers on diffusion on arxiv(using arxivscraper) Actually, I used to tracking related papers on Sehwag&rsquo;s blog, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.">
 <title>All papers about diffusion models on arxiv</title>
 
-<link rel='canonical' href='http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/'>
+<link rel='canonical' href='https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/'>
 
 <link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="All papers about diffusion models on arxiv">
 <meta property='og:description' content="In this post, I want to list all papers on diffusion on arxiv(using arxivscraper) Actually, I used to tracking related papers on Sehwag&rsquo;s blog, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.">
-<meta property='og:url' content='http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/'>
+<meta property='og:url' content='https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/'>
 <meta property='og:site_name' content='Tlooh Blog Site'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-06-10T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-08-01T01:25:05&#43;08:00'/><meta property='og:image' content='http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='工具' /><meta property='article:tag' content='API' /><meta property='article:published_time' content='2024-06-10T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-08-04T16:29:44&#43;08:00'/><meta property='og:image' content='https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg' />
 <meta name="twitter:title" content="All papers about diffusion models on arxiv">
 <meta name="twitter:description" content="In this post, I want to list all papers on diffusion on arxiv(using arxivscraper) Actually, I used to tracking related papers on Sehwag&rsquo;s blog, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg' />
+    <meta name="twitter:image" content='https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg' />
   
 
 
@@ -43,239 +43,68 @@
         }
     })();
 </script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
+<div class="container main-container flex on-phone--column extended">
 
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/sky_hu15396b5b59fa1a95cbe676eebe9da1df_180459_300x0_resize_q75_box.jpg" width="300"
-                            height="252" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-                    <span class="emoji">🍥</span>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">Tlooh Blog Site</a></h1>
-            <h2 class="site-description">You want something. Go get it!</h2>
+
+
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
         </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://github.com/CaiJimmy/hugo-theme-stack'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://twitter.com'
-                        target="_blank"
-                        title="Twitter"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="5 12 3 12 12 3 21 12 19 12" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-</svg>
-
-
-
-                
-                <span>Home</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/about/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>About</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>Archives</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>Search</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/links/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>Links</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="http://localhost:1313/" selected>English</option>
-                                
-                                    <option value="http://localhost:1313/zh-cn/" >中文</option>
-                                
-                                    <option value="http://localhost:1313/ar/" >عربي</option>
-                                
-                            </select>
-                        </li>
-                    
-                
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>Dark Mode</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
     
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-安装-openai-python-库">1. 安装 openai-python 库</a></li>
+    <li><a href="#2-使用例子">2. 使用例子</a></li>
+    <li><a href="#3--参数解释">3.  参数解释</a>
+      <ol>
+        <li><a href="#1message消息列表">（1）&ldquo;message&quot;消息列表</a></li>
+        <li><a href="#2temperature">（2）&ldquo;temperature&rdquo;</a></li>
+        <li><a href="#3top_p">（3）&ldquo;top_p&rdquo;</a></li>
+        <li><a href="#4max_tokens">（4）&ldquo;max_tokens&rdquo;</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-python--openai-实现多轮对话">4. Python + openai 实现多轮对话</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
-    
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
@@ -334,7 +163,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jun 10, 2024</time>
+                <time class="article-time--published">Aug 04, 2024</time>
             </div>
         
 
@@ -360,22 +189,216 @@
 </div>
 
 </header>
-    
+
     <section class="article-content">
     
     
-    <p>In this post, I want to list all papers on diffusion on arxiv(using <a class="link" href="https://github.com/mahdisadjadi/arxivscraper"  target="_blank" rel="noopener"
-    >arxivscraper</a>)</p>
-<p>Actually, I used to tracking related papers on <a class="link" href="https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html"  target="_blank" rel="noopener"
-    >Sehwag&rsquo;s blog</a>, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.</p>
+    <p>由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。</p>
+<p>其实官方 Github 上已经有了一个很好的例子，但这里还是需要进行略微的调整；</p>
+<p>OpenAI-python：<a class="link" href="https://github.com/openai/openai-python"  target="_blank" rel="noopener"
+    >Github 地址</a></p>
+<h2 id="1-安装-openai-python-库">1. 安装 openai-python 库
+</h2><hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># install from PyPI</span>
+</span></span><span class="line"><span class="cl">pip install openai
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-使用例子">2. 使用例子
+</h2><hr>
+<p>下面是官方给出的一个简单的使用例子，但是我们这里需要设置环境变量；当然你也可以直接传入也行；</p>
+<p>如果你的 api_key 是特定渠道的，比如公司的，那么可能还需要提供 base_api_url；</p>
+<blockquote>
+<p>注意⚠️：这里 python 文件的命名不能命名为 openai.py，否则会报错循环引用（导入那一行）；</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;sk---xxxxxx---xxxxxx&#34;</span> <span class="c1"># 添加环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># api_key = &#34;sk---xxxxxx---xxxxxx&#34; # 或者直接传入</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># api_base_url = &#34;https://xxx.xxx.com/&#34; # 如果是非官方渠道的 api_key 才需要提供</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;OPENAI_API_KEY&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># base_url = base_api_url # 如果是非官方渠道的 api_key 才需要提供</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">chat_completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;Say this is a test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model</span><span class="o">=</span><span class="s2">&#34;gpt-3.5-turbo&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">chat_completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3--参数解释">3.  参数解释
+</h2><h3 id="1message消息列表">（1）&ldquo;message&quot;消息列表
+</h3><p>message 是一个列表，每个元素都是一个字典，包含&quot;role&quot;和&quot;content&quot;两个键。</p>
+<ul>
+<li>&ldquo;role&quot;用于指定发言的角色，</li>
+<li>&ldquo;content&quot;则包含该角色的具体发言内容。</li>
+</ul>
+<p>通过在&quot;message&quot;参数中交替指定不同角色的发言，可以模拟对话或交互式场景。模型将根据之前的对话历史和当前的角色发言生成回应。
+在OpenAI API中，&ldquo;role&quot;字段可以根据对话场景的需求指定不同的角色。具体角色的选择可以根据对话的上下文和应用场景来决定。以下是一些常见的角色及其示例：</p>
+<p><font color="#fc5531"><b>用户（User）</b></font>：代表与系统进行对话的用户。用户角色通常提出问题、提供指令或表达需求。</p>
+<p>example：{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;请问明天的天气如何？&rdquo;}</p>
+<p><font color="#fc5531"><b>助手（Assistant）</b></font>：代表系统的智能助手或回答提供者。助手角色负责根据用户的需求提供回答、建议或解决方案。</p>
+<p>example：{&ldquo;role&rdquo;: &ldquo;assistant&rdquo;, &ldquo;content&rdquo;: &ldquo;明天的天气预报显示晴朗，最高温度为25摄氏度。&rdquo;}</p>
+<p><font color="#fc5531"><b>系统（System）</b></font>：代表整个对话系统或指导者角色。系统角色可以提供对话的初始设置、说明或引导用户与助手的交互流程。</p>
+<p>示例：{&ldquo;role&rdquo;: &ldquo;system&rdquo;, &ldquo;content&rdquo;: &ldquo;欢迎使用天气查询系统，请告诉我您想要查询哪个城市的天气。&rdquo;}</p>
+<h3 id="2temperature">（2）&ldquo;temperature&rdquo;
+</h3><p>它是一个介于0和1之间的浮点数，其中较小的值会使生成的文本更加保守和确定性，而较大的值则会使文本更加多样化和随机。</p>
+<ul>
+<li>当使用较小的temperature值（例如0.2或0.5）时，模型<strong>更倾向于选择那些高概率的词汇和短语</strong>，生成的文本更加保守和可预测。这通常会导致生成的文本更加流畅，但可能会缺乏创造性。</li>
+<li>当使用较大的temperature值（例如1.0或1.2）时，模型<strong>更容易选择低概率的词汇和短语，生成的文本更加多样化和随机</strong>。这可能会导致一些不合理或不通顺的文本，但也可能带来更具创意和想象力的结果。</li>
+</ul>
+<h3 id="3top_p">（3）&ldquo;top_p&rdquo;
+</h3><p>&ldquo;Topp&quot;参数是一个介于0和1之间的浮点数(不能等于0)，表示累积概率阈值。在生成文本时，模型会根据每个词的概率进行排序,并选择累积概率达到或超过&quot;Topp&quot;阈值的最小词汇集。换句话说，它限制了模型从高概率词汇中进行选择的范围。</p>
+<h3 id="4max_tokens">（4）&ldquo;max_tokens&rdquo;
+</h3><p>参数用于限制生成文本的最大长度，以控制生成结果的长度。</p>
+<h2 id="4-python--openai-实现多轮对话">4. Python + openai 实现多轮对话
+</h2><p>里面传入的 message 其实是一个列表，列表里每一项其实是一个字典，包含了角色和内容，我们只需要在提问的时候，把回答也加入进来更新 messages，也就是每次提问都带上之前的问题和回答；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_response</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&#34;gpt-3.5-turbo&#34;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">top_p</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">chat_completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">top_p</span><span class="o">=</span><span class="n">top_p</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">max_tokens</span><span class="o">=</span><span class="n">max_tokens</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">chat_completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&#34;sk---xxxxx---xxxxxx==&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&#34;http://xxxx.xxxx.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># This is the default and can be omitted</span>
+</span></span><span class="line"><span class="cl">        <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">base_url</span><span class="o">=</span><span class="n">base_url</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;system&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;You are a helpful assistant.&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;What&#39;s the weather like today?&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">anser</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[ChatGPT]&#34;</span> <span class="o">+</span> <span class="n">anser</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gpt_anser</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;assistant&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">anser</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gpt_anser</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">query</span> <span class="o">=</span>  <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="s2">&#34;That sounds great! What do you recommend I should eat for breakfast?&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">anser</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;[ChatGPT]&#34;</span> <span class="o">+</span> <span class="n">anser</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408041623375.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="alt text"
+	
+	
+></p>
 
-    
-    <div id="div_diffusion_papers_list"></div>
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+        
+            <a href="/tags/api/">API</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -399,7 +422,7 @@
 
 
         <span>
-            Last updated on Aug 01, 2024 01:25 CST
+            Last updated on Aug 04, 2024 16:29 &#43;0800
         </span>
     </section></footer>
 
@@ -434,120 +457,6 @@
     
 
     
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/">
-        
-        
-            <div class="article-image">
-                <img src="/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.1fa74d1073fae62cdc25d8c51b2d6cda_hu5d9292eb672e6ca5e72e74d52b3afcdc_3182605_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频"
-                        
-                        data-hash="md5-H6dNEHP65izcJdjFGy1s2g==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">StoryDiffusion：让 Diffusion 用来生成故事插画和视频</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/">
-        
-        
-            <div class="article-image">
-                
-                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png"/>
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/">
-        
-        
-            <div class="article-image">
-                <img src="/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.39bc41021047cf57f10a328634f07859_hube457628ccb7476358da95c276ecf5b4_788663_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models"
-                        
-                        data-hash="md5-ObxBAhBHz1fxCjKGNPB4WQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
 
      
     
@@ -594,7 +503,6 @@
     })
 </script>
 
-    
     
 
     <footer class="site-footer">
@@ -690,16 +598,6 @@
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
-    
-    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    
-    <script type="text/javascript">
-        jQuery(document).ready(function(){
-            jQuery("#div_diffusion_papers_list").load("./diffusion_papers_list.html");
-        });
-    </script>
 
             </main>
         </div>
