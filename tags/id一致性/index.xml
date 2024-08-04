@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>ID一致性 on Tlooh Blog Site</title>
-        <link>https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</link>
+        <link>http://localhost:1313/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/</link>
         <description>Recent content in ID一致性 on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Fri, 19 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 19 Jul 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/id%E4%B8%80%E8%87%B4%E6%80%A7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>StoryDiffusion：让 Diffusion 用来生成故事插画和视频</title>
-        <link>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
+        <link>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
         <pubDate>Fri, 19 Jul 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
-        <description>&lt;img src="https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
+        <guid>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
+        <description>&lt;img src="http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
 &lt;/h1&gt;&lt;hr&gt;
 &lt;h2 id=&#34;motivation&#34;&gt;Motivation
 &lt;/h2&gt;&lt;p&gt;目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。&lt;/p&gt;
@@ -27,10 +27,10 @@
 &lt;li&gt;&lt;code&gt;First Stage&lt;/code&gt;: 模型使用 &lt;code&gt;Consistent Self-Attention&lt;/code&gt; 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Second Stage&lt;/code&gt;: 模型利用这些主题一致的图像来生成一致的过渡视频；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
 	width=&#34;1750&#34;
 	height=&#34;916&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -51,10 +51,10 @@ $$O_i=\text{Attention}\left(Q_i,K_i,V_i\right).$$&lt;/p&gt;
 &lt;p&gt;采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下：&lt;/p&gt;
 &lt;p&gt;$$O_i=\text{Attention}\left(Q_i,K_{Pi},V_{Pi}\right).$$&lt;/p&gt;
 &lt;p&gt;给定配对的标记，我们的方法跨一批图像执行自关注，促进不同图像特征之间的交互。这种类型的交互促进了模型在生成过程中趋同于人物、面孔和服装。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
 	width=&#34;1748&#34;
 	height=&#34;964&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -68,10 +68,10 @@ $$O_i=\text{Attention}\left(Q_i,K_i,V_i\right).$$&lt;/p&gt;
 &lt;h2 id=&#34;semantic-motion-predictor-for-video-generation&#34;&gt;Semantic motion predictor for video generation
 &lt;/h2&gt;&lt;p&gt;通过在每对相邻图像之间插入帧，可以将生成的字符一致图像序列进一步细化为视频。这可以看作是一个&lt;strong&gt;以已知的开始帧和结束帧为条件的视频生成任务。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;提出了一个 Semantic Motion Predictor, 用以将图像编码到语意空间来捕获空间信息。具体来说，我们设计了一个函数$E$来建立RGB图像到语意空间的映射，而不是直接使用线性层进行投射。（说了这么多，就使用CLIP image encoder来作为 E）
-&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
 	width=&#34;378&#34;
 	height=&#34;80&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -99,10 +99,10 @@ V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))�
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;图像生成之间的对比&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
 	width=&#34;1270&#34;
 	height=&#34;882&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -113,10 +113,10 @@ V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))�
 		data-flex-basis=&#34;345px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
 	width=&#34;1278&#34;
 	height=&#34;818&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -130,10 +130,10 @@ V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))�
 &lt;ul&gt;
 &lt;li&gt;定量比较&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
 	width=&#34;1308&#34;
 	height=&#34;534&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
