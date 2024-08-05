@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Tlooh Blog Site</title>
-        <link>https://tlooh.github.io/post/</link>
+        <link>http://localhost:1313/post/</link>
         <description>Recent content in Posts on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Sun, 04 Aug 2024 14:50:55 +0000</lastBuildDate><atom:link href="https://tlooh.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 04 Aug 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>All papers about diffusion models on arxiv</title>
-        <link>https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/</link>
-        <pubDate>Sun, 04 Aug 2024 14:50:55 +0000</pubDate>
+        <link>http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/</link>
+        <pubDate>Sun, 04 Aug 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/</guid>
-        <description>&lt;img src="https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg" alt="Featured image of post All papers about diffusion models on arxiv" /&gt;&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/</guid>
+        <description>&lt;img src="http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg" alt="Featured image of post All papers about diffusion models on arxiv" /&gt;&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;arxivscraper&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;Actually, I used to tracking related papers on &lt;a class=&#34;link&#34; href=&#34;https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Sehwag&amp;rsquo;s blog&lt;/a&gt;, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.&lt;/p&gt;
@@ -21,11 +21,11 @@
         </item>
         <item>
         <title>Python 调用 OpenAI API 使用指南</title>
-        <link>https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+        <link>http://localhost:1313/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
         <pubDate>Wed, 31 Jul 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
-        <description>&lt;img src="https://tlooh.github.io/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image.png" alt="Featured image of post Python 调用 OpenAI API 使用指南" /&gt;&lt;p&gt;由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。&lt;/p&gt;
+        <guid>http://localhost:1313/p/python-%E8%B0%83%E7%94%A8-openai-api-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+        <description>&lt;img src="http://localhost:1313/image.png" alt="Featured image of post Python 调用 OpenAI API 使用指南" /&gt;&lt;p&gt;由于最近需要测试一下大语言模型在批量数据上的效果，所以记录一下如何调用 OpenAI 的 API。&lt;/p&gt;
 &lt;p&gt;其实官方 Github 上已经有了一个很好的例子，但这里还是需要进行略微的调整；&lt;/p&gt;
 &lt;p&gt;OpenAI-python：&lt;a class=&#34;link&#34; href=&#34;https://github.com/openai/openai-python&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Github 地址&lt;/a&gt;&lt;/p&gt;
@@ -221,11 +221,11 @@
         </item>
         <item>
         <title>StoryDiffusion：让 Diffusion 用来生成故事插画和视频</title>
-        <link>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
+        <link>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
         <pubDate>Fri, 19 Jul 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
-        <description>&lt;img src="https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
+        <guid>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
+        <description>&lt;img src="http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
 &lt;/h1&gt;&lt;hr&gt;
 &lt;h2 id=&#34;motivation&#34;&gt;Motivation
 &lt;/h2&gt;&lt;p&gt;目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。&lt;/p&gt;
@@ -239,10 +239,10 @@
 &lt;li&gt;&lt;code&gt;First Stage&lt;/code&gt;: 模型使用 &lt;code&gt;Consistent Self-Attention&lt;/code&gt; 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Second Stage&lt;/code&gt;: 模型利用这些主题一致的图像来生成一致的过渡视频；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
 	width=&#34;1750&#34;
 	height=&#34;916&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -263,10 +263,10 @@ $$O_i=\text{Attention}\left(Q_i,K_i,V_i\right).$$&lt;/p&gt;
 &lt;p&gt;采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下：&lt;/p&gt;
 &lt;p&gt;$$O_i=\text{Attention}\left(Q_i,K_{Pi},V_{Pi}\right).$$&lt;/p&gt;
 &lt;p&gt;给定配对的标记，我们的方法跨一批图像执行自关注，促进不同图像特征之间的交互。这种类型的交互促进了模型在生成过程中趋同于人物、面孔和服装。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
 	width=&#34;1748&#34;
 	height=&#34;964&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -280,10 +280,10 @@ $$O_i=\text{Attention}\left(Q_i,K_i,V_i\right).$$&lt;/p&gt;
 &lt;h2 id=&#34;semantic-motion-predictor-for-video-generation&#34;&gt;Semantic motion predictor for video generation
 &lt;/h2&gt;&lt;p&gt;通过在每对相邻图像之间插入帧，可以将生成的字符一致图像序列进一步细化为视频。这可以看作是一个&lt;strong&gt;以已知的开始帧和结束帧为条件的视频生成任务。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;提出了一个 Semantic Motion Predictor, 用以将图像编码到语意空间来捕获空间信息。具体来说，我们设计了一个函数$E$来建立RGB图像到语意空间的映射，而不是直接使用线性层进行投射。（说了这么多，就使用CLIP image encoder来作为 E）
-&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
+&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
 	width=&#34;378&#34;
 	height=&#34;80&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -294,27 +294,27 @@ $$O_i=\text{Attention}\left(Q_i,K_i,V_i\right).$$&lt;/p&gt;
 		data-flex-basis=&#34;1134px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;然后，训练了一个 &lt;code&gt;transformer-based structure predictor&lt;/code&gt; 来预测每个中间帧，预测器首先进行线性插值，将两个帧 $ K_s $ 和 $ K_e $ 扩展成序列 $ K_1, K_2, \ldots, K_L $，其中 $L $ 是所需的视频长度。然后，将序列 $ K_1, K_2, \ldots, K_L $ 输入到一系列transformer块 $ B $ 中，以预测过渡帧：&lt;/p&gt;
-&lt;p&gt;$$
+&lt;p&gt;然后，训练了一个 &lt;code&gt;transformer-based structure predictor&lt;/code&gt; 来预测每个中间帧，预测器首先进行线性插值，将两个帧 ( K_s ) 和 ( K_e ) 扩展成序列 ( K_1, K_2, \ldots, K_L )，其中 ( L ) 是所需的视频长度。然后，将序列 ( K_1, K_2, \ldots, K_L ) 输入到一系列transformer块 ( B ) 中，以预测过渡帧：&lt;/p&gt;
+&lt;p&gt;[
 P_1, P_2, \ldots, P_l = B(K_1, K_2, \ldots, K_L)。
-$$&lt;/p&gt;
-&lt;p&gt;接下来，将这些图像语义嵌入 $ P_1, P_2, \ldots, P_L $ 作为控制信号，并将视频扩散模型作为解码器，以利用视频扩散模型的生成能力。我们还插入了额外的线性层，将这些嵌入投影到键和值，涉及到U-Net的交叉注意力。形式上，在扩散过程中，对于每个视频帧特征 $ V_i $，我们将文本嵌入 $ T $ 和预测的图像语义嵌入 $ P_i $ 连接起来。交叉注意力计算如下：&lt;/p&gt;
-&lt;p&gt;$$
+]&lt;/p&gt;
+&lt;p&gt;接下来，将这些图像语义嵌入 ( P_1, P_2, \ldots, P_L ) 作为控制信号，并将视频扩散模型作为解码器，以利用视频扩散模型的生成能力。我们还插入了额外的线性层，将这些嵌入投影到键和值，涉及到U-Net的交叉注意力。形式上，在扩散过程中，对于每个视频帧特征 ( V_i )，我们将文本嵌入 ( T ) 和预测的图像语义嵌入 ( P_i ) 连接起来。交叉注意力计算如下：&lt;/p&gt;
+&lt;p&gt;[
 V_i = \text{CrossAttention}(V_i, \text{concat}(T, P_i), \text{concat}(T, P_i))。
-$$&lt;/p&gt;
-&lt;p&gt;类似于以前的视频生成方法，我们通过计算预测过渡视频 $ O = (O_1, O_2, \ldots, O_L) $ 和真实帧 $ G = (G_1, G_2, \ldots, G_L) $ 之间的均方误差损失（MSE Loss）来优化我们的模型：&lt;/p&gt;
-&lt;p&gt;$$
+]&lt;/p&gt;
+&lt;p&gt;类似于以前的视频生成方法，我们通过计算预测过渡视频 ( O = (O_1, O_2, \ldots, O_L) ) 和真实帧 ( G = (G_1, G_2, \ldots, G_L) ) 之间的均方误差损失（MSE Loss）来优化我们的模型：&lt;/p&gt;
+&lt;p&gt;[
 \text{Loss} = \text{MSE}(G, O)。
-$$&lt;/p&gt;
+]&lt;/p&gt;
 &lt;p&gt;通过将图像编码到图像语义空间以整合空间位置关系，我们的语义运动预测器可以更好地建模运动信息，从而生成具有大运动的平滑过渡视频。结果和比较可以在图1和图5中观察到，显示了显著的改进。&lt;/p&gt;
 &lt;h2 id=&#34;实验&#34;&gt;实验
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;图像生成之间的对比&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
 	width=&#34;1270&#34;
 	height=&#34;882&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -325,10 +325,10 @@ $$&lt;/p&gt;
 		data-flex-basis=&#34;345px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
 	width=&#34;1278&#34;
 	height=&#34;818&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -342,10 +342,10 @@ $$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;定量比较&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
 	width=&#34;1308&#34;
 	height=&#34;534&#34;
-	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -361,10 +361,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</title>
-        <link>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
+        <link>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
         <pubDate>Mon, 06 May 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
+        <guid>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" alt="Featured image of post Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models" /&gt;&lt;h1 id=&#34;cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models&#34;&gt;Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models
 &lt;/h1&gt;&lt;p&gt;本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 &lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;交叉注意输出经过几个推理步骤后会收敛到一个固定点&lt;/b&gt;&lt;/font&gt; 。收敛的时间点自然将整个推理过程分为两个阶段:&lt;/p&gt;
 &lt;ul&gt;
@@ -484,10 +484,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</title>
-        <link>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
+        <link>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
         <pubDate>Sun, 28 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
+        <guid>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" alt="Featured image of post SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions" /&gt;&lt;h1 id=&#34;sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions&#34;&gt;SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;sign: 2024-4-28 💡&lt;/strong&gt;
@@ -751,10 +751,10 @@ Diff-instruct: A universal approach for transferring knowledge from pre-trained 
         </item>
         <item>
         <title>CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</title>
-        <link>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
+        <link>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
         <pubDate>Thu, 25 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
+        <guid>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png" alt="Featured image of post CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching" /&gt;&lt;h1 id=&#34;comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching&#34;&gt;CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;图文一致性的原因还是因为文本的 token 的激活注意值不高，导致文本的 token 无法激活图像的区域，从而导致图文不一致。作者将这种现象归因于扩散模型的训练方式对条件的利用不足，所以提出了 CoMat，是一种 &lt;strong&gt;端到端的扩散模型微调策略。&lt;/strong&gt;&lt;/p&gt;
@@ -896,11 +896,11 @@ $$\begin{aligned}\mathcal{L}&lt;em&gt;\text{pixel}=-\frac{1}{N|A|}\sum&lt;/em&gt
         </item>
         <item>
         <title>Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</title>
-        <link>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
+        <link>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
         <pubDate>Fri, 22 Dec 2023 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
-        <description>&lt;img src="https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
+        <guid>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
+        <description>&lt;img src="http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1066,10 +1066,10 @@ $$\begin{aligned}\mathcal{L}&lt;em&gt;\text{pixel}=-\frac{1}{N|A|}\sum&lt;/em&gt
         </item>
         <item>
         <title>AdaDiff: Adaptive Step Selection for Fast Diffusion</title>
-        <link>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
+        <link>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
         <pubDate>Thu, 21 Dec 2023 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
+        <guid>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" alt="Featured image of post AdaDiff: Adaptive Step Selection for Fast Diffusion" /&gt;&lt;h2 id=&#34;adadiff-adaptive-step-selection-for-fast-diffusion&#34;&gt;AdaDiff: Adaptive Step Selection for Fast Diffusion
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;这本质是一篇加速生成的文章，优化角度在于为不同复杂程度的提示选取不同的时间步去进行去噪。&lt;/p&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Diffusion 加速 on Tlooh Blog Site</title>
-        <link>https://tlooh.github.io/tags/diffusion-%E5%8A%A0%E9%80%9F/</link>
+        <link>http://localhost:1313/tags/diffusion-%E5%8A%A0%E9%80%9F/</link>
         <description>Recent content in Diffusion 加速 on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Mon, 06 May 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/diffusion-%E5%8A%A0%E9%80%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 06 May 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/diffusion-%E5%8A%A0%E9%80%9F/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</title>
-        <link>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
+        <link>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
         <pubDate>Mon, 06 May 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
+        <guid>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" alt="Featured image of post Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models" /&gt;&lt;h1 id=&#34;cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models&#34;&gt;Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models
 &lt;/h1&gt;&lt;p&gt;本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 &lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;交叉注意输出经过几个推理步骤后会收敛到一个固定点&lt;/b&gt;&lt;/font&gt; 。收敛的时间点自然将整个推理过程分为两个阶段:&lt;/p&gt;
 &lt;ul&gt;
@@ -132,10 +132,10 @@
         </item>
         <item>
         <title>SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</title>
-        <link>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
+        <link>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
         <pubDate>Sun, 28 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
+        <guid>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" alt="Featured image of post SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions" /&gt;&lt;h1 id=&#34;sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions&#34;&gt;SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;sign: 2024-4-28 💡&lt;/strong&gt;
@@ -399,11 +399,11 @@ Diff-instruct: A universal approach for transferring knowledge from pre-trained 
         </item>
         <item>
         <title>Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</title>
-        <link>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
+        <link>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
         <pubDate>Fri, 22 Dec 2023 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
-        <description>&lt;img src="https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
+        <guid>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
+        <description>&lt;img src="http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -569,10 +569,10 @@ Diff-instruct: A universal approach for transferring knowledge from pre-trained 
         </item>
         <item>
         <title>AdaDiff: Adaptive Step Selection for Fast Diffusion</title>
-        <link>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
+        <link>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
         <pubDate>Thu, 21 Dec 2023 01:12:44 +0800</pubDate>
         
-        <guid>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
+        <guid>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" alt="Featured image of post AdaDiff: Adaptive Step Selection for Fast Diffusion" /&gt;&lt;h2 id=&#34;adadiff-adaptive-step-selection-for-fast-diffusion&#34;&gt;AdaDiff: Adaptive Step Selection for Fast Diffusion
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;这本质是一篇加速生成的文章，优化角度在于为不同复杂程度的提示选取不同的时间步去进行去噪。&lt;/p&gt;
