@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。 mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 decoder-only 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同） 作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方： Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。 Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。 Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。 以下是多模态自回归方法的设计选择和能力 Method Revisiting MGPT with Chameleon 这一节作者利用 开源模型 Chameleon 来作为例子解释 mgpt 的设计. Multimodal Tokenization 为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。 Chameleon 为文本训练了一个新的 byte pair encoding tokenizer for text。 对于图像，它采用了基于量化的标记化方法，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。 Decoder-Only Transformer 与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \\dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。 mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。 Training Objective 在训练过程中，mGPT对条件概率 $p(x_t|x_1，\\dots， x_{t−1})$ 的多模态序列，使用 next-token prediction。此外，Chameleon使用z-loss 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。">
+<title>Lumina-mGPT: 通过提示大语言模型来交互式文生图</title>
+
+<link rel='canonical' href='http://localhost:1313/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/'>
+
+<link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="Lumina-mGPT: 通过提示大语言模型来交互式文生图">
+<meta property='og:description' content="这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。 mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 decoder-only 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同） 作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方： Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。 Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。 Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。 以下是多模态自回归方法的设计选择和能力 Method Revisiting MGPT with Chameleon 这一节作者利用 开源模型 Chameleon 来作为例子解释 mgpt 的设计. Multimodal Tokenization 为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。 Chameleon 为文本训练了一个新的 byte pair encoding tokenizer for text。 对于图像，它采用了基于量化的标记化方法，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。 Decoder-Only Transformer 与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \\dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。 mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。 Training Objective 在训练过程中，mGPT对条件概率 $p(x_t|x_1，\\dots， x_{t−1})$ 的多模态序列，使用 next-token prediction。此外，Chameleon使用z-loss 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。">
+<meta property='og:url' content='http://localhost:1313/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/'>
+<meta property='og:site_name' content='Tlooh Blog Site'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='交互式文生图' /><meta property='article:published_time' content='2024-08-10T01:12:44&#43;08:00'/><meta property='article:modified_time' content='2024-08-10T01:12:44&#43;08:00'/><meta property='og:image' content='http://localhost:1313/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png' />
+<meta name="twitter:title" content="Lumina-mGPT: 通过提示大语言模型来交互式文生图">
+<meta name="twitter:description" content="这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。 mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 decoder-only 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同） 作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方： Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。 Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。 Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。 以下是多模态自回归方法的设计选择和能力 Method Revisiting MGPT with Chameleon 这一节作者利用 开源模型 Chameleon 来作为例子解释 mgpt 的设计. Multimodal Tokenization 为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。 Chameleon 为文本训练了一个新的 byte pair encoding tokenizer for text。 对于图像，它采用了基于量化的标记化方法，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。 Decoder-Only Transformer 与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \\dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。 mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。 Training Objective 在训练过程中，mGPT对条件概率 $p(x_t|x_1，\\dots， x_{t−1})$ 的多模态序列，使用 next-token prediction。此外，Chameleon使用z-loss 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:1313/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended">
+
+
+
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#method">Method</a>
+      <ol>
+        <li><a href="#revisiting-mgpt-with-chameleon">Revisiting MGPT with Chameleon</a>
+          <ol>
+            <li><a href="#multimodal-tokenization">Multimodal Tokenization</a></li>
+            <li><a href="#decoder-only-transformer">Decoder-Only Transformer</a></li>
+            <li><a href="#training-objective">Training Objective</a></li>
+            <li><a href="#limitations-of-chameleon">Limitations of Chameleon</a></li>
+          </ol>
+        </li>
+        <li><a href="#lumina-mgpt">Lumina-MGPT</a>
+          <ol>
+            <li><a href="#effective-initialization">Effective initialization</a></li>
+            <li><a href="#supervised-finetuning-for-lumina-mgpt">Supervised Finetuning for Lumina-mGPT</a></li>
+            <li><a href="#inference-for-lumina-mgpt">Inference for Lumina-mGPT</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#实验">实验</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/">
+                <img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_800x0_resize_box_3.png"
+                        srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_800x0_resize_box_3.png 800w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="98" 
+                        loading="lazy"
+                        alt="Featured image of post Lumina-mGPT: 通过提示大语言模型来交互式文生图" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/diffusion/" >
+                Diffusion
+            </a>
+        
+            <a href="/categories/llm/" >
+                LLM
+            </a>
+        
+            <a href="/categories/papers/" >
+                Papers
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/">Lumina-mGPT: 通过提示大语言模型来交互式文生图</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 10, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image.png"
+	width="783"
+	height="439"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image_hu0f7e928cf01e99b3e04bfddf5f0de5d6_462529_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image_hu0f7e928cf01e99b3e04bfddf5f0de5d6_462529_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="428px"
+	
+></p>
+<blockquote>
+<p>这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。</p>
+</blockquote>
+<p>mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 <code>decoder-only</code> 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同）</p>
+<p>作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方：</p>
+<ul>
+<li>Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。</li>
+<li>Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。</li>
+</ul>
+<p>Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。</p>
+<p><strong>以下是多模态自回归方法的设计选择和能力</strong></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1.png"
+	width="845"
+	height="399"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1_hu0f7e928cf01e99b3e04bfddf5f0de5d6_195070_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1_hu0f7e928cf01e99b3e04bfddf5f0de5d6_195070_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="211"
+		data-flex-basis="508px"
+	
+></p>
+<h2 id="method">Method
+</h2><h3 id="revisiting-mgpt-with-chameleon">Revisiting MGPT with Chameleon
+</h3><p>这一节作者利用 开源模型 <code>Chameleon</code> 来作为例子解释 <code>mgpt</code> 的设计.</p>
+<h4 id="multimodal-tokenization">Multimodal Tokenization
+</h4><p>为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。</p>
+<ul>
+<li><code>Chameleon</code> 为文本训练了一个新的 <strong>byte pair encoding tokenizer for text</strong>。</li>
+<li>对于图像，它采用了<strong>基于量化的标记化方法</strong>，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。</li>
+</ul>
+<h4 id="decoder-only-transformer">Decoder-Only Transformer
+</h4><p>与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。</p>
+<p>mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。<strong>研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的</strong>。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。</p>
+<h4 id="training-objective">Training Objective
+</h4><p>在训练过程中，mGPT对条件概率 $p(x_t|x_1，\dots， x_{t−1})$ 的多模态序列，使用 <code>next-token prediction</code>。此外，<code>Chameleon</code>使用<strong>z-loss</strong> 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。</p>
+<h4 id="limitations-of-chameleon">Limitations of Chameleon
+</h4><p>像<code>Chameleon</code>这样的mgpt虽然展示了 decoder-only 的transformer 结构拥有联合图像和文本理解的潜力，但它们的图像生成能力仍然不如最先进的基于扩散的框架。</p>
+<p>而且在<code>Chameleon</code>的开源版本中甚至没有图像生成能力。此外，变色龙的功能仅限于视觉语言和纯文本任务，不包括更广泛的以视觉为中心的任务。如分割和深度预测，以及创造性的视觉生成任务，如可控生成和图像编辑。</p>
+<h3 id="lumina-mgpt">Lumina-MGPT
+</h3><p>作者这里提出了3个概念：</p>
+<ul>
+<li>Unambiguous Image Representation (Uni-Rep)：无歧义图像表示</li>
+<li>Flexible Progressive Supervised Finetuning (FP-SFT)：灵活的渐进式监督微调</li>
+<li>Omnipotent Supervised Finetuning (OmniSFT)：全能监督微调</li>
+</ul>
+<p><code>Uni-Rep</code> 消除了扁平1D图像符号在原始2D形状中的模糊性，为灵活分辨率和宽高比下的图像理解和生成奠定了基础。</p>
+<p><code>FP-SFT</code>逐步微调mGPT以简单到困难的方式生成更高分辨率的离散图像标记，同时结合多任务微调以防止文本知识的灾难性遗忘。</p>
+<p>基于FP-SFT阶段的图像生成能力，我们继续在全能任务数据集上对Lumina-mGPT进行微调，将密集标记、空间条件图像生成和多回合编辑数据集中的图像和注释标记为离散标记。</p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2.png"
+	width="817"
+	height="477"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2_hu0f7e928cf01e99b3e04bfddf5f0de5d6_318245_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2_hu0f7e928cf01e99b3e04bfddf5f0de5d6_318245_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<h4 id="effective-initialization">Effective initialization
+</h4><p>mgpt是在大规模图像-文本交错数据集上进行预训练的，并且已经为图像和文本开发了有效和可推广的表示，</p>
+<p>因此Lumina-mGPT的主要贡献在于<strong>展示了从适当的mGPT表示开始而不是使用大型语言模型(llm)或随机初始化的好处</strong>，</p>
+<h4 id="supervised-finetuning-for-lumina-mgpt">Supervised Finetuning for Lumina-mGPT
+</h4><h5 id="unambiguous-image-representation">Unambiguous Image Representation
+</h5><p>这里需要考虑的是对于可变的分辨率如何离散化的问题，不同的分辨率都可以被可以被编码成相同数量的令牌，如果不校验tokens，就无法推断出原始的shape；</p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3.png"
+	width="565"
+	height="206"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3_hu0f7e928cf01e99b3e04bfddf5f0de5d6_89224_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3_hu0f7e928cf01e99b3e04bfddf5f0de5d6_89224_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="274"
+		data-flex-basis="658px"
+	
+></p>
+<p>作者这里采用的做法是添加额外的 <strong>宽高指示 tokens</strong> ，在<start-of-image>标记之后，并在属于同一行的图像标记之后插入<end- line>标记，看图很好理解；</p>
+<h5 id="flexible-progressive-supervised-finetuning-fp-sft">Flexible Progressive Supervised Finetuning (FP-SFT)
+</h5><p>FP-SFT使预训练的mGPT能够以渐进的方式生成具有灵活宽高比的高分辨率图像。该过程分为三个阶段，其中宽度和高度的乘积分别接近512x512,768x768和1024x1042。</p>
+<p>在每个阶段，会准备一组区域相似但高宽比不同的候选分辨率，并将每张图像匹配到最合适的分辨率。</p>
+<p><strong>在低分辨率阶段</strong>较短的序列长度和由此产生的高训练吞吐量使模型能够快速遍历大量数据，学习图像的一般组成和广泛的视觉概念。</p>
+<p><strong>在高分辨率阶段</strong>期望模型专注于学习高分辨率图像特有的高频细粒度细节。</p>
+<p>作者还设计了一个分辨率感知提示来来指定所生成图像的期望分辨率如下:
+<img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png"
+	width="796"
+	height="98"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="812"
+		data-flex-basis="1949px"
+	
+></p>
+<h5 id="omnipotent-supervised-finetuning-omni-sft">Omnipotent Supervised Finetuning (Omni-SFT)
+</h5><p>**图像生成是Lumina-mGPT的主要目标，但我们发现FP-SFT后产生的模型可以有效地转移到广泛的图像理解和生成任务中。**因此，我们提出了OmniSFT，这是将Lumina-mGPT提升为视觉全能模型的初步探索。</p>
+<p>Omni-SFT的训练数据包括以下内容:</p>
+<p>（1）来自MagicBrush (Zhang等人，2024)和SEED (Ge等人，2024)的单回合和多回合语言引导图像编辑(仅涉及现实世界和多回合子集)。</p>
+<p>（2）密集预测任务
+（3）内部空间条件图像生成数据，条件包括表面规范、深度、姿态和分割。
+（4）从先前FP-SFT过程中使用的数据中采样的一小部分数据</p>
+<p>SFT训练的多个任务都使用统一的next-token predict loss。由于Lumina-mGPT被设计为一个聊天模型，所有数据都被组织成单轮或多轮对话框，损失仅应用于响应的回答部分。</p>
+<h4 id="inference-for-lumina-mgpt">Inference for Lumina-mGPT
+</h4><h5 id="classfier-free-guidance">Classfier-Free Guidance
+</h5><p>在训练过程中，以10%的概率随机丢弃<code>&lt;start-of-image&gt;</code>之前的上下文。</p>
+<h5 id="different-decoding-hyperparameters-for-image-and-text">Different Decoding Hyperparameters for Image and Text
+</h5><p>top-k=5设置在生成文本时表现良好。然而，在生成图像时，top-k的值应该大得多(例如2000)。基于此，作者实现了一种状态感知的推理控制机制。具体来说，一组默认超参数用于文本解码;一旦生成了<code>&lt;start-of-image&gt;</code>令牌，超参数就会切换到为生成图像而优化的参数。生成<code>&lt;end- image&gt;</code>标记后，参数恢复到初始设置。</p>
+<h2 id="实验">实验
+</h2><p><strong>文生图对比</strong></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-5.png"
+	width="810"
+	height="799"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-5_hu0f7e928cf01e99b3e04bfddf5f0de5d6_887633_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-5_hu0f7e928cf01e99b3e04bfddf5f0de5d6_887633_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="101"
+		data-flex-basis="243px"
+	
+></p>
+<p><strong>不同分辨率下的对比</strong></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6.png"
+	width="851"
+	height="490"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_450953_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_450953_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="416px"
+	
+></p>
+<p><strong>和Diffusin-based的方法对比</strong>
+<img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7.png"
+	width="866"
+	height="827"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_hu0f7e928cf01e99b3e04bfddf5f0de5d6_700811_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_hu0f7e928cf01e99b3e04bfddf5f0de5d6_700811_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="104"
+		data-flex-basis="251px"
+	
+></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8.png"
+	width="839"
+	height="522"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8_hu0f7e928cf01e99b3e04bfddf5f0de5d6_485233_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8_hu0f7e928cf01e99b3e04bfddf5f0de5d6_485233_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="385px"
+	
+></p>
+<p><strong>emoji 和多模态指令、多语言提示</strong></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9.png"
+	width="845"
+	height="657"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9_hu0f7e928cf01e99b3e04bfddf5f0de5d6_543787_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9_hu0f7e928cf01e99b3e04bfddf5f0de5d6_543787_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="308px"
+	
+></p>
+<p><strong>cfg，top-k系数</strong></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-10.png"
+	width="830"
+	height="766"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-10_hu0f7e928cf01e99b3e04bfddf5f0de5d6_746086_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-10_hu0f7e928cf01e99b3e04bfddf5f0de5d6_746086_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="260px"
+	
+></p>
+<p><strong>重建质量对比</strong></p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-11.png"
+	width="849"
+	height="807"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-11_hu0f7e928cf01e99b3e04bfddf5f0de5d6_855342_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-11_hu0f7e928cf01e99b3e04bfddf5f0de5d6_855342_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="105"
+		data-flex-basis="252px"
+	
+></p>
+<p><strong>Bad case</strong></p>
+<p>当前Lumina-mGPT的故障案例。由于训练不足和数据大小有限，Lumina-mGPT有时难以理解输入条件并产生视觉伪像。</p>
+<p><img src="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-12.png"
+	width="856"
+	height="625"
+	srcset="/p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-12_hu0f7e928cf01e99b3e04bfddf5f0de5d6_484999_480x0_resize_box_3.png 480w, /p/lumina-mgpt-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-12_hu0f7e928cf01e99b3e04bfddf5f0de5d6_484999_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="328px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/">交互式文生图</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.3f60ebc79c79868f675b9058e69fa63c_huc82d7b839fc53b7a5c86bd3cdfedcac6_308256_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Mini DALL·E 3: 通过提示大语言模型来交互式文生图"
+                        
+                        data-hash="md5-P2Drx5x5ho9nW5BY5p&#43;mPA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Mini DALL·E 3: 通过提示大语言模型来交互式文生图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/all-papers-about-diffusion-models-on-arxiv/">
+        
+        
+            <div class="article-image">
+                <img src="/p/all-papers-about-diffusion-models-on-arxiv/_hu97d061de95afac90ca03bfd8d919a16b_239242_538f2624a81473eb1fd40013472e5733.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post All papers about diffusion models on arxiv"
+                        
+                        data-hash="md5-ho7mJyGJc4P2VN3XPYZazA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">All papers about diffusion models on arxiv</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/">
+        
+        
+            <div class="article-image">
+                <img src="/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.1fa74d1073fae62cdc25d8c51b2d6cda_hu5d9292eb672e6ca5e72e74d52b3afcdc_3182605_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频"
+                        
+                        data-hash="md5-H6dNEHP65izcJdjFGy1s2g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">StoryDiffusion：让 Diffusion 用来生成故事插画和视频</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" loading="lazy" data-key="" data-hash="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Tlooh
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

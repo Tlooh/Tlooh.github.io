@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>交互式文生图 on Tlooh Blog Site</title>
+        <link>https://tlooh.github.io/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/</link>
+        <description>Recent content in 交互式文生图 on Tlooh Blog Site</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Tlooh</copyright>
+        <lastBuildDate>Sat, 10 Aug 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Mini DALL·E 3: 通过提示大语言模型来交互式文生图</title>
+        <link>https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/</link>
+        <pubDate>Sat, 10 Aug 2024 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png" alt="Featured image of post Mini DALL·E 3: 通过提示大语言模型来交互式文生图" /&gt;&lt;h1 id=&#34;mini-dalle-3-interactive-text-to-image-by-prompting-large-language-models&#34;&gt;Mini DALL·E 3: Interactive Text to Image by Prompting Large Language Models
+&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image.png&#34;
+	width=&#34;1606&#34;
+	height=&#34;846&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image_huc82d7b839fc53b7a5c86bd3cdfedcac6_987907_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image_huc82d7b839fc53b7a5c86bd3cdfedcac6_987907_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;189&#34;
+		data-flex-basis=&#34;455px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Mini DALL·E 3 是一个基于大型语言模型的&lt;strong&gt;交互式文本到图像&lt;/strong&gt;的生成系统。&lt;/li&gt;
+&lt;li&gt;用户可以通过自然语言指令请求生成图像，&lt;strong&gt;并能在不满意时进行编辑请求&lt;/strong&gt;,系统能在多轮对话中识别上下文并作出相应调整。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从介绍图来看，确实是一个比较新颖的点，所以记录下这篇文章具体怎么做的&lt;/p&gt;
+&lt;p&gt;这是一个图像生成方式的演变，作者这里想说明的是这种交互式编辑，或者是多模态大模型在是未来的演变方向；&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1.png&#34;
+	width=&#34;1098&#34;
+	height=&#34;850&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_459446_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_459446_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;310px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;主要是因为目前的SD主流生成语言是与人类自然语言不符合的，其实在 C站上也看的出来，很多精致的基模或者画风，他们的prompt都是以关键词给出的，并非人类描述的自然语句；&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2.png&#34;
+	width=&#34;2076&#34;
+	height=&#34;718&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_617179_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_617179_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;289&#34;
+		data-flex-basis=&#34;693px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;交互式图像生成&#34;&gt;交互式图像生成
+&lt;/h2&gt;&lt;h3 id=&#34;问题定义&#34;&gt;问题定义
+&lt;/h3&gt;&lt;p&gt;这种交互式的图像生成有三个点需要注意的：&lt;/p&gt;
+&lt;h4 id=&#34;多轮交互&#34;&gt;多轮交互
+&lt;/h4&gt;&lt;p&gt;指系统与用户进行动态和迭代对话的能力。多回合&lt;code&gt;iT2I&lt;/code&gt;系统可以接受多轮文本输入，使用户能够通过正在进行的对话来改进和指定他们的视觉需求。此属性增强了用户体验，并允许对生成的图像进行更细粒度的控制。&lt;/p&gt;
+&lt;h4 id=&#34;一致性&#34;&gt;一致性
+&lt;/h4&gt;&lt;p&gt;意味着系统可以自动确定是否不仅要考虑当前的文本输入，还要考虑之前的视觉上下文。它包括在上下文中保持图像的视觉特性。这种能力使iT2I系统能够执行一致的多回合图像编辑/改进，产生个性化和上下文相关的对象/角色等。&lt;/p&gt;
+&lt;h4 id=&#34;可组合性&#34;&gt;可组合性
+&lt;/h4&gt;&lt;p&gt;与将图像生成与其他任务结合或集成的能力有关。&lt;strong&gt;这意味着图像生成的能力应该是模块化的&lt;/strong&gt;，并与llm的固有能力兼容，允许用户无缝地将它们合并在一起，以执行查询文本和视觉内容的交错保存。&lt;/p&gt;
+&lt;h3 id=&#34;指令类型&#34;&gt;指令类型
+&lt;/h3&gt;&lt;p&gt;如下图所示，在iT2I系统中有生成、编辑、选择和细化等。不同的指令可能有不同的复杂程度。一些指令可以通过&lt;strong&gt;利用LLM的功能&lt;/strong&gt;来有效地处理；某些指令&lt;strong&gt;可能需要LLM和T2I模型之&lt;/strong&gt;间更深层次的协同作用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3.png&#34;
+	width=&#34;2040&#34;
+	height=&#34;1044&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1296114_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1296114_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;468px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;生成&lt;/strong&gt;指的是，iT2I系统从零开始创建图像或插图，试图捕捉所提供文本输入的本质和细节。它本质上是将查询转换为T2I模型的神经表示或提示。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考生成&lt;/strong&gt;是生成的另一种变体，系统参考由文本输入中提到的现有对象、场景或概念所激发的图像，或者出现在上下文中图像进行生成;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;选择&lt;/strong&gt;是一个相对简单的指令，它涉及根据文本输入从一组预先存在的或生成的图像中进行选择。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;编辑&lt;/strong&gt;执行的任务是修改或完善现有的图像，以响应文本指令。这可能涉及改变图像的特定属性，增强或减少某些特征，或调整图像以匹配指令中概述的要求。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;细化&lt;/strong&gt;意味着进一步增强或优化现有图像，以更好地与文本描述保持一致，以达到更高水平的细节，现实主义，或与提供的文本指导相一致的准确性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;回答问题&lt;/strong&gt;是LLM与生俱来的能力。为用户提供交错的图像和文本的连贯体验是至关重要的。&lt;/p&gt;
+&lt;h2 id=&#34;mini-dalle3&#34;&gt;Mini-DALLE3
+&lt;/h2&gt;&lt;p&gt;Mini-DALLE3的整体架构如下图所示，它包括几个关键组件:LLM、路由器、适配器和T2I模型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png&#34;
+	width=&#34;1048&#34;
+	height=&#34;766&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_308256_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_308256_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;328px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;LLM可以是现有的纯文本LLM，如ChatGPT和LLaMA，也可以是VisionLLM。它负责分析用户意图，并以文本或神经网络表示产生适当的输出。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Router&lt;/code&gt; 会自动调度解析后的图像表示(如果LLM输出中存在)分发给图像生成模块。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Adapter&lt;/code&gt; 转换图像表示，以更好地适应后端T2I模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基于-llm-提示的多轮交互&#34;&gt;基于 LLM 提示的多轮交互
+&lt;/h3&gt;&lt;p&gt;多回合交互是交互式文本到图像的核心。它需要整合文本/视觉上下文语境信息和指令而非描述性信息。&lt;/p&gt;
+&lt;p&gt;为了解决这个问题，作者通过文本描述来 &lt;code&gt;prompting&lt;/code&gt; LLM ,从而伪装生成图像来利用LLM更强的上下文理解能力。&lt;/p&gt;
+&lt;p&gt;这种中间文本描述不仅提供了更强的灵活性，可以通过即插即用模块（如快速变化/改进）增强系统功能，而且使我们能够利用大量预训练的LLM和T2I模型，而无需进行大量微调；&lt;/p&gt;
+&lt;h4 id=&#34;图像生成作为函数调用&#34;&gt;图像生成作为函数调用
+&lt;/h4&gt;&lt;p&gt;具体来说，我们利用如图5所示的小样本提示，&lt;strong&gt;将多轮图像生成问题转化为多轮文本描述生成问题。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先，我们定义语言模型（LM）的角色，并明确地向它传达它有能力生成图像。&lt;/li&gt;
+&lt;li&gt;随后，我们要求语言模型通过生成包含在⟨image⟩标签内的描述性文本来产生图像。&lt;/li&gt;
+&lt;li&gt;如果生成的图像与之前的图像高度相关，选择“编辑”而非重新“生成”图像&lt;/li&gt;
+&lt;li&gt;最后，我们提供了一些小样本示例，以进一步指导语言模型的响应。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;提示细化和变体&#34;&gt;提示细化和变体
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;通过提示大型语言模型（LLMs）来生成融合了上下文信息的文本描述，可能不足以生成高质量的图像&lt;/strong&gt;。因此，作者利用提示细化，将普通的描述转化为更适合后续文本到图像（T2I）模型的描述。&lt;/p&gt;
+&lt;p&gt;如果之前的中间表示是embedding的，那么提示细化也可以应用于embedding。作者还是利用通过使用few-shot prompt再次提示LLM来执行文本转换。（可以通过反复执行不同的提示细化来进行提示变体）&lt;/p&gt;
+&lt;h3 id=&#34;分级内容一致性控制&#34;&gt;分级内容一致性控制
+&lt;/h3&gt;&lt;p&gt;把工作能力（subject-driven T2I,
+example-driven T2I, personalization, concept learning）整合到一个统一的系统中。分层控制策略，指针对不同级别的内容变化使用不同的模型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;具体来说，就是利用现成的Ip-adapter，将先前的图像作为额外的输入，以确保一致的多回合生成。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于可以用几个词来描述的小的内容变化，如样式的变化、单词权重的变化、简单的对象操作等，我们采用Prompt to Prompt[32]和MasaCtrl[8]模型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们使用IP-Adapter[60]来执行大的内容更改，因为这些模型对于输入文本提示更灵活。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;提示是否会损害LLM的内在能力&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们对MMLU的五个子任务进行了消融研究[19]，比较了有和没有iT2I提示的模型。结果如表1所示，可以观察到iT2I提示只带来轻微的降级。
+&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6.png&#34;
+	width=&#34;407&#34;
+	height=&#34;261&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_65292_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_65292_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;155&#34;
+		data-flex-basis=&#34;374px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不同大语言模型的比较&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;iT2I Examples&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;设计的logo还挺有那味儿的&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

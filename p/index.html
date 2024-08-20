@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models 这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。 Abstract 扩散模型的关键组件之一：UNet 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。 原因是因为作者发现：编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。 这一发现启发作者在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。 基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。 在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。 Introduction 我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。 UNet 结构包括 3 个部分：1）encoder $\\mathcal{E}$ 2）a bottleneck $\\mathcal{B}$ 3）decoder $\\mathcal{D}$ 经过 encoder 编码出来后的特征 are skipped to 到 decoder 中； 之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如 PnP 用于文本引导的 Image-to-Image 翻译任务 DIFT 发现了一种主要存在于解码特征的主要突发现象； ControlNet 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。 T2I-Adapter 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。 本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是： 来自不同层的特征在推理时间内是否有不同的贡献。 如果有，那么如何重用这些特征。 基于上述问题，本文提出： encoder propagation : 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。 虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 先验噪声注入策略 来保留生成图像中的纹理细节 可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。 mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 decoder-only 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同） 作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方： Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。 Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。 Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。 以下是多模态自回归方法的设计选择和能力 Method Revisiting MGPT with Chameleon 这一节作者利用 开源模型 Chameleon 来作为例子解释 mgpt 的设计. Multimodal Tokenization 为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。 Chameleon 为文本训练了一个新的 byte pair encoding tokenizer for text。 对于图像，它采用了基于量化的标记化方法，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。 Decoder-Only Transformer 与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \\dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。 mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。 Training Objective 在训练过程中，mGPT对条件概率 $p(x_t|x_1，\\dots， x_{t−1})$ 的多模态序列，使用 next-token prediction。此外，Chameleon使用z-loss 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/p/'>
 
 <link rel="stylesheet" href="/scss/style.min.add8fb3bab9b743b892af012a73b6880459349cb1f020823ea8cdafee6e03d6d.css"><meta property='og:title' content="">
-<meta property='og:description' content="Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models 这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。 Abstract 扩散模型的关键组件之一：UNet 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。 原因是因为作者发现：编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。 这一发现启发作者在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。 基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。 在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。 Introduction 我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。 UNet 结构包括 3 个部分：1）encoder $\\mathcal{E}$ 2）a bottleneck $\\mathcal{B}$ 3）decoder $\\mathcal{D}$ 经过 encoder 编码出来后的特征 are skipped to 到 decoder 中； 之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如 PnP 用于文本引导的 Image-to-Image 翻译任务 DIFT 发现了一种主要存在于解码特征的主要突发现象； ControlNet 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。 T2I-Adapter 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。 本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是： 来自不同层的特征在推理时间内是否有不同的贡献。 如果有，那么如何重用这些特征。 基于上述问题，本文提出： encoder propagation : 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。 虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 先验噪声注入策略 来保留生成图像中的纹理细节 可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）">
+<meta property='og:description' content="这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。 mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 decoder-only 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同） 作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方： Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。 Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。 Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。 以下是多模态自回归方法的设计选择和能力 Method Revisiting MGPT with Chameleon 这一节作者利用 开源模型 Chameleon 来作为例子解释 mgpt 的设计. Multimodal Tokenization 为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。 Chameleon 为文本训练了一个新的 byte pair encoding tokenizer for text。 对于图像，它采用了基于量化的标记化方法，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。 Decoder-Only Transformer 与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \\dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。 mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。 Training Objective 在训练过程中，mGPT对条件概率 $p(x_t|x_1，\\dots， x_{t−1})$ 的多模态序列，使用 next-token prediction。此外，Chameleon使用z-loss 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。">
 <meta property='og:url' content='http://localhost:1313/p/'>
 <meta property='og:site_name' content='Tlooh Blog Site'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models 这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。 Abstract 扩散模型的关键组件之一：UNet 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。 原因是因为作者发现：编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。 这一发现启发作者在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。 基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。 在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。 Introduction 我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。 UNet 结构包括 3 个部分：1）encoder $\\mathcal{E}$ 2）a bottleneck $\\mathcal{B}$ 3）decoder $\\mathcal{D}$ 经过 encoder 编码出来后的特征 are skipped to 到 decoder 中； 之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如 PnP 用于文本引导的 Image-to-Image 翻译任务 DIFT 发现了一种主要存在于解码特征的主要突发现象； ControlNet 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。 T2I-Adapter 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。 本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是： 来自不同层的特征在推理时间内是否有不同的贡献。 如果有，那么如何重用这些特征。 基于上述问题，本文提出： encoder propagation : 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。 虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 先验噪声注入策略 来保留生成图像中的纹理细节 可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）">
+<meta name="twitter:description" content="这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。 mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 decoder-only 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同） 作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方： Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。 Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。 Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。 以下是多模态自回归方法的设计选择和能力 Method Revisiting MGPT with Chameleon 这一节作者利用 开源模型 Chameleon 来作为例子解释 mgpt 的设计. Multimodal Tokenization 为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。 Chameleon 为文本训练了一个新的 byte pair encoding tokenizer for text。 对于图像，它采用了基于量化的标记化方法，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。 Decoder-Only Transformer 与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \\dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。 mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。 Training Objective 在训练过程中，mGPT对条件概率 $p(x_t|x_1，\\dots， x_{t−1})$ 的多模态序列，使用 next-token prediction。此外，Chameleon使用z-loss 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。">
   
 
 
@@ -82,29 +82,26 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</a></li>
-  </ol>
-
-  <ol>
-    <li>
+    <li><a href="#method">Method</a>
       <ol>
-        <li><a href="#analyzing-the-unet-in-diffusion-model">Analyzing the UNet in Diffusion Model</a>
+        <li><a href="#revisiting-mgpt-with-chameleon">Revisiting MGPT with Chameleon</a>
           <ol>
-            <li></li>
-            <li><a href="#编码器传播方案">编码器传播方案</a></li>
+            <li><a href="#multimodal-tokenization">Multimodal Tokenization</a></li>
+            <li><a href="#decoder-only-transformer">Decoder-Only Transformer</a></li>
+            <li><a href="#training-objective">Training Objective</a></li>
+            <li><a href="#limitations-of-chameleon">Limitations of Chameleon</a></li>
+          </ol>
+        </li>
+        <li><a href="#lumina-mgpt">Lumina-MGPT</a>
+          <ol>
+            <li><a href="#effective-initialization">Effective initialization</a></li>
+            <li><a href="#supervised-finetuning-for-lumina-mgpt">Supervised Finetuning for Lumina-mGPT</a></li>
+            <li><a href="#inference-for-lumina-mgpt">Inference for Lumina-mGPT</a></li>
           </ol>
         </li>
       </ol>
     </li>
-    <li><a href="#experiments">Experiments</a>
-      <ol>
-        <li>
-          <ol>
-            <li></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
+    <li><a href="#实验">实验</a></li>
   </ol>
 </nav>
         </div>
@@ -148,7 +145,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    1 minute read
                 </time>
             </div>
         
@@ -163,169 +160,262 @@
     <section class="article-content">
     
     
-    <h2 id="faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models">Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
-</h2><blockquote>
-<p>这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010102266.png"
-	
-	
-	
+    <p><img src="/p/image.png"
+	width="783"
+	height="439"
+	srcset="/p/image_hu0f7e928cf01e99b3e04bfddf5f0de5d6_462529_480x0_resize_box_3.png 480w, /p/image_hu0f7e928cf01e99b3e04bfddf5f0de5d6_462529_1024x0_resize_box_3.png 1024w"
 	loading="lazy"
 	
 		alt="Alt text"
 	
 	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="428px"
+	
 ></p>
-<h1 id="abstract">Abstract
-</h1><p>扩散模型的关键组件之一：<strong>UNet</strong> 通常是作为噪声预测来看待的。之前的一些工作已经探索了UNet作为解码器的基本属性，但其作为编码器在很大程度上仍未被探索。</p>
-<p>原因是因为作者发现：<strong>编码器特征变化缓慢，而解码器特征在不同的时间步长上表现出实质性的变化。</strong>
-这一发现启发作者<strong>在一定的相邻时间内省略编码器，循环重用前面时间步的编码器特征来用于解码。</strong></p>
-<p>基于这一观察，本文引入了一种简单而有效的编码器传播方案来加速不同任务的扩散采样。此外，还引入了噪声先验来提高生产图像中的纹理细节。</p>
-<p>在不使用任何知识蒸馏的方法下，本方法将稳定扩散(SD)和DeepFloyd-IF模型的采样速度分别提高了41%和24%。</p>
-<hr>
-<h1 id="introduction">Introduction
-</h1><p>我们知道基于扩散模型的文生图模型表现高度依赖于 UNet 的去噪网络以及高质量的图像数据集。</p>
-<p>UNet 结构包括 3 个部分：1）encoder $\mathcal{E}$      2）a bottleneck $\mathcal{B}$     3）decoder $\mathcal{D}$</p>
-<p>经过 encoder 编码出来后的特征 are skipped to 到 decoder 中；
-之前有一些工作将 UNet 解码后的特征用于各种各样的下游任务。例如</p>
-<ul>
-<li><a class="link" href="https://arxiv.org/abs/2211.12572"  target="_blank" rel="noopener"
-    >PnP</a> 用于文本引导的 Image-to-Image 翻译任务</li>
-<li><a class="link" href="https://arxiv.org/abs/2306.03881"  target="_blank" rel="noopener"
-    >DIFT</a> 发现了一种主要存在于解码特征的主要突发现象；</li>
-<li><a class="link" href="https://arxiv.org/abs/2302.05543"  target="_blank" rel="noopener"
-    >ControlNet</a> 微调一个额外的 encoder，用预训练的UNet的编码器初始化，并保留原始的解码器。</li>
-<li><a class="link" href="https://arxiv.org/abs/2302.08453"  target="_blank" rel="noopener"
-    >T2I-Adapter</a> 将条件信息与可训练编码器一起注入到UNet的编码器中，并保留初始解码器。这些工作表明了解码器在生成高质量图像中的关键作用。</li>
-</ul>
-<p>本文聚焦于探索 UNet 编码器的关键作用，而关键问题就是：</p>
-<ul>
-<li><strong>来自不同层的特征在推理时间内是否有不同的贡献。</strong></li>
-<li><strong>如果有，那么如何重用这些特征。</strong></li>
-</ul>
-<p>基于上述问题，本文提出：</p>
-<ul>
-<li><font color="#0071e3">encoder propagation </font>: 一种简单有效的扩散采样过程中基于编码器特征复用的传播方案。</li>
-<li>虽然传播方案提高了扩散采样的效率，但我们观察到会导致生成结果中纹理信息的一些丢失。为了解决这个问题，我们引入了 <font color="#0071e3">先验噪声注入策略</font> 来保留生成图像中的纹理细节</li>
-</ul>
 <blockquote>
-<p>可能看下面这个图会更加直观，这个第二点感觉还是比较牵强……（因为我好像乍一看看不出啥）</p>
-<center><img src="assets/Faster Diffusion/image.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px; "><b>对比</b></div>
+<p>这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。</p>
 </blockquote>
-</center>
-<hr>
-<h1 id="methods">Methods
-</h1><blockquote>
-<p>前面说过 UNet 包括 3 个部分：</p>
+<p>mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 <code>decoder-only</code> 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同）</p>
+<p>作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方：</p>
 <ul>
-<li>encoder $\mathcal{E}$    </li>
-<li>a bottleneck $\mathcal{B}$    </li>
-<li>decoder $\mathcal{D}$</li>
+<li>Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。</li>
+<li>Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。</li>
 </ul>
-<center><img src="assets/Faster Diffusion/image-1.png" width = "%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
-从编码器提取出来的特征会通过跳跃连接传递到解码器中。
-</blockquote>
-<p>为了更好的进行表述，我们将 UNet 划分为几个块：$\mathcal{E} = {\mathcal{E}(\cdot)_s}$ , $\mathcal{B} = {\mathcal{B}(\cdot)_8}$ , $\mathcal{D} = {\mathcal{D}(\cdot)_s}$
-其中，$s \in {8, 16, 32, 64}$。而 $\mathcal{E}(\cdot)_s$ 和 $\mathcal{D}(\cdot)_s$ 分别表示编码器和解码器中具有输入分辨率 $s$ 的  <code>block layer</code>。</p>
-<h3 id="analyzing-the-unet-in-diffusion-model">Analyzing the UNet in Diffusion Model
-</h3><h5 id="特征在时间步长上的演化">特征在时间步长上的演化
-</h5><p><strong>&gt;先说结论吧&lt;</strong></p>
-<p><font color="#fc5531"><b>编码器特征在相邻的时间步长上表现出细微的变化，而解码器特征在不同的时间步长上表现出实质性的变化。</b></font></p>
-<center><img src="assets/Faster Diffusion/image-2.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Analyzing the UNet in Diffusion Model. (Fig.2)</b></div></center>
-<blockquote>
-<p>(a)通过MSE测量相邻时间步长的特征演化。(b)提取UNet各层在每个时间步长的分层特征输出，沿通道维数对其进行平均，得到二维分层特征，并计算其 f-范数。(c) UNet编码器的分层特征显示出较低的标准偏差，而解码器的分层特征显示出较高的标准偏差。</p>
-</blockquote>
-<center><img src="assets/Faster Diffusion/image-4.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Visualising the hierarchical features. (Fig.3)</b></div></center>
-<blockquote>
-<p>我们将PCA应用于 <a class="link" href="https://arxiv.org/abs/2211.12572"  target="_blank" rel="noopener"
-    >PnP</a> 之后的分层特征，并使用前三个主要成分作为RGB图像进行可视化。编码器特征变化缓慢，在许多时间步长上具有相似性 <strong>(左图)</strong>，而解码器特征在不同时间步长上表现出 <strong>实质性变化(右图)</strong>。</p>
-</blockquote>
-<p><strong>&gt;接着说说具体做法&lt;</strong></p>
-<p>在扩散过程种，我们会进行迭代采样，因此也就会产生相应的 <code>latent code</code> $\boldsymbol{z}_{\boldsymbol{t}}$ , 包括相应的层级特征：${\mathcal{E}(z_t,c,t)_s}$ ， ${\mathcal{D}(z_t,c,t)_s}(s\in{8, 16, 32, 64})$</p>
-<p>想要将层次特征变化量化出来，我们可以有:</p>
-<p>$$\Delta_{\mathcal{E}(\cdot)_s}=\frac1{d\times s^2}|\mathcal{E}(z_t,c,t)<em>s,\mathcal{E}(z</em>{t-1},c,t-1)_s|_2^2$$</p>
-<p>其中，$d$ 表示编码器特征 $\mathcal{E}(z_t,c,t)<em>s$ 通道数。$\Delta</em>{\mathcal{B}(\cdot)<em>s}$ 和 $\Delta</em>{\mathcal{D}(\cdot)_s}$ 同理。</p>
-<h5 id="特征在跨层上的演化">特征在跨层上的演化
-</h5><p>同样的，编码器变化的强度是轻微的，而解码器的变化是剧烈的。</p>
-<p>具体来说，我们计算了所有时间步长的层级特征 ${\mathcal{E}(z_t,c,t)_s}$ 的 <code>Frobenius范数</code> ，表示为</p>
-<p>$$\mathcal{F}_{\mathcal{E}(\cdot)<em>s}={\mathcal{F}</em>{\mathcal{E}(z_T,c,T)<em>s},&hellip;,\mathcal{F}</em>{\mathcal{E}(z_1,c,1)_s}}.$$</p>
-<p>计算$\mathcal{F}_{\mathcal{B}(\cdot)<em>8}$ 和 $\mathcal{F}</em>{\mathcal{D}(\cdot)_s}$ 同理。</p>
-<h5 id="能否在某些时间步骤忽略编码器">能否在某些时间步骤忽略编码器？
-</h5><p>从前面的分析可以知道，编码在大多数时间步骤上变化是不大的，所以就考虑是否可以通过重用编码器特征来加速扩散采样。</p>
-<p>具体来说，我们删除了时间步长为 $t−1 (t−1 &lt; t)$ 的编码器，相应的解码器(包括跳过连接)将前一个时间步长为 $t$ 的编码器 $\mathcal{E}$ 的层级输出作为其输入，而不是像标准SD采样那样从当前时间步长为t−1的输出作为输入。（这一点看下面的图很好理解）</p>
-<center><img src="assets/Faster Diffusion/image-5.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
-<blockquote>
-<p><strong>&gt;这里有几个现象&lt;</strong></p>
-<center><img src="assets/Faster Diffusion/image-7.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Fig4</b></div></center>
+<p>Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。</p>
+<p><strong>以下是多模态自回归方法的设计选择和能力</strong></p>
+<p><img src="/p/image-1.png"
+	width="845"
+	height="399"
+	srcset="/p/image-1_hu0f7e928cf01e99b3e04bfddf5f0de5d6_195070_480x0_resize_box_3.png 480w, /p/image-1_hu0f7e928cf01e99b3e04bfddf5f0de5d6_195070_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="211"
+		data-flex-basis="508px"
+	
+></p>
+<h2 id="method">Method
+</h2><h3 id="revisiting-mgpt-with-chameleon">Revisiting MGPT with Chameleon
+</h3><p>这一节作者利用 开源模型 <code>Chameleon</code> 来作为例子解释 <code>mgpt</code> 的设计.</p>
+<h4 id="multimodal-tokenization">Multimodal Tokenization
+</h4><p>为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。</p>
 <ul>
-<li>(a) 和 （b）比较，如果忽略了编码器，那么可以生成与标准 SD 模型非常相似的图像；</li>
-<li>(a) 和 （d）比较，我们把同样的方法复用到解码器上，发现生成的图像经常无法覆盖文本提示中的某些特定对象。
-比如文本提示：“一个留着胡子、戴着眼镜、戴着无边帽的男人”，这是因为语义主要包含在解码器而不是编码器的特征中。</li>
+<li><code>Chameleon</code> 为文本训练了一个新的 <strong>byte pair encoding tokenizer for text</strong>。</li>
+<li>对于图像，它采用了<strong>基于量化的标记化方法</strong>，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。</li>
 </ul>
-</blockquote>
-<hr>
-<h4 id="编码器传播方案">编码器传播方案
-</h4><ul>
-<li>对于采样过程 $t = {T,\dots,1}$, 将那些部署编码器传播的时间步定义为 <code>non-key</code> 时间步，表示为：$t^{non\text{-}key} = \left{t_0^{non\text{-}key},&hellip;,t_{N-1}^{non\text{-}key}\right}$ ；</li>
-<li>除了非关键步，那就是关键步了,就表示为：$t^{key} = \left{t_0^{key},t_1^{key},&hellip;,t_{T-N-1}^{key}\right}$。这些步上是不采用编码器传播方案的；</li>
-<li>初始时间步$(t_0^{key}=T)$。</li>
-</ul>
-<p>因此，diffusion 的推理时间步表示为 $\left{t^{key},t^{non\text{-}key}\right}$, 同时 $t^{key}\cup t^{non\text{-}key}={T,&hellip;,1}$ 以及 $t^{key}\cap t^{non\text{-}key}=\acute{\varnothing}.$</p>
-<h5 id="non-uniform-encoder-propagation">non-/uniform encoder propagation
-</h5><p>如图Fig.2a所示，在整个推理过程中，<strong>初始推理阶段的编码器特征变化比后期阶段更大。</strong></p>
+<h4 id="decoder-only-transformer">Decoder-Only Transformer
+</h4><p>与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。</p>
+<p>mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。<strong>研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的</strong>。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。</p>
+<h4 id="training-objective">Training Objective
+</h4><p>在训练过程中，mGPT对条件概率 $p(x_t|x_1，\dots， x_{t−1})$ 的多模态序列，使用 <code>next-token prediction</code>。此外，<code>Chameleon</code>使用<strong>z-loss</strong> 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。</p>
+<h4 id="limitations-of-chameleon">Limitations of Chameleon
+</h4><p>像<code>Chameleon</code>这样的mgpt虽然展示了 decoder-only 的transformer 结构拥有联合图像和文本理解的潜力，但它们的图像生成能力仍然不如最先进的基于扩散的框架。</p>
+<p>而且在<code>Chameleon</code>的开源版本中甚至没有图像生成能力。此外，变色龙的功能仅限于视觉语言和纯文本任务，不包括更广泛的以视觉为中心的任务。如分割和深度预测，以及创造性的视觉生成任务，如可控生成和图像编辑。</p>
+<h3 id="lumina-mgpt">Lumina-MGPT
+</h3><p>作者这里提出了3个概念：</p>
 <ul>
-<li>因此，我们在初始推理阶段选择了更多的 <code>key time-steps</code>;</li>
-<li>在之后的阶段选择更少的 <code>key time-steps</code></li>
+<li>Unambiguous Image Representation (Uni-Rep)：无歧义图像表示</li>
+<li>Flexible Progressive Supervised Finetuning (FP-SFT)：灵活的渐进式监督微调</li>
+<li>Omnipotent Supervised Finetuning (OmniSFT)：全能监督微调</li>
 </ul>
-<blockquote>
-<ul>
-<li>经过实验，定义为 <code>key time-steps</code> 为：$t^{key} = \left{50,49,48,47,45,,40,35,25,15\right}$ (SD with DDIM Solver)</li>
-<li>对于 DeepFloyd-IF：<code>key time-steps</code> 为：$t^{key}={100,99,98,\ldots$,$92,:91,:90,:85,:80,:\ldots,:25,:20,:15,:14,:13,:\ldots,:2,:1}$, ${ 50, 49, \ldots , 2, 1} $ and ${ 75, 73, 70, 66, 61, 55, 48, 40, 31, $ $21,10}$ 3阶段</li>
-</ul>
-</blockquote>
-<p>其余的时间步骤被归类为 <code>non-key time-steps</code>。我们将此策略定义为<strong>非均匀编码器传播(non-uniform encoder propagation, 见图4e)</strong>。</p>
-<p>如图4c所示，固定步长的时间步长选择，称为<strong>均匀编码器传播</strong>。</p>
-<p>表3报告了消融研究的结果，考虑了关键和非关键时间步长的各种组合。这些结果表明，关键时间步长集合在生成图像方面具有更好的性能。</p>
-<h5 id="parallel-non-uniform-encoder-propagation">Parallel non-uniform encoder propagation
-</h5><p>我们知道编码器传播的时候，也就是在那些 <code>time-step</code> $t \in t^{non-key}$ ，解码器的输入不依赖于当前时间 $t$ 的编码器输出，而是依赖于前一个最近的 <code>key time step</code> $t-1$ 的编码器输出。</p>
-<p><font color="#fc5531"><b>这也就意味着，我们其实可以进行并行操作，如图4f 所示。</b></font></p>
-<p>我们从 $t−2$到$t−k+1$时间步 并行执行解码。该技术可以同时进行多个时间步长的译码向前，进一步提高了推理效率。我们把这些 <code>non-key time-steps</code>称为 <code>parallel-batch non-key time-steps.</code></p>
-<p>如下图所示，推理时间可以减少 41%。</p>
-<center><img src="assets/Faster Diffusion/image-8.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
-<h5 id="prior-noise-injection先验噪声注入">Prior noise injection(先验噪声注入)
-</h5><p>前面说过虽然编码器传播可以提高推理阶段的效率，但观察到它会导致生成结果中纹理信息的轻微丢失（图 6 所示）。因此作者提出了一种先验噪声注入策略。</p>
-<p>说白了就是它将初始潜码 $\boldsymbol{z_t}$ 合并到后续时间步(即$\boldsymbol{z_T}$)的生成过程中，</p>
-<p>$$\boldsymbol{z_t}=\boldsymbol{z_t}+\alpha\cdot\boldsymbol{z_T},\mathrm{~if~}t&lt;\tau.$$</p>
-<p>其中 $\alpha = 0.003$ 是控制$\boldsymbol{z_T}$影响的尺度参数。我们从 $\tau = 25$的步骤开始使用这个注入机制。这种策略的结合成功地改善了纹理信息。重要的是，它需要的额外计算资源几乎可以忽略不计。</p>
-<p>我们观察到，纹理信息的丢失发生在频域的所有频率上(见图6(右红蓝曲线))。这种方法确保了SD和zT注入在频域生成的结果非常相似(见图6(右，红色和绿色曲线))，生成的图像保持所需的保真度(见图6(左，下))。</p>
-<hr>
-<h2 id="experiments">Experiments
-</h2><blockquote>
-<p>有关视频任务的这里就不细说了</p>
-</blockquote>
-<h6 id="dataset">Dataset
-</h6><p>MS-COCO2017 中随机选取 10K prompts，然后生成相应的 10K 个图像。</p>
-<h6 id="metric">Metric
-</h6><ul>
-<li>FID、 CLIP Score；</li>
-<li>计算负载的平均值量：GFLOPs/image</li>
-<li>采样时间</li>
-</ul>
-<h6 id="文本生成图像">文本生成图像
-</h6><center><img src="assets/Faster Diffusion/image-9.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Figure 7. Generated images at different time-steps, with the prompt “A man with a beard wearing sunglasses and a beanie”.</b></div></center>
-<center><img src="assets/Faster Diffusion/image-10.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Quantitative evaluation in both SD model and DeepFloydIF diffuison model on MS-COCO 2017 10K subset.</b></div></center>
-<blockquote>
-<p>也可以泛化到其他任务上，像定制化的生成（Dreambooth、Custom Diffusion），或者是参考图像生成（ControlNet）</p>
-</blockquote>
-<center><img src="assets/Faster Diffusion/image-11.png" width = "90%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b>Quantitative evaluation on text-to-video, personalized generation and reference-guided generation tasks.</b></div></center>
-<h6 id="消融实验">消融实验
-</h6><p><strong>不同策略的消融</strong></p>
-<center><img src="assets/Faster Diffusion/image-12.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
-<ul>
-<li>可视化结果</li>
-</ul>
-<center><img src="assets/Faster Diffusion/image-13.png" width = "70%" height="" /><br><div style="color:orange; border-bottom: 1px solid #d9d9d9;display: inline-block;color: #999;margin-bottom: 10px;padding: 2px;"><b></b></div></center>
+<p><code>Uni-Rep</code> 消除了扁平1D图像符号在原始2D形状中的模糊性，为灵活分辨率和宽高比下的图像理解和生成奠定了基础。</p>
+<p><code>FP-SFT</code>逐步微调mGPT以简单到困难的方式生成更高分辨率的离散图像标记，同时结合多任务微调以防止文本知识的灾难性遗忘。</p>
+<p>基于FP-SFT阶段的图像生成能力，我们继续在全能任务数据集上对Lumina-mGPT进行微调，将密集标记、空间条件图像生成和多回合编辑数据集中的图像和注释标记为离散标记。</p>
+<p><img src="/p/image-2.png"
+	width="817"
+	height="477"
+	srcset="/p/image-2_hu0f7e928cf01e99b3e04bfddf5f0de5d6_318245_480x0_resize_box_3.png 480w, /p/image-2_hu0f7e928cf01e99b3e04bfddf5f0de5d6_318245_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<h4 id="effective-initialization">Effective initialization
+</h4><p>mgpt是在大规模图像-文本交错数据集上进行预训练的，并且已经为图像和文本开发了有效和可推广的表示，</p>
+<p>因此Lumina-mGPT的主要贡献在于<strong>展示了从适当的mGPT表示开始而不是使用大型语言模型(llm)或随机初始化的好处</strong>，</p>
+<h4 id="supervised-finetuning-for-lumina-mgpt">Supervised Finetuning for Lumina-mGPT
+</h4><h5 id="unambiguous-image-representation">Unambiguous Image Representation
+</h5><p>这里需要考虑的是对于可变的分辨率如何离散化的问题，不同的分辨率都可以被可以被编码成相同数量的令牌，如果不校验tokens，就无法推断出原始的shape；</p>
+<p><img src="/p/image-3.png"
+	width="565"
+	height="206"
+	srcset="/p/image-3_hu0f7e928cf01e99b3e04bfddf5f0de5d6_89224_480x0_resize_box_3.png 480w, /p/image-3_hu0f7e928cf01e99b3e04bfddf5f0de5d6_89224_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="274"
+		data-flex-basis="658px"
+	
+></p>
+<p>作者这里采用的做法是添加额外的 <strong>宽高指示 tokens</strong> ，在<start-of-image>标记之后，并在属于同一行的图像标记之后插入<end- line>标记，看图很好理解；</p>
+<h5 id="flexible-progressive-supervised-finetuning-fp-sft">Flexible Progressive Supervised Finetuning (FP-SFT)
+</h5><p>FP-SFT使预训练的mGPT能够以渐进的方式生成具有灵活宽高比的高分辨率图像。该过程分为三个阶段，其中宽度和高度的乘积分别接近512x512,768x768和1024x1042。</p>
+<p>在每个阶段，会准备一组区域相似但高宽比不同的候选分辨率，并将每张图像匹配到最合适的分辨率。</p>
+<p><strong>在低分辨率阶段</strong>较短的序列长度和由此产生的高训练吞吐量使模型能够快速遍历大量数据，学习图像的一般组成和广泛的视觉概念。</p>
+<p><strong>在高分辨率阶段</strong>期望模型专注于学习高分辨率图像特有的高频细粒度细节。</p>
+<p>作者还设计了一个分辨率感知提示来来指定所生成图像的期望分辨率如下:
+<img src="/p/image-4.png"
+	width="796"
+	height="98"
+	srcset="/p/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_480x0_resize_box_3.png 480w, /p/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="812"
+		data-flex-basis="1949px"
+	
+></p>
+<h5 id="omnipotent-supervised-finetuning-omni-sft">Omnipotent Supervised Finetuning (Omni-SFT)
+</h5><p>**图像生成是Lumina-mGPT的主要目标，但我们发现FP-SFT后产生的模型可以有效地转移到广泛的图像理解和生成任务中。**因此，我们提出了OmniSFT，这是将Lumina-mGPT提升为视觉全能模型的初步探索。</p>
+<p>Omni-SFT的训练数据包括以下内容:</p>
+<p>（1）来自MagicBrush (Zhang等人，2024)和SEED (Ge等人，2024)的单回合和多回合语言引导图像编辑(仅涉及现实世界和多回合子集)。</p>
+<p>（2）密集预测任务
+（3）内部空间条件图像生成数据，条件包括表面规范、深度、姿态和分割。
+（4）从先前FP-SFT过程中使用的数据中采样的一小部分数据</p>
+<p>SFT训练的多个任务都使用统一的next-token predict loss。由于Lumina-mGPT被设计为一个聊天模型，所有数据都被组织成单轮或多轮对话框，损失仅应用于响应的回答部分。</p>
+<h4 id="inference-for-lumina-mgpt">Inference for Lumina-mGPT
+</h4><h5 id="classfier-free-guidance">Classfier-Free Guidance
+</h5><p>在训练过程中，以10%的概率随机丢弃<code>&lt;start-of-image&gt;</code>之前的上下文。</p>
+<h5 id="different-decoding-hyperparameters-for-image-and-text">Different Decoding Hyperparameters for Image and Text
+</h5><p>top-k=5设置在生成文本时表现良好。然而，在生成图像时，top-k的值应该大得多(例如2000)。基于此，作者实现了一种状态感知的推理控制机制。具体来说，一组默认超参数用于文本解码;一旦生成了<code>&lt;start-of-image&gt;</code>令牌，超参数就会切换到为生成图像而优化的参数。生成<code>&lt;end- image&gt;</code>标记后，参数恢复到初始设置。</p>
+<h2 id="实验">实验
+</h2><p><strong>文生图对比</strong></p>
+<p><img src="/p/image-5.png"
+	width="810"
+	height="799"
+	srcset="/p/image-5_hu0f7e928cf01e99b3e04bfddf5f0de5d6_887633_480x0_resize_box_3.png 480w, /p/image-5_hu0f7e928cf01e99b3e04bfddf5f0de5d6_887633_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="101"
+		data-flex-basis="243px"
+	
+></p>
+<p><strong>不同分辨率下的对比</strong></p>
+<p><img src="/p/image-6.png"
+	width="851"
+	height="490"
+	srcset="/p/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_450953_480x0_resize_box_3.png 480w, /p/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_450953_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="416px"
+	
+></p>
+<p><strong>和Diffusin-based的方法对比</strong>
+<img src="/p/image-7.png"
+	width="866"
+	height="827"
+	srcset="/p/image-7_hu0f7e928cf01e99b3e04bfddf5f0de5d6_700811_480x0_resize_box_3.png 480w, /p/image-7_hu0f7e928cf01e99b3e04bfddf5f0de5d6_700811_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="104"
+		data-flex-basis="251px"
+	
+></p>
+<p><img src="/p/image-8.png"
+	width="839"
+	height="522"
+	srcset="/p/image-8_hu0f7e928cf01e99b3e04bfddf5f0de5d6_485233_480x0_resize_box_3.png 480w, /p/image-8_hu0f7e928cf01e99b3e04bfddf5f0de5d6_485233_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="385px"
+	
+></p>
+<p><strong>emoji 和多模态指令、多语言提示</strong></p>
+<p><img src="/p/image-9.png"
+	width="845"
+	height="657"
+	srcset="/p/image-9_hu0f7e928cf01e99b3e04bfddf5f0de5d6_543787_480x0_resize_box_3.png 480w, /p/image-9_hu0f7e928cf01e99b3e04bfddf5f0de5d6_543787_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="308px"
+	
+></p>
+<p><strong>cfg，top-k系数</strong></p>
+<p><img src="/p/image-10.png"
+	width="830"
+	height="766"
+	srcset="/p/image-10_hu0f7e928cf01e99b3e04bfddf5f0de5d6_746086_480x0_resize_box_3.png 480w, /p/image-10_hu0f7e928cf01e99b3e04bfddf5f0de5d6_746086_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="260px"
+	
+></p>
+<p><strong>重建质量对比</strong></p>
+<p><img src="/p/image-11.png"
+	width="849"
+	height="807"
+	srcset="/p/image-11_hu0f7e928cf01e99b3e04bfddf5f0de5d6_855342_480x0_resize_box_3.png 480w, /p/image-11_hu0f7e928cf01e99b3e04bfddf5f0de5d6_855342_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="105"
+		data-flex-basis="252px"
+	
+></p>
+<p><strong>Bad case</strong></p>
+<p>当前Lumina-mGPT的故障案例。由于训练不足和数据大小有限，Lumina-mGPT有时难以理解输入条件并产生视觉伪像。</p>
+<p><img src="/p/image-12.png"
+	width="856"
+	height="625"
+	srcset="/p/image-12_hu0f7e928cf01e99b3e04bfddf5f0de5d6_484999_480x0_resize_box_3.png 480w, /p/image-12_hu0f7e928cf01e99b3e04bfddf5f0de5d6_484999_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="Alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="328px"
+	
+></p>
+
 </section>
 
 

@@ -2,30 +2,508 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Diffusion on Tlooh Blog Site</title>
-        <link>http://localhost:1313/categories/diffusion/</link>
+        <link>https://tlooh.github.io/categories/diffusion/</link>
         <description>Recent content in Diffusion on Tlooh Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Tlooh</copyright>
-        <lastBuildDate>Sun, 04 Aug 2024 01:12:44 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 20 Aug 2024 01:12:44 +0800</lastBuildDate><atom:link href="https://tlooh.github.io/categories/diffusion/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>All papers about diffusion models on arxiv</title>
-        <link>http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/</link>
-        <pubDate>Sun, 04 Aug 2024 01:12:44 +0800</pubDate>
+        <link>https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/</link>
+        <pubDate>Tue, 20 Aug 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/</guid>
-        <description>&lt;img src="http://localhost:1313/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg" alt="Featured image of post All papers about diffusion models on arxiv" /&gt;&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/all-papers-about-diffusion-models-on-arxiv/all_diffusion_papers_view.jpeg" alt="Featured image of post All papers about diffusion models on arxiv" /&gt;&lt;p&gt;In this post, I want to list all papers on diffusion on arxiv(using &lt;a class=&#34;link&#34; href=&#34;https://github.com/mahdisadjadi/arxivscraper&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;arxivscraper&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;Actually, I used to tracking related papers on &lt;a class=&#34;link&#34; href=&#34;https://vsehwag.github.io/blog/2023/2/all_papers_on_diffusion.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Sehwag&amp;rsquo;s blog&lt;/a&gt;, but it seems that the blog is not updated in time, so I decided to write a script to crawl related papers by myself and list them on my blog.&lt;/p&gt;
 </description>
         </item>
         <item>
+        <title>Lumina-mGPT: 全能的高质量文生图多模态大模型</title>
+        <link>https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link>
+        <pubDate>Thu, 15 Aug 2024 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-2.png" alt="Featured image of post Lumina-mGPT: 全能的高质量文生图多模态大模型" /&gt;&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image.png&#34;
+	width=&#34;783&#34;
+	height=&#34;439&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image_hu0f7e928cf01e99b3e04bfddf5f0de5d6_462529_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image_hu0f7e928cf01e99b3e04bfddf5f0de5d6_462529_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;178&#34;
+		data-flex-basis=&#34;428px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这是一个适配不同视觉和语言任务的集合，特别擅长于用文本生成真实的图像，恰好满足了我之前对于多模态大模型的想象，之前看过的minigpt4，llava等论文呢，发现更多是在对图像的深刻理解上。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;mGPT的简称为multimodal Generative PreTraining；Lumina-mGPT统一采用 &lt;code&gt;decoder-only&lt;/code&gt; 的transformer结构来建模 token 序列。（这与通过linear project投射到同一空间进行信息交互的做法不同）&lt;/p&gt;
+&lt;p&gt;作者发现利用大量交错文本-图像序列的下一个标记预测目标，可以学习广泛和通用的多模态能力，从而启发逼真的文本-图像生成。总的来说有两个地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Progressive Supervised Finetuning (FP-SFT) ：在高质量的图像-文本对上，以充分释放其在任何分辨率下的高美学图像合成的潜力，同时保持其一般的多模态能力。&lt;/li&gt;
+&lt;li&gt;Ominiponent Supervised Finetuning (Omni-SFT)：将Lumina-mGPT转化为一个基础模型，无缝实现全能任务统一。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lumina的多模态能力非常强大，包括视觉生成任务，如灵活的文本到图像生成和可控生成，视觉识别任务，如分割和深度估计，以及视觉语言任务，如多回合视觉问答。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以下是多模态自回归方法的设计选择和能力&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-1.png&#34;
+	width=&#34;845&#34;
+	height=&#34;399&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-1_hu0f7e928cf01e99b3e04bfddf5f0de5d6_195070_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-1_hu0f7e928cf01e99b3e04bfddf5f0de5d6_195070_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;211&#34;
+		data-flex-basis=&#34;508px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;method&#34;&gt;Method
+&lt;/h2&gt;&lt;h3 id=&#34;revisiting-mgpt-with-chameleon&#34;&gt;Revisiting MGPT with Chameleon
+&lt;/h3&gt;&lt;p&gt;这一节作者利用 开源模型 &lt;code&gt;Chameleon&lt;/code&gt; 来作为例子解释 &lt;code&gt;mgpt&lt;/code&gt; 的设计.&lt;/p&gt;
+&lt;h4 id=&#34;multimodal-tokenization&#34;&gt;Multimodal Tokenization
+&lt;/h4&gt;&lt;p&gt;为了将文本和图像统一到一个多模态标记序列中，首先必须将文本和图像标记到离散空间中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Chameleon&lt;/code&gt; 为文本训练了一个新的 &lt;strong&gt;byte pair encoding tokenizer for text&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;对于图像，它采用了&lt;strong&gt;基于量化的标记化方法&lt;/strong&gt;，在降低空间维度的同时，将连续图像补丁从固定码本转换为离散令牌。然后将量化的图像标记平面化为一维序列，并以各种方式与文本标记连接，形成统一建模的多模态标记序列。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;decoder-only-transformer&#34;&gt;Decoder-Only Transformer
+&lt;/h4&gt;&lt;p&gt;与使用预训练编码器的编码器-解码器架构的 Unified-IO 和 Parti 不同，mGPT在将文本和图像输入转换为离散令牌$x = (x_1, x_2, \dots, x_T)$的统一序列后，从头开始训练 decoder-only 的自回归transformer。&lt;/p&gt;
+&lt;p&gt;mGPT在LLaMA系列之后进行了一些小的调整，如RoPE 和SwiGLU 激活函数。然而当扩大多模态标记序列的模型大小和上下文长度时，这种标准转换器架构表现出训练不稳定性。&lt;strong&gt;研究发现，这种不稳定性是由变压器块中网络激活的不可控增长引起的&lt;/strong&gt;。因此，在每个变压器块中加入Pre-Norm, PostNorm和QK-Norm，以保持中间激活的大小，并进一步稳定训练过程。&lt;/p&gt;
+&lt;h4 id=&#34;training-objective&#34;&gt;Training Objective
+&lt;/h4&gt;&lt;p&gt;在训练过程中，mGPT对条件概率 $p(x_t|x_1，\dots， x_{t−1})$ 的多模态序列，使用 &lt;code&gt;next-token prediction&lt;/code&gt;。此外，&lt;code&gt;Chameleon&lt;/code&gt;使用&lt;strong&gt;z-loss&lt;/strong&gt; 来稳定7B和30B模型的训练。虽然用的少，但是这个loss非常重要，如果没有会导致 logits激增。&lt;/p&gt;
+&lt;h4 id=&#34;limitations-of-chameleon&#34;&gt;Limitations of Chameleon
+&lt;/h4&gt;&lt;p&gt;像&lt;code&gt;Chameleon&lt;/code&gt;这样的mgpt虽然展示了 decoder-only 的transformer 结构拥有联合图像和文本理解的潜力，但它们的图像生成能力仍然不如最先进的基于扩散的框架。&lt;/p&gt;
+&lt;p&gt;而且在&lt;code&gt;Chameleon&lt;/code&gt;的开源版本中甚至没有图像生成能力。此外，变色龙的功能仅限于视觉语言和纯文本任务，不包括更广泛的以视觉为中心的任务。如分割和深度预测，以及创造性的视觉生成任务，如可控生成和图像编辑。&lt;/p&gt;
+&lt;h3 id=&#34;lumina-mgpt&#34;&gt;Lumina-MGPT
+&lt;/h3&gt;&lt;p&gt;作者这里提出了3个概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unambiguous Image Representation (Uni-Rep)：无歧义图像表示&lt;/li&gt;
+&lt;li&gt;Flexible Progressive Supervised Finetuning (FP-SFT)：灵活的渐进式监督微调&lt;/li&gt;
+&lt;li&gt;Omnipotent Supervised Finetuning (OmniSFT)：全能监督微调&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Uni-Rep&lt;/code&gt; 消除了扁平1D图像符号在原始2D形状中的模糊性，为灵活分辨率和宽高比下的图像理解和生成奠定了基础。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;FP-SFT&lt;/code&gt;逐步微调mGPT以简单到困难的方式生成更高分辨率的离散图像标记，同时结合多任务微调以防止文本知识的灾难性遗忘。&lt;/p&gt;
+&lt;p&gt;基于FP-SFT阶段的图像生成能力，我们继续在全能任务数据集上对Lumina-mGPT进行微调，将密集标记、空间条件图像生成和多回合编辑数据集中的图像和注释标记为离散标记。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-2.png&#34;
+	width=&#34;817&#34;
+	height=&#34;477&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-2_hu0f7e928cf01e99b3e04bfddf5f0de5d6_318245_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-2_hu0f7e928cf01e99b3e04bfddf5f0de5d6_318245_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;effective-initialization&#34;&gt;Effective initialization
+&lt;/h4&gt;&lt;p&gt;mgpt是在大规模图像-文本交错数据集上进行预训练的，并且已经为图像和文本开发了有效和可推广的表示，&lt;/p&gt;
+&lt;p&gt;因此Lumina-mGPT的主要贡献在于&lt;strong&gt;展示了从适当的mGPT表示开始而不是使用大型语言模型(llm)或随机初始化的好处&lt;/strong&gt;，&lt;/p&gt;
+&lt;h4 id=&#34;supervised-finetuning-for-lumina-mgpt&#34;&gt;Supervised Finetuning for Lumina-mGPT
+&lt;/h4&gt;&lt;h5 id=&#34;unambiguous-image-representation&#34;&gt;Unambiguous Image Representation
+&lt;/h5&gt;&lt;p&gt;这里需要考虑的是对于可变的分辨率如何离散化的问题，不同的分辨率都可以被可以被编码成相同数量的令牌，如果不校验tokens，就无法推断出原始的shape；&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-3.png&#34;
+	width=&#34;565&#34;
+	height=&#34;206&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-3_hu0f7e928cf01e99b3e04bfddf5f0de5d6_89224_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-3_hu0f7e928cf01e99b3e04bfddf5f0de5d6_89224_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;274&#34;
+		data-flex-basis=&#34;658px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;作者这里采用的做法是添加额外的 &lt;strong&gt;宽高指示 tokens&lt;/strong&gt; ，在&lt;start-of-image&gt;标记之后，并在属于同一行的图像标记之后插入&lt;end- line&gt;标记，看图很好理解；&lt;/p&gt;
+&lt;h5 id=&#34;flexible-progressive-supervised-finetuning-fp-sft&#34;&gt;Flexible Progressive Supervised Finetuning (FP-SFT)
+&lt;/h5&gt;&lt;p&gt;FP-SFT使预训练的mGPT能够以渐进的方式生成具有灵活宽高比的高分辨率图像。该过程分为三个阶段，其中宽度和高度的乘积分别接近512x512,768x768和1024x1042。&lt;/p&gt;
+&lt;p&gt;在每个阶段，会准备一组区域相似但高宽比不同的候选分辨率，并将每张图像匹配到最合适的分辨率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在低分辨率阶段&lt;/strong&gt;较短的序列长度和由此产生的高训练吞吐量使模型能够快速遍历大量数据，学习图像的一般组成和广泛的视觉概念。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在高分辨率阶段&lt;/strong&gt;期望模型专注于学习高分辨率图像特有的高频细粒度细节。&lt;/p&gt;
+&lt;p&gt;作者还设计了一个分辨率感知提示来来指定所生成图像的期望分辨率如下:
+&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-4.png&#34;
+	width=&#34;796&#34;
+	height=&#34;98&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-4_hu0f7e928cf01e99b3e04bfddf5f0de5d6_28023_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;812&#34;
+		data-flex-basis=&#34;1949px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h5 id=&#34;omnipotent-supervised-finetuning-omni-sft&#34;&gt;Omnipotent Supervised Finetuning (Omni-SFT)
+&lt;/h5&gt;&lt;p&gt;**图像生成是Lumina-mGPT的主要目标，但我们发现FP-SFT后产生的模型可以有效地转移到广泛的图像理解和生成任务中。**因此，我们提出了OmniSFT，这是将Lumina-mGPT提升为视觉全能模型的初步探索。&lt;/p&gt;
+&lt;p&gt;Omni-SFT的训练数据包括以下内容:&lt;/p&gt;
+&lt;p&gt;（1）来自MagicBrush (Zhang等人，2024)和SEED (Ge等人，2024)的单回合和多回合语言引导图像编辑(仅涉及现实世界和多回合子集)。&lt;/p&gt;
+&lt;p&gt;（2）密集预测任务
+（3）内部空间条件图像生成数据，条件包括表面规范、深度、姿态和分割。
+（4）从先前FP-SFT过程中使用的数据中采样的一小部分数据&lt;/p&gt;
+&lt;p&gt;SFT训练的多个任务都使用统一的next-token predict loss。由于Lumina-mGPT被设计为一个聊天模型，所有数据都被组织成单轮或多轮对话框，损失仅应用于响应的回答部分。&lt;/p&gt;
+&lt;h4 id=&#34;inference-for-lumina-mgpt&#34;&gt;Inference for Lumina-mGPT
+&lt;/h4&gt;&lt;h5 id=&#34;classfier-free-guidance&#34;&gt;Classfier-Free Guidance
+&lt;/h5&gt;&lt;p&gt;在训练过程中，以10%的概率随机丢弃&lt;code&gt;&amp;lt;start-of-image&amp;gt;&lt;/code&gt;之前的上下文。&lt;/p&gt;
+&lt;h5 id=&#34;different-decoding-hyperparameters-for-image-and-text&#34;&gt;Different Decoding Hyperparameters for Image and Text
+&lt;/h5&gt;&lt;p&gt;top-k=5设置在生成文本时表现良好。然而，在生成图像时，top-k的值应该大得多(例如2000)。基于此，作者实现了一种状态感知的推理控制机制。具体来说，一组默认超参数用于文本解码;一旦生成了&lt;code&gt;&amp;lt;start-of-image&amp;gt;&lt;/code&gt;令牌，超参数就会切换到为生成图像而优化的参数。生成&lt;code&gt;&amp;lt;end- image&amp;gt;&lt;/code&gt;标记后，参数恢复到初始设置。&lt;/p&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;文生图对比&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-5.png&#34;
+	width=&#34;810&#34;
+	height=&#34;799&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-5_hu0f7e928cf01e99b3e04bfddf5f0de5d6_887633_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-5_hu0f7e928cf01e99b3e04bfddf5f0de5d6_887633_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;101&#34;
+		data-flex-basis=&#34;243px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不同分辨率下的对比&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-6.png&#34;
+	width=&#34;851&#34;
+	height=&#34;490&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_450953_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_450953_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;173&#34;
+		data-flex-basis=&#34;416px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;和Diffusin-based的方法对比&lt;/strong&gt;
+&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-7.png&#34;
+	width=&#34;866&#34;
+	height=&#34;827&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-7_hu0f7e928cf01e99b3e04bfddf5f0de5d6_700811_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-7_hu0f7e928cf01e99b3e04bfddf5f0de5d6_700811_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;104&#34;
+		data-flex-basis=&#34;251px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-8.png&#34;
+	width=&#34;839&#34;
+	height=&#34;522&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-8_hu0f7e928cf01e99b3e04bfddf5f0de5d6_485233_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-8_hu0f7e928cf01e99b3e04bfddf5f0de5d6_485233_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;385px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;emoji 和多模态指令、多语言提示&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-9.png&#34;
+	width=&#34;845&#34;
+	height=&#34;657&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-9_hu0f7e928cf01e99b3e04bfddf5f0de5d6_543787_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-9_hu0f7e928cf01e99b3e04bfddf5f0de5d6_543787_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;128&#34;
+		data-flex-basis=&#34;308px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;cfg，top-k系数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-10.png&#34;
+	width=&#34;830&#34;
+	height=&#34;766&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-10_hu0f7e928cf01e99b3e04bfddf5f0de5d6_746086_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-10_hu0f7e928cf01e99b3e04bfddf5f0de5d6_746086_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;108&#34;
+		data-flex-basis=&#34;260px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;重建质量对比&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-11.png&#34;
+	width=&#34;849&#34;
+	height=&#34;807&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-11_hu0f7e928cf01e99b3e04bfddf5f0de5d6_855342_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-11_hu0f7e928cf01e99b3e04bfddf5f0de5d6_855342_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;105&#34;
+		data-flex-basis=&#34;252px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bad case&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当前Lumina-mGPT的故障案例。由于训练不足和数据大小有限，Lumina-mGPT有时难以理解输入条件并产生视觉伪像。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-12.png&#34;
+	width=&#34;856&#34;
+	height=&#34;625&#34;
+	srcset=&#34;https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-12_hu0f7e928cf01e99b3e04bfddf5f0de5d6_484999_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/lumina-mgpt-%E5%85%A8%E8%83%BD%E7%9A%84%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/image-12_hu0f7e928cf01e99b3e04bfddf5f0de5d6_484999_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;328px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Mini DALL·E 3: 通过提示大语言模型来交互式文生图</title>
+        <link>https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/</link>
+        <pubDate>Sat, 10 Aug 2024 01:12:44 +0800</pubDate>
+        
+        <guid>https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png" alt="Featured image of post Mini DALL·E 3: 通过提示大语言模型来交互式文生图" /&gt;&lt;h1 id=&#34;mini-dalle-3-interactive-text-to-image-by-prompting-large-language-models&#34;&gt;Mini DALL·E 3: Interactive Text to Image by Prompting Large Language Models
+&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image.png&#34;
+	width=&#34;1606&#34;
+	height=&#34;846&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image_huc82d7b839fc53b7a5c86bd3cdfedcac6_987907_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image_huc82d7b839fc53b7a5c86bd3cdfedcac6_987907_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;189&#34;
+		data-flex-basis=&#34;455px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Mini DALL·E 3 是一个基于大型语言模型的&lt;strong&gt;交互式文本到图像&lt;/strong&gt;的生成系统。&lt;/li&gt;
+&lt;li&gt;用户可以通过自然语言指令请求生成图像，&lt;strong&gt;并能在不满意时进行编辑请求&lt;/strong&gt;,系统能在多轮对话中识别上下文并作出相应调整。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从介绍图来看，确实是一个比较新颖的点，所以记录下这篇文章具体怎么做的&lt;/p&gt;
+&lt;p&gt;这是一个图像生成方式的演变，作者这里想说明的是这种交互式编辑，或者是多模态大模型在是未来的演变方向；&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1.png&#34;
+	width=&#34;1098&#34;
+	height=&#34;850&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_459446_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_459446_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;310px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;主要是因为目前的SD主流生成语言是与人类自然语言不符合的，其实在 C站上也看的出来，很多精致的基模或者画风，他们的prompt都是以关键词给出的，并非人类描述的自然语句；&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2.png&#34;
+	width=&#34;2076&#34;
+	height=&#34;718&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_617179_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_617179_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;289&#34;
+		data-flex-basis=&#34;693px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;交互式图像生成&#34;&gt;交互式图像生成
+&lt;/h2&gt;&lt;h3 id=&#34;问题定义&#34;&gt;问题定义
+&lt;/h3&gt;&lt;p&gt;这种交互式的图像生成有三个点需要注意的：&lt;/p&gt;
+&lt;h4 id=&#34;多轮交互&#34;&gt;多轮交互
+&lt;/h4&gt;&lt;p&gt;指系统与用户进行动态和迭代对话的能力。多回合&lt;code&gt;iT2I&lt;/code&gt;系统可以接受多轮文本输入，使用户能够通过正在进行的对话来改进和指定他们的视觉需求。此属性增强了用户体验，并允许对生成的图像进行更细粒度的控制。&lt;/p&gt;
+&lt;h4 id=&#34;一致性&#34;&gt;一致性
+&lt;/h4&gt;&lt;p&gt;意味着系统可以自动确定是否不仅要考虑当前的文本输入，还要考虑之前的视觉上下文。它包括在上下文中保持图像的视觉特性。这种能力使iT2I系统能够执行一致的多回合图像编辑/改进，产生个性化和上下文相关的对象/角色等。&lt;/p&gt;
+&lt;h4 id=&#34;可组合性&#34;&gt;可组合性
+&lt;/h4&gt;&lt;p&gt;与将图像生成与其他任务结合或集成的能力有关。&lt;strong&gt;这意味着图像生成的能力应该是模块化的&lt;/strong&gt;，并与llm的固有能力兼容，允许用户无缝地将它们合并在一起，以执行查询文本和视觉内容的交错保存。&lt;/p&gt;
+&lt;h3 id=&#34;指令类型&#34;&gt;指令类型
+&lt;/h3&gt;&lt;p&gt;如下图所示，在iT2I系统中有生成、编辑、选择和细化等。不同的指令可能有不同的复杂程度。一些指令可以通过&lt;strong&gt;利用LLM的功能&lt;/strong&gt;来有效地处理；某些指令&lt;strong&gt;可能需要LLM和T2I模型之&lt;/strong&gt;间更深层次的协同作用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3.png&#34;
+	width=&#34;2040&#34;
+	height=&#34;1044&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1296114_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1296114_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;195&#34;
+		data-flex-basis=&#34;468px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;生成&lt;/strong&gt;指的是，iT2I系统从零开始创建图像或插图，试图捕捉所提供文本输入的本质和细节。它本质上是将查询转换为T2I模型的神经表示或提示。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考生成&lt;/strong&gt;是生成的另一种变体，系统参考由文本输入中提到的现有对象、场景或概念所激发的图像，或者出现在上下文中图像进行生成;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;选择&lt;/strong&gt;是一个相对简单的指令，它涉及根据文本输入从一组预先存在的或生成的图像中进行选择。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;编辑&lt;/strong&gt;执行的任务是修改或完善现有的图像，以响应文本指令。这可能涉及改变图像的特定属性，增强或减少某些特征，或调整图像以匹配指令中概述的要求。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;细化&lt;/strong&gt;意味着进一步增强或优化现有图像，以更好地与文本描述保持一致，以达到更高水平的细节，现实主义，或与提供的文本指导相一致的准确性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;回答问题&lt;/strong&gt;是LLM与生俱来的能力。为用户提供交错的图像和文本的连贯体验是至关重要的。&lt;/p&gt;
+&lt;h2 id=&#34;mini-dalle3&#34;&gt;Mini-DALLE3
+&lt;/h2&gt;&lt;p&gt;Mini-DALLE3的整体架构如下图所示，它包括几个关键组件:LLM、路由器、适配器和T2I模型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4.png&#34;
+	width=&#34;1048&#34;
+	height=&#34;766&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_308256_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_308256_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;328px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;LLM可以是现有的纯文本LLM，如ChatGPT和LLaMA，也可以是VisionLLM。它负责分析用户意图，并以文本或神经网络表示产生适当的输出。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Router&lt;/code&gt; 会自动调度解析后的图像表示(如果LLM输出中存在)分发给图像生成模块。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Adapter&lt;/code&gt; 转换图像表示，以更好地适应后端T2I模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基于-llm-提示的多轮交互&#34;&gt;基于 LLM 提示的多轮交互
+&lt;/h3&gt;&lt;p&gt;多回合交互是交互式文本到图像的核心。它需要整合文本/视觉上下文语境信息和指令而非描述性信息。&lt;/p&gt;
+&lt;p&gt;为了解决这个问题，作者通过文本描述来 &lt;code&gt;prompting&lt;/code&gt; LLM ,从而伪装生成图像来利用LLM更强的上下文理解能力。&lt;/p&gt;
+&lt;p&gt;这种中间文本描述不仅提供了更强的灵活性，可以通过即插即用模块（如快速变化/改进）增强系统功能，而且使我们能够利用大量预训练的LLM和T2I模型，而无需进行大量微调；&lt;/p&gt;
+&lt;h4 id=&#34;图像生成作为函数调用&#34;&gt;图像生成作为函数调用
+&lt;/h4&gt;&lt;p&gt;具体来说，我们利用如图5所示的小样本提示，&lt;strong&gt;将多轮图像生成问题转化为多轮文本描述生成问题。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先，我们定义语言模型（LM）的角色，并明确地向它传达它有能力生成图像。&lt;/li&gt;
+&lt;li&gt;随后，我们要求语言模型通过生成包含在⟨image⟩标签内的描述性文本来产生图像。&lt;/li&gt;
+&lt;li&gt;如果生成的图像与之前的图像高度相关，选择“编辑”而非重新“生成”图像&lt;/li&gt;
+&lt;li&gt;最后，我们提供了一些小样本示例，以进一步指导语言模型的响应。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;提示细化和变体&#34;&gt;提示细化和变体
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;通过提示大型语言模型（LLMs）来生成融合了上下文信息的文本描述，可能不足以生成高质量的图像&lt;/strong&gt;。因此，作者利用提示细化，将普通的描述转化为更适合后续文本到图像（T2I）模型的描述。&lt;/p&gt;
+&lt;p&gt;如果之前的中间表示是embedding的，那么提示细化也可以应用于embedding。作者还是利用通过使用few-shot prompt再次提示LLM来执行文本转换。（可以通过反复执行不同的提示细化来进行提示变体）&lt;/p&gt;
+&lt;h3 id=&#34;分级内容一致性控制&#34;&gt;分级内容一致性控制
+&lt;/h3&gt;&lt;p&gt;把工作能力（subject-driven T2I,
+example-driven T2I, personalization, concept learning）整合到一个统一的系统中。分层控制策略，指针对不同级别的内容变化使用不同的模型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;具体来说，就是利用现成的Ip-adapter，将先前的图像作为额外的输入，以确保一致的多回合生成。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对于可以用几个词来描述的小的内容变化，如样式的变化、单词权重的变化、简单的对象操作等，我们采用Prompt to Prompt[32]和MasaCtrl[8]模型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我们使用IP-Adapter[60]来执行大的内容更改，因为这些模型对于输入文本提示更灵活。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实验&#34;&gt;实验
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;提示是否会损害LLM的内在能力&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们对MMLU的五个子任务进行了消融研究[19]，比较了有和没有iT2I提示的模型。结果如表1所示，可以观察到iT2I提示只带来轻微的降级。
+&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6.png&#34;
+	width=&#34;407&#34;
+	height=&#34;261&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_65292_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-6_hu0f7e928cf01e99b3e04bfddf5f0de5d6_65292_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;155&#34;
+		data-flex-basis=&#34;374px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不同大语言模型的比较&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-7_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-8_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;iT2I Examples&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9.png&#34;
+	width=&#34;1902&#34;
+	height=&#34;1154&#34;
+	srcset=&#34;https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/mini-dalle-3-%E9%80%9A%E8%BF%87%E6%8F%90%E7%A4%BA%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9D%A5%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%96%87%E7%94%9F%E5%9B%BE/image-9_huc82d7b839fc53b7a5c86bd3cdfedcac6_1424439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;395px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;设计的logo还挺有那味儿的&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>StoryDiffusion：让 Diffusion 用来生成故事插画和视频</title>
-        <link>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
+        <link>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</link>
         <pubDate>Fri, 19 Jul 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
-        <description>&lt;img src="http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
+        <guid>https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/assets/index/image.png" alt="Featured image of post StoryDiffusion：让 Diffusion 用来生成故事插画和视频" /&gt;&lt;h1 id=&#34;storydiffusion让-diffusion-用来生成故事插画和视频&#34;&gt;StoryDiffusion：让 Diffusion 用来生成故事插画和视频
 &lt;/h1&gt;&lt;hr&gt;
 &lt;h2 id=&#34;motivation&#34;&gt;Motivation
 &lt;/h2&gt;&lt;p&gt;目前生成主题一致（例如，具有一致身份和着装的角色）的图像和视频来描述整个故事是困难的。&lt;/p&gt;
@@ -39,10 +517,10 @@
 &lt;li&gt;&lt;code&gt;First Stage&lt;/code&gt;: 模型使用 &lt;code&gt;Consistent Self-Attention&lt;/code&gt; 以 training-free 的方式来生成主题一致的图像，这些图像可以直接用来讲故事，也可以用来作为第二阶段的输入；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Second Stage&lt;/code&gt;: 模型利用这些主题一致的图像来生成一致的过渡视频；&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image.png&#34;
 	width=&#34;1750&#34;
 	height=&#34;916&#34;
-	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image_hudef821d89c4aa164073f78c294353610_1337627_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -63,10 +541,10 @@
 &lt;p&gt;采样后，我们将采样的标记$S_i$与图像特征$I_i$配对，形成一组新的标记$P_i$。然后将$P_i$进行投射成新的 K、V,原来的Q不变，最后，我们计算自我注意如下：&lt;/p&gt;
 &lt;p&gt;$$O_i=\text{Attention}\left(Q_i,K_{Pi},V_{Pi}\right).$$&lt;/p&gt;
 &lt;p&gt;给定配对的标记，我们的方法跨一批图像执行自关注，促进不同图像特征之间的交互。这种类型的交互促进了模型在生成过程中趋同于人物、面孔和服装。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1.png&#34;
 	width=&#34;1748&#34;
 	height=&#34;964&#34;
-	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-1_huc82d7b839fc53b7a5c86bd3cdfedcac6_561260_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -80,10 +558,10 @@
 &lt;h2 id=&#34;semantic-motion-predictor-for-video-generation&#34;&gt;Semantic motion predictor for video generation
 &lt;/h2&gt;&lt;p&gt;通过在每对相邻图像之间插入帧，可以将生成的字符一致图像序列进一步细化为视频。这可以看作是一个&lt;strong&gt;以已知的开始帧和结束帧为条件的视频生成任务。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;提出了一个 Semantic Motion Predictor, 用以将图像编码到语意空间来捕获空间信息。具体来说，我们设计了一个函数$E$来建立RGB图像到语意空间的映射，而不是直接使用线性层进行投射。（说了这么多，就使用CLIP image encoder来作为 E）
-&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
+&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2.png&#34;
 	width=&#34;378&#34;
 	height=&#34;80&#34;
-	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-2_huc82d7b839fc53b7a5c86bd3cdfedcac6_13009_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -111,10 +589,10 @@ $$&lt;/p&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;图像生成之间的对比&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3.png&#34;
 	width=&#34;1270&#34;
 	height=&#34;882&#34;
-	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-3_huc82d7b839fc53b7a5c86bd3cdfedcac6_1428272_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -125,10 +603,10 @@ $$&lt;/p&gt;
 		data-flex-basis=&#34;345px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4.png&#34;
 	width=&#34;1278&#34;
 	height=&#34;818&#34;
-	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-4_huc82d7b839fc53b7a5c86bd3cdfedcac6_1240991_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -142,10 +620,10 @@ $$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;定量比较&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5.png&#34;
 	width=&#34;1308&#34;
 	height=&#34;534&#34;
-	srcset=&#34;http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, http://localhost:1313/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
+	srcset=&#34;https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_480x0_resize_box_3.png 480w, https://tlooh.github.io/p/storydiffusion%E8%AE%A9-diffusion-%E7%94%A8%E6%9D%A5%E7%94%9F%E6%88%90%E6%95%85%E4%BA%8B%E6%8F%92%E7%94%BB%E5%92%8C%E8%A7%86%E9%A2%91/image-5_huc82d7b839fc53b7a5c86bd3cdfedcac6_298320_1024x0_resize_box_3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Alt text&#34;
@@ -161,10 +639,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models</title>
-        <link>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
+        <link>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</link>
         <pubDate>Mon, 06 May 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
+        <guid>https://tlooh.github.io/p/cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202405061001750.png" alt="Featured image of post Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models" /&gt;&lt;h1 id=&#34;cross-attention-makes-inference-cumbersome-in-text-to-image-diffusion-models&#34;&gt;Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models
 &lt;/h1&gt;&lt;p&gt;本研究探讨了文本条件扩散模型中交叉注意在推理过程中的作用。我们发现 &lt;font color=&#34;#fc5531&#34;&gt;&lt;b&gt;交叉注意输出经过几个推理步骤后会收敛到一个固定点&lt;/b&gt;&lt;/font&gt; 。收敛的时间点自然将整个推理过程分为两个阶段:&lt;/p&gt;
 &lt;ul&gt;
@@ -284,10 +762,10 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</title>
-        <link>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
+        <link>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</link>
         <pubDate>Sun, 28 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
+        <guid>https://tlooh.github.io/p/sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/202404281401795.png" alt="Featured image of post SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions" /&gt;&lt;h1 id=&#34;sdxs-real-time-one-step-latent-diffusion-models-with-image-conditions&#34;&gt;SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;sign: 2024-4-28 💡&lt;/strong&gt;
@@ -551,10 +1029,10 @@ Diff-instruct: A universal approach for transferring knowledge from pre-trained 
         </item>
         <item>
         <title>CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching</title>
-        <link>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
+        <link>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</link>
         <pubDate>Thu, 25 Apr 2024 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
+        <guid>https://tlooh.github.io/p/comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/web/image-2.png" alt="Featured image of post CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching" /&gt;&lt;h1 id=&#34;comat-aligning-text-to-image-diffusion-model-with-image-to-text-concept-matching&#34;&gt;CoMat: Aligning Text-to-Image Diffusion Model with Image-to-Text Concept Matching
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;图文一致性的原因还是因为文本的 token 的激活注意值不高，导致文本的 token 无法激活图像的区域，从而导致图文不一致。作者将这种现象归因于扩散模型的训练方式对条件的利用不足，所以提出了 CoMat，是一种 &lt;strong&gt;端到端的扩散模型微调策略。&lt;/strong&gt;&lt;/p&gt;
@@ -696,11 +1174,11 @@ $$\begin{aligned}\mathcal{L}&lt;em&gt;\text{pixel}=-\frac{1}{N|A|}\sum&lt;/em&gt
         </item>
         <item>
         <title>Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models</title>
-        <link>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
+        <link>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</link>
         <pubDate>Fri, 22 Dec 2023 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
-        <description>&lt;img src="http://localhost:1313/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
+        <guid>https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/</guid>
+        <description>&lt;img src="https://tlooh.github.io/p/faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models/assets/Faster%20Diffusion/image-7.png" alt="Featured image of post Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models" /&gt;&lt;h1 id=&#34;faster-diffusion-rethinking-the-role-of-unet-encoder-in-diffusion-models&#34;&gt;Faster Diffusion: Rethinking the Role of UNet Encoder in Diffusion Models
 &lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;这也是一篇加速的文章，本质上是探索了不同时间步的编码器重用，以及先验噪声注入策略。来减少推理时间。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -866,10 +1344,10 @@ $$\begin{aligned}\mathcal{L}&lt;em&gt;\text{pixel}=-\frac{1}{N|A|}\sum&lt;/em&gt
         </item>
         <item>
         <title>AdaDiff: Adaptive Step Selection for Fast Diffusion</title>
-        <link>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
+        <link>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</link>
         <pubDate>Thu, 21 Dec 2023 01:12:44 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
+        <guid>https://tlooh.github.io/p/adadiff-adaptive-step-selection-for-fast-diffusion/</guid>
         <description>&lt;img src="https://raw.githubusercontent.com/Tlooh/blog-imgs/main/2024/202408010059694.png" alt="Featured image of post AdaDiff: Adaptive Step Selection for Fast Diffusion" /&gt;&lt;h2 id=&#34;adadiff-adaptive-step-selection-for-fast-diffusion&#34;&gt;AdaDiff: Adaptive Step Selection for Fast Diffusion
 &lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;这本质是一篇加速生成的文章，优化角度在于为不同复杂程度的提示选取不同的时间步去进行去噪。&lt;/p&gt;
